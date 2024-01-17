@@ -32,7 +32,7 @@ The logout button should be in a dropdown menu in the top right of the site, and
 As an authorized user when I am logged in to the website I am redirected to a personalized home page with recently listened to music and saved albums/playlists. I should see a profile button in the top right with a Profile option and a Logout option on every page of the website. I should see a Home button in the top left that redirects me to home from any page in the website. Underneath the home button I should see a Upload album button that redirects me to a new page where I can upload a new album and a your library tab that has a button to make a new playlist. I should see an integrated player on the bottom of the page for the current song I am listening to, that has a play button, pause button, next and last song buttons, like button, shuffle button, progress bar, and volume slider.
 
 # Profile page
-On the top of my profile page, I should see a profile header on the top of the page with my profile icon, username, and number of public playlists, and a button to edit my profile that takes me to a edit profile modal. Underneath the profile header I should see my top listened to albums, top songs, and my created public playlists. Next to each should be a Show all button that redirects to another page containing the rest of the content.
+On the top of my profile page, I should see a profile header on the top of the page with my profile icon, username, and number of public playlists, and a button to edit my profile that takes me to a edit profile modal. Underneath the profile header I should see my created albums, top songs, and my created public playlists. Next to each should be a Show all button that redirects to another page containing the rest of the content.
 
 # Profile edit modal
 In the edit profile modal, I should be able to change my account name and/or picture.
@@ -41,4 +41,8 @@ In the edit profile modal, I should be able to change my account name and/or pic
 On clicking the plus button that is in the Your Library section, I should be taken to a new page that has a blank playlist, with a default name of the latest number playlist created. I should be able to add a photo to my playlist, rename my playlist, and/or add a song from the list provided.
 When I have added a song, it should have a button on the very right that has a dropdown that contains a remove from playlist option, a like option, a go to artist page and go to album page option. Each song should have the numbered position in playlist, album cover art, artist name, song name, album name, date added, and duration.
 
-# Create
+# Create an Album
+On the create an album page, I should be able to upload songs, delete songs, update a song, name the album, and upload album art. For a created album, I should be able to see a header that contains the album name, album cover, artist name, year added, number of songs, and duration. Underneath should be a play button, like button, and a drop down that contains an add to Library option, add to Playlist option, and a Delete album option. There should be the list of songs and each song should have its number, name, artist name and duration.
+
+# Liked Songs Playlist
+Inside the Library section should be a auto-created playlist that contains all the songs liked by the user.
