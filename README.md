@@ -23,7 +23,7 @@ The password must contain at least 8 characters. We recommend including at least
 
 
 ## Optional:
-### Gender
+* Gender
 
 # Logout
 The logout button should be in a dropdown menu in the top right of the site, and should redirect me to the home page on successful logout.
@@ -41,8 +41,8 @@ In the edit profile modal, I should be able to change my account name and/or pic
 On clicking the plus button that is in the Your Library section, I should be taken to a new page that has a blank playlist, with a default name of the latest number playlist created. I should be able to add a photo to my playlist, rename my playlist, and/or add a song from the list provided.
 When I have added a song, it should have a button on the very right that has a dropdown that contains a remove from playlist option, a like option, a go to artist page and go to album page option. Each song should have the numbered position in playlist, album cover art, artist name, song name, album name, date added, and duration.
 
+## Liked Songs Playlist
+Inside the Library section should be a auto-created playlist that contains all the songs liked by the user.
+
 # Create an Album
 On the create an album page, I should be able to upload songs, delete songs, update a song, name the album, and upload album art. For a created album, I should be able to see a header that contains the album name, album cover, artist name, year added, number of songs, and duration. Underneath should be a play button, like button, and a drop down that contains an add to Library option, add to Playlist option, and a Delete album option. There should be the list of songs and each song should have its number, name, artist name and duration.
-
-# Liked Songs Playlist
-Inside the Library section should be a auto-created playlist that contains all the songs liked by the user.
