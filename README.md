@@ -1,3 +1,5 @@
+# Schema Diagram
+![Alt text](image.png)
 # Unauthorized user
 As an unauthorized user when I visit the site I will see a list of popular playlists each with a name, a short description, and cover art. I should be able to see in the footer of the website, relevant links to github, social media links, etc. On the left side should be a navbar that I can use to navigate to different parts of the website including the search, homepage, and a create playlist button in the library section that prompts user to signup or login. If I click to play a song I should be prompted to make a free account in a modal.
 
