@@ -12,4 +12,4 @@ class Playlist(db.Model):
     playlist_cover_url = db.Column(db.String, nullable=False)
     private = db.Column(db.Boolean, default=False, nullable=False)
 
-    # user = db.relationship('User', back_populates='playlist')
+    playlist_song = db.relationship('PlaylistSong', back_populates='playlist')
