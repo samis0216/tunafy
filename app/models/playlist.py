@@ -11,3 +11,5 @@ class Playlist(db.Model):
     creator_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     playlist_cover_url = db.Column(db.String, nullable=False)
     private = db.Column(db.Boolean, default=False, nullable=False)
+
+    # user = db.relationship('User', back_populates='playlist')

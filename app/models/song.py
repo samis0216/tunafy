@@ -10,7 +10,7 @@ class Song(db.Model):
     song_name=db.Column(db.String(30), nullable=False)
     artist_id=db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     album_id=db.Column(db.Integer, db.ForeignKey('albums.id'), nullable=True)
-    playlist_id=db.Column(db.Integer, db.ForeignKey('playlists.id'), nullable=True)
+
     song_cover_url=db.Column(db.String, nullable=False)
     song_file_url=db.Column(db.String, nullable=False)
     plays=db.Column(db.Integer, nullable=False, default=0)

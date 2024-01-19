@@ -29,6 +29,17 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 db.init_app(app)
+
+#! DELETE BEFORE ANYTHING IMPORTANT
+if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
+    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa
+        dbapi_con.execute('pragma foreign_keys=ON')
+
+    with app.app_context():
+        from sqlalchemy import event
+        event.listen(db.engine, 'connect', _fk_pragma_on_connect)
+#! DELETE BEFORE ANYTHING IMPORTANT
+
 Migrate(app, db)
 
 # Application Security
