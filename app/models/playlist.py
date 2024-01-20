@@ -13,3 +13,12 @@ class Playlist(db.Model):
     private = db.Column(db.Boolean, default=False, nullable=False)
 
     playlist_song = db.relationship('PlaylistSong', back_populates='playlist')
+
+    def to_dict(self):
+       return {
+          'id': self.id,
+          'playlist_name': self.playlist_name,
+          'creator_id': self.creator_id,
+          'playlist_cover_url': self.playlist_cover_url,
+          'private': self.private
+       }

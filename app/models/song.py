@@ -16,3 +16,15 @@ class Song(db.Model):
     duration=db.Column(db.Integer, nullable=False)
 
     song_playlist = db.relationship('PlaylistSong', back_populates='song')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'song_name': self.song_name,
+            'artist_id': self.artist_id,
+            'album_id': self.album_id,
+            'song_cover_url': self.song_cover_url,
+            'song_file_url': self.song_file_url,
+            'plays': self.plays,
+            'duration': self.duration
+        }

@@ -10,3 +10,11 @@ class Album(db.Model):
     album_name = db.Column(db.String(30), nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     album_cover_url = db.Column(db.String, nullable=False)
+
+    def to_dict(self):
+       return {
+          'id': self.id,
+          'album_name': self.album_name,
+          'artist_id': self.artist_id,
+          'album_cover_url': self.album_cover_url
+       }
