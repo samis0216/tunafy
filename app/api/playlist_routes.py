@@ -7,3 +7,4 @@ playlist_routes = Blueprint('playlist', __name__)
 def playlists():
     all_playlists = Playlist.query.all()
     return {'playlists': [playlist.to_dict() for playlist in all_playlists]}
+# random comment for dev branch
