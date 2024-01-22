@@ -9,7 +9,7 @@ s3 = boto3.client(
    aws_secret_access_key=os.environ.get("AWS_IMAGE_SECRET_ACESS_KEY")
 )
 
-ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
+IMAGES_ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 def get_unique_filename_img(filename):
     ext = filename.rsplit(".", 1)[1].lower()
@@ -32,6 +32,7 @@ def upload_img_to_s3(file, acl="public-read"):
         )
     except Exception as e:
         # in case the your s3 upload fails
+        # print(e)
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
