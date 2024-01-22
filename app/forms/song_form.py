@@ -8,12 +8,9 @@ from app.api.aws_songs import SONGS_ALLOWED_EXTENSIONS
 
 class SongForm(FlaskForm):
     song_name = StringField('Song Name', validators=[DataRequired()])
-    song_cover_url = FileField('Song Cover URL')
-    song_file_url = FileField('Song File URL')
+    song_cover_url = FileField('Song Cover URL', validators=[FileAllowed(list(IMAGES_ALLOWED_EXTENSIONS)), FileRequired()])
+    song_file_url = FileField('Song File URL', validators=[FileAllowed(list(SONGS_ALLOWED_EXTENSIONS)), FileRequired()])
     duration = IntegerField('Duration', validators=[DataRequired()])
     submit = SubmitField('Add Song')
 
-    # FileField("Song File", validators=[(FileAllowed(), FileRequired())])
-    # , validators=[FileAllowed(list(IMAGES_ALLOWED_EXTENSIONS)), FileRequired()]
-    # validators=[FileAllowed(list(SONGS_ALLOWED_EXTENSIONS)), FileRequired()]
     # album_name = StringField('Album Name', validators=[DataRequired()])
