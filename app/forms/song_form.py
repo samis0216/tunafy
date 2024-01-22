@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField, FileField
 from wtforms.validators import DataRequired
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from app.models import Song
 
 class SongForm(FlaskForm):
@@ -10,3 +11,5 @@ class SongForm(FlaskForm):
     song_file_url = StringField('Song File URL', validators=[DataRequired()])
     duration = IntegerField('Duration', validators=[DataRequired()])
     submit = SubmitField('Add Song')
+
+    # FileField("Song File", validators=[(FileAllowed(), FileRequired())])
