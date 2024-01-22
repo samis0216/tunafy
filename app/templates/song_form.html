@@ -1,0 +1,8 @@
+<form method="post" action="/api/songs/new" enctype="multipart/form-data">
+    {{form.csrf_token}}
+    <p>{{form.song_name.label}}: {{form.song_name}}</p>
+    <p>{{form.song_cover_url.label}}: {{form.song_cover_url}}</p>
+    <p>{{form.song_file_url.label}}: {{form.song_file_url}}</p>
+    <p>{{form.duration.label}}: {{form.duration}}</p>
+    {{form.submit}}
+</form>
