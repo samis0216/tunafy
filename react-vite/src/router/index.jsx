@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import LoadHomePage from '../components/HomePage/HomePage';
 import CreateSong from '../components/CreateSong/CreateSong';
+import CreatePlaylist from '../components/CreatePlaylist/CreatePlaylist'
 import Layout from './Layout';
 import CreateAlbum from '../components/CreateAlbum/CreateAlbum';
 
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "albums",
         element: <CreateAlbum />
+      },
+      {
+        path: "playlists",
+        element: <CreatePlaylist />
       }
     ],
   },
