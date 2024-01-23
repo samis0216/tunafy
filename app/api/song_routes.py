@@ -33,5 +33,5 @@ def song_form():
         photo1 = upload_img_to_s3(photo.data)
         song1 = upload_song_to_s3(song.data)
         print("SONG: ", song1, "PHOTO: ", photo1)
-        return redirect('/')
+        return redirect('/api/songs')
     return 'Bad Data'
