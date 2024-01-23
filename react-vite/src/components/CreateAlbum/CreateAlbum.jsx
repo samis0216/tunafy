@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./CreateAlbum.css"
 
 export default function CreateAlbum() {
   const dispatch = useDispatch();
+  const user = useSelector((state => state.session.user))
   const [image, setImage] = useState(null);
   const [name, setName] = useState("")
   const [imageLoading, setImageLoading] = useState(false);
@@ -11,42 +12,47 @@ export default function CreateAlbum() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", image);
-    formData.append("name", name)
+    formData.append("album_cover_url", image);
+    formData.append("album_name", name);
+    formData.append("artist_id", user.id);
+
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(createAlbum(formData));
+    await dispatch(addAlbum(formData));
   }
 
   return (
     <form
-      action="/api/albums/new"
-      onSubmit={handleSubmit}
-      encType="multipart/form-data"
+    action="/api/albums/new"
+    onSubmit={handleSubmit}
+    encType="multipart/form-data"
     >
-      <div>
-        <p>Album Name</p>
-        <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
+      <div className="album-form-container">
+        <div className="album-form-name">
+          <p>Album Name</p>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            />
+        </div>
 
-      <div>
-      <p>Upload Cover Art</p>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
-      />
-      </div>
+        <div className="album-form-file">
+          <p>Upload Cover Art</p>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            />
+        </div>
 
-      <button
-        type="submit"
-      > Submit </button>
-      {(imageLoading) && <p>Loading...</p>}
+        <button
+          className="album-form-button"
+          type="submit"
+          > Submit </button>
+        {(imageLoading) && <p style={{"color": "white"}}>Loading...</p>}
+      </div>
     </form>
   )
 }
