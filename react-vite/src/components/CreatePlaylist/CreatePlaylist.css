@@ -1,0 +1,26 @@
+.playlist-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist-form-name {
+  color: white;
+}
+
+.playlist-form-file {
+  color: white;
+}
+
+.playlist-form-private {
+  display: flex;
+  color: white;
+}
+
+input[type='file']:hover{
+  cursor: pointer;
+}
+
+.playlist-form-button:hover {
+  cursor: pointer;
+}

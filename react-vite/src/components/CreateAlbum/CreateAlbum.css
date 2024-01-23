@@ -1,0 +1,21 @@
+.album-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album-form-name {
+  color: white;
+}
+
+.album-form-file {
+  color: white;
+}
+
+input[type='file']:hover{
+  cursor: pointer;
+}
+
+.album-form-button:hover {
+  cursor: pointer;
+}

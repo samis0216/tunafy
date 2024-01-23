@@ -1,0 +1,59 @@
+.form-body {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-around;
+    padding: 25px 100px 50px 100px;
+    gap: 30px   ;
+}
+
+.entry-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.entry-container > h4 {
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.song-inputs {
+    height: 30px;
+    background-color: #121212;
+    border: 1px #414141 solid;
+    width: 235px;
+    color: white;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    gap: 10px;
+    justify-content: center;
+    height: 80%;
+    background-color: black;
+    margin: 0 33%;
+    padding: 40px 0 20px 0;
+}
+
+#submit_butt {
+    color: black;
+    font-weight: bold;
+    border: #548AAE 2px solid;
+    background-color: #548AAE;
+    width: 250px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.song-inputs::placeholder {
+    color: #414141;
+    padding: 2px;
+}
+
+#submit_butt:hover {
+    cursor: pointer;
+}
