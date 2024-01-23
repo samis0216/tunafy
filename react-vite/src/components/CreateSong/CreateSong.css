@@ -1,16 +1,27 @@
 .form-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     color: white;
     justify-content: space-around;
-    padding: 100px;
+    padding: 0px 100px 50px 100px;
+    gap: 30px   ;
 }
 
 .entry-container {
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.entry-container > h4 {
+    font-weight: 500;
+}
+
+.song-inputs {
+    height: 30px;
+    background-color: #121212;
+    border: 1px #414141 solid;
+
 }
 
 #container {
@@ -29,8 +40,8 @@
 #submit_butt {
     color: black;
     font-weight: bold;
-    border: #1CD760 2px solid;
-    background-color: #1CD760;
+    border: #548AAE 2px solid;
+    background-color: #548AAE;
     width: 250px;
     height: 40px;
     border-radius: 30px;

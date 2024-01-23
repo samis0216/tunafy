@@ -32,12 +32,13 @@ export default function CreateSong() {
                 className="form-body"
             >
                 <div className="entry-container">
-                    <h4>Name</h4>
+                    <h4>Song Name</h4>
                     <input
                         type="text"
                         placeholder="Song Name"
                         value={songName}
                         onChange={(e) => setSongName(e.target.value)}
+                        className="song-inputs"
                     />
                 </div>
                 <div className="entry-container">
