@@ -1,145 +1,6 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    background-color: #121212;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.left-bar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 240px;
-    padding: 24px;
-    background-color: #000000;
-}
-
-.left-bar .logo a {
-    display: flex;
-    flex: row;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.left-bar .logo img {
-    width: 30px;
-}
-
-.left-bar .nav ul {
-    list-style: none;
-    margin-top: 20px;
-}
-
-.left-bar .nav li {
-    padding: 10px 0px;
-}
-
-.left-bar .nav li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.left-bar .nav li a:hover,
-.left-bar .nav li a:active,
-.left-bar .nav li a:focus {
-    color: #ffffff;
-}
-
-.left-bar .nav li a:hover .fa,
-.left-bar .nav li a:active .fa,
-.left-bar .nav li a:focus .fa {
-    color: #b3b3b3;
-}
-
-.left-bar .nav li a:hover .fa:hover,
-.left-bar .nav li a:active .fa:active,
-.left-bar .nav li a:focus .fa:focus {
-    color: #ffffff;
-}
-
-.left-bar .nav ul li .fa {
-    font-size: 20px;
-    margin-right: 10px;
-}
-
 .main-container {
     margin-left: 285px;
     margin-bottom: 100px;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #101010;
-    padding: 14px 30px;
-}
-
-.top-bar .back-forward-buttons button {
-    color: #7a7a7a;
-    cursor: not-allowed;
-    width: 34px;
-    height: 34px;
-    border-radius: 100%;
-    font-size: 18px;
-    border: 0px;
-    background-color: #090909;
-    margin-right: 10px;
-}
-
-.top-bar .nav-bar {
-    display: flex;
-    align-items: center;
-}
-
-.top-bar .nav-bar ul {
-    list-style: none;
-}
-
-.top-bar .nav-bar ul li {
-    display: inline-block;
-    margin: 0px 8px;
-    width: 70px;
-}
-
-.top-bar .nav-bar ul li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.top-bar .nav-bar ul li a:hover,
-.top-bar .nav-bar ul li a:active,
-.top-bar .nav-bar ul li a:focus {
-    color: #ffffff;
-    font-size: 15px;
-}
-
-.top-bar .nav-bar button {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 14px 30px;
-    border: 0px;
-    border-radius: 40px;
-    cursor: pointer;
-    margin-left: 20px;
-}
-
-.top-bar .nav-bar button:hover,
-.top-bar .nav-bar button:active,
-.top-bar .nav-bar button:focus {
-    background-color: #f2f2f2;
 }
 
 .playlists {
@@ -147,18 +8,19 @@ body {
 }
 
 .playlists h2 {
-    color: #ffffff;
+    color: white;
     font-size: 22px;
     margin-bottom: 20px;
+    white-space: nowrap;
 }
 
-.playlists .list {
+.list {
     display: flex;
     gap: 20px;
     overflow: hidden;
 }
 
-.playlists .list .item {
+.item {
     min-width: 140px;
     width: 160px;
     padding: 15px;
@@ -168,21 +30,21 @@ body {
     transition: all ease 0.4s;
 }
 
-.playlists .list .item:hover {
+.item:hover {
     background-color: #252525;
 }
 
-.playlists .list .item img {
+.item img {
     width: 100%;
     border-radius: 6px;
     margin-bottom: 10px;
 }
 
-.playlists .list .item .play {
+.play {
     position: relative;
 }
 
-.playlists .list .item .play .fa {
+.play .fa {
     position: absolute;
     right: 10px;
     top: -60px;
@@ -193,13 +55,13 @@ body {
     transition: all ease 0.4s;
 }
 
-.playlists .list .item:hover .play .fa {
+.item:hover .play .fa {
     opacity: 1;
     transform: translateY(-20px);
 }
 
-.playlists .list .item h4 {
-    color: #ffffff;
+.item h4 {
+    color: white;
     font-size: 14px;
     margin-bottom: 10px;
     white-space: nowrap;
@@ -207,7 +69,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.playlists .list .item p {
+.item p {
     color: #989898;
     font-size: 12px;
     line-height: 20px;
@@ -220,36 +82,38 @@ body {
 }
 
 .preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background: linear-gradient(to right, #ae2896, #509bf5);
     padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .preview h6 {
-    color: #ffffff;
+    color: white;
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
 .preview p {
-    color: #ffffff;
+    color: white;
     font-size: 14px;
     font-weight: 500;
 }
 
 .preview button {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: white;
+    color: black;
     font-size: 16px;
     font-weight: bold;
     padding: 14px 30px;
     border: 0px;
     border-radius: 40px;
     cursor: pointer;
+    white-space: nowrap;
 }
