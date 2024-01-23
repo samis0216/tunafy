@@ -1,5 +1,5 @@
-import { redirect, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 import './CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
 
@@ -25,7 +25,7 @@ export default function CreateSong() {
         // some sort of loading message is a good idea
         setAwsLoading(true);
         // await dispatch(createPost(formData));
-        navigate('/')
+        // navigate('/')
     }
 
     return (
