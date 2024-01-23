@@ -16,7 +16,7 @@ def get_unique_filename_songs(filename):
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
-BUCKET_NAME = os.environ.get("S3_BUCKET_SONGS")
+BUCKET_NAME = os.environ.get("BUCKET_SONGS")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
 def upload_song_to_s3(file, acl="public-read"):
