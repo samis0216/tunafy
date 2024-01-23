@@ -1,0 +1,6 @@
+<form method="post" action="/api/albums/new" enctype="multipart/form-data">
+    {{form.csrf_token}}
+    <p>{{form.album_name.label}}: {{form.album_name}}</p>
+    <p>{{form.album_cover_url.label}}: {{form.album_cover_url}}</p>
+    {{form.submit}}
+</form>
