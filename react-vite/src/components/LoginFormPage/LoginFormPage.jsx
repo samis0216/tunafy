@@ -32,14 +32,17 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
+    <div id="login-page">
+    <div id="login-container">
+      <h1 id="login-header">Log in to Spotify</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label className="login-email">
           Email
           <input
+            className="login-inputs"
+            placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -47,9 +50,11 @@ function LoginFormPage() {
           />
         </label>
         {errors.email && <p>{errors.email}</p>}
-        <label>
+        <label className="login-password">
           Password
           <input
+            className="login-inputs"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -57,9 +62,10 @@ function LoginFormPage() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <button id="login-submit" type="submit">Log In</button>
       </form>
-    </>
+    </div>
+    </div>
   );
 }
 
