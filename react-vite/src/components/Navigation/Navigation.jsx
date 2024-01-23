@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -8,19 +8,22 @@ import 'react-h5-audio-player/lib/styles.css';
 
 function Navigation() {
   const navigate = useNavigate();
+  const location = useLocation()
   const sessionUser = useSelector((state) => state.session.user)
 
   const Player = () => (
     <AudioPlayer
       autoPlay
       src="http://example.com/audio.mp3"
-      onPlay={e => console.log("onPlay")}
+      // onPlay={e => console.log("onPlay")}
       // other props here
     />
   );
 
   return (
     <>
+    {location.pathname !== '/signup' && location.pathname !== '/login' && (
+      <>
       <div className="left-bar">
         <div className="logo">
           <a className="left-bar-logo" href="/">
@@ -98,6 +101,8 @@ function Navigation() {
           {Player()}
         </div>
       )}
+      </>
+    )}
     </>
   );
 }

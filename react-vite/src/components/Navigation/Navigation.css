@@ -178,3 +178,7 @@ body {
 .rhap_container.rhap_loop--off.rhap_play-status--paused{
   background-color: black;
 }
+
+/* .top-bar, .left-bar {
+  display: none;
+} */
