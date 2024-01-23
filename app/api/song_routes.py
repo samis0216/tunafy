@@ -26,7 +26,7 @@ def song_form():
         new_song = Song(song_name=data['song_name'],
                         artist_id=1,
                         song_cover_url=upload_img_to_s3(form.song_cover_url.data),
-                        song_file_url=upload_img_to_s3(form.song_file_url.data),
+                        song_file_url=upload_song_to_s3(form.song_file_url.data),
                         duration=data['duration'])
         db.session.add(new_song)
         db.session.commit()
