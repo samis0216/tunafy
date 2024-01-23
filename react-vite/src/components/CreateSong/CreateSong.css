@@ -3,7 +3,7 @@
     flex-direction: column;
     color: white;
     justify-content: space-around;
-    padding: 0px 100px 50px 100px;
+    padding: 25px 100px 50px 100px;
     gap: 30px   ;
 }
 
@@ -15,13 +15,15 @@
 
 .entry-container > h4 {
     font-weight: 500;
+    padding-bottom: 10px;
 }
 
 .song-inputs {
     height: 30px;
     background-color: #121212;
     border: 1px #414141 solid;
-
+    width: 235px;
+    color: white;
 }
 
 #container {
@@ -34,7 +36,7 @@
     height: 80%;
     background-color: black;
     margin: 0 33%;
-    padding: 30px;
+    padding: 40px 0 20px 0;
 }
 
 #submit_butt {
@@ -45,4 +47,13 @@
     width: 250px;
     height: 40px;
     border-radius: 30px;
+}
+
+.song-inputs::placeholder {
+    color: #414141;
+    padding: 2px;
+}
+
+#submit_butt:hover {
+    cursor: pointer;
 }
