@@ -20,12 +20,11 @@ def albumSub():
     form = AlbumForm()
     if form.validate_on_submit():
         data = form.data
+        form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
         newAlbum = Album(album_name=data['album_name'],
                         artist_id=1,
-                        album_cover_url=get_unique_filename_img(form.album_cover_url.data.filename))
+                        album_cover_url=upload_img_to_s3(form.album_cover_url.data))
         db.session.add(newAlbum)
         db.session.commit()
-        photo1 = upload_img_to_s3(form.album_cover_url.data)
-        print("PICTURE: ", photo1)
         return redirect("/api/albums")
     return "Get shit on"
