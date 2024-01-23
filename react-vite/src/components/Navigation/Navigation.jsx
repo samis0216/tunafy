@@ -3,10 +3,22 @@ import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ProfileButton from "./ProfileButton";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 function Navigation() {
   const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user)
+
+  const Player = () => (
+    <AudioPlayer
+      autoPlay
+      src="http://example.com/audio.mp3"
+      onPlay={e => console.log("onPlay")}
+      // other props here
+    />
+  );
+
   return (
     <>
       <div className="left-bar">
@@ -58,18 +70,34 @@ function Navigation() {
           {!sessionUser && (
             <>
             <span className="sign-up" onClick={() => navigate("/signup")}>Sign Up</span>
-          <button className='login-button' type="button" onClick={() => navigate("/login")}>
-            Log In
-          </button>
-          </>
-            )}
-            {sessionUser && (
-              <span>
-                <ProfileButton />
-              </span>
-            )}
+            <button className='login-button' type="button" onClick={() => navigate("/login")}>
+              Log In
+            </button>
+            </>
+          )}
+          {sessionUser && (
+            <span>
+              <ProfileButton />
+            </span>
+          )}
         </div>
       </div>
+      {!sessionUser && (
+        <div className="preview">
+          <div className="text">
+            <h6>Preview of Spotify</h6>
+            <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+          </div>
+          <div className="button">
+            <button type="button" onClick={() => navigate("/signup")}>Sign Up Free</button>
+          </div>
+        </div>
+      )}
+      {sessionUser && (
+        <div className="music-player">
+          {Player()}
+        </div>
+      )}
     </>
   );
 }
