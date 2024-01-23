@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect
 from app.models import Playlist, db
 from app.forms.playlist_form import PlaylistForm
-from .aws_images import get_unique_filename_img, upload_img_to_s3
+from .aws_images import get_unique_filename_img, upload_img_to_s3, remove_img_from_s3
 
 
 playlist_routes = Blueprint('playlist', __name__)
@@ -31,3 +31,15 @@ def playlistSub():
         db.session.commit()
         return redirect("/api/playlists")
     return "Get shit on"
+
+@playlist_routes.route('/<int:id>')
+def singlePlaylist(id):
+    playlist = Playlist.query.get(id)
+    return playlist.to_dict()
+
+@playlist_routes.route('/<int:id>', methods=['DELETE'])
+def playlistDel(id):
+    playlist = Playlist.query.get(id)
+    remove_img_from_s3(playlist.playlist_cover_url)
+    db.session.delete(playlist)
+    db.session.commit()

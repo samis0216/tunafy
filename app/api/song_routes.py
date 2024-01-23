@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect
 from app.models import Song, db
 from app.forms.song_form import SongForm
-from .aws_songs import upload_song_to_s3, get_unique_filename_songs
-from .aws_images import upload_img_to_s3, get_unique_filename_img
+from .aws_songs import upload_song_to_s3, get_unique_filename_songs, remove_song_from_s3
+from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
 
 song_routes = Blueprint('song', __name__)
 
@@ -25,10 +25,24 @@ def song_form():
         form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
         new_song = Song(song_name=data['song_name'],
                         artist_id=1,
-                        song_cover_url=upload_img_to_s3(form.song_cover_url.data),
-                        song_file_url=upload_song_to_s3(form.song_file_url.data),
+                        song_cover_url=upload_img_to_s3(form.song_cover_url.data).get("url"),
+                        song_file_url=upload_song_to_s3(form.song_file_url.data).get("url"),
                         duration=data['duration'])
         db.session.add(new_song)
         db.session.commit()
         return redirect('/api/songs')
     return 'Bad Data'
+
+@song_routes.route("/<int:id>")
+def oneSong(id):
+    song = Song.query.get(id)
+    return song.to_dict()
+
+@song_routes.route("/<int:id>", methods=['DELETE'])
+def deleteSong(id):
+    song = Song.query.get(id)
+    remove_img_from_s3(song["song_cover_url"])
+    remove_song_from_s3(song["song_file_url"])
+    db.session.delete(song)
+    db.session.commit()
+    return "Successfully deleted"
