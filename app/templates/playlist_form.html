@@ -1,0 +1,7 @@
+<form method="post" action="/api/playlists/new" enctype="multipart/form-data">
+    {{form.csrf_token}}
+    <p>{{form.playlist_name.label}}: {{form.playlist_name}}</p>
+    <p>{{form.playlist_cover_url.label}}: {{form.playlist_cover_url}}</p>
+    <p>{{form.private.label}}: {{form.private}}</p>
+    {{form.submit}}
+</form>
