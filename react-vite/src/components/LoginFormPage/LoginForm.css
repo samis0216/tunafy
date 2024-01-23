@@ -1,3 +1,21 @@
+.home-bar {
+    padding: 24px;
+    background-color: black;
+}
+
+.home-link h3 {
+    padding-left: 5px;
+}
+
+.home-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #login-header {
     color: white;
     margin-bottom: 70px;
@@ -24,16 +42,22 @@
 #login-page {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
-#login-container {
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#login-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: black;
-    margin-top: 140px;
     width: auto;
-    padding: 200px;
+    padding: 100px 70px;
 }
 
 .login-form {
@@ -44,9 +68,12 @@
 #login-submit {
     padding: 15px 120px;
     border-radius: 25px;
-    background-color: rgb(61, 143, 180);
+    background-color: #538aad;
     color: black;
     font-weight: bolder;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
 }
 
 .login-inputs {
@@ -56,4 +83,28 @@
     background-color: rgb(19, 17, 17);
     color: white;
     border-radius: 3px;
+}
+
+.demo-user-login {
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sign-up-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    color: #b3b3b3;
+    gap: 10px;
+}
+
+.tunafy-signup-link {
+    color: white;
+    font-weight: 600;
+}
+
+.error-message {
+    color: #538aad;
 }
