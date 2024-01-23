@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import ProfileButton from "./ProfileButton";
 
 function Navigation() {
   const navigate = useNavigate();
+  const sessionUser = useSelector((state) => state.session.user)
   return (
     <>
       <div className="left-bar">
@@ -52,10 +55,19 @@ function Navigation() {
           <button type="button" className="fa fas fa-chevron-right"></button>
         </div>
         <div className="nav-bar">
-          <span className="sign-up" onClick={() => navigate("/signup")}>Sign Up</span>
+          {!sessionUser && (
+            <>
+            <span className="sign-up" onClick={() => navigate("/signup")}>Sign Up</span>
           <button className='login-button' type="button" onClick={() => navigate("/login")}>
             Log In
           </button>
+          </>
+            )}
+            {sessionUser && (
+              <span>
+                <ProfileButton />
+              </span>
+            )}
         </div>
       </div>
     </>
