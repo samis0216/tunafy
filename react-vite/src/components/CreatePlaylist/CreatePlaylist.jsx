@@ -50,7 +50,11 @@ export default function CreatePlaylist() {
         </div>
 
         <div className="playlist-form-private">
-          <p></p>
+          <input
+            type="checkbox"
+            onChange={(e) => setPriv(e.target.value)}
+          />
+          <p>Make my playlist private</p>
         </div>
 
         <button
