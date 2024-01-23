@@ -39,10 +39,6 @@ export const router = createBrowserRouter([
           //   path: ":songId/update",
           //   element: <UpdateSong />
           // },
-          {
-            path: "likes",
-            element: <LikedSongs />
-          }
         ]
       },
       {
@@ -76,6 +72,10 @@ export const router = createBrowserRouter([
           //   element: <PlaylistDetails />
           // },
         ]
+      },
+      {
+        path: "collection/tracks",
+        element: <LikedSongs />
       }
     ],
   },
