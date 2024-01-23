@@ -21,17 +21,14 @@ def song_form():
     form = SongForm()
     if form.validate_on_submit():
         data = form.data
-        photo = form.song_cover_url
-        song = form.song_file_url
+        form.song_cover_url.data.filename = get_unique_filename_img(form.song_cover_url.data.filename)
+        form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
         new_song = Song(song_name=data['song_name'],
                         artist_id=1,
-                        song_cover_url=get_unique_filename_img(photo.data.filename),
-                        song_file_url=get_unique_filename_songs(song.data.filename),
+                        song_cover_url=upload_img_to_s3(form.song_cover_url.data),
+                        song_file_url=upload_song_to_s3(form.song_file_url.data),
                         duration=data['duration'])
         db.session.add(new_song)
         db.session.commit()
-        photo1 = upload_img_to_s3(photo.data)
-        song1 = upload_song_to_s3(song.data)
-        print("SONG: ", song1, "PHOTO: ", photo1)
         return redirect('/api/songs')
     return 'Bad Data'

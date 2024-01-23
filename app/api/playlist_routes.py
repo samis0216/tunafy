@@ -22,13 +22,12 @@ def playlistSub():
     form = PlaylistForm()
     if form.validate_on_submit():
         data = form.data
+        form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
                         creator_id=1,
                         private=data['private'],
-                        playlist_cover_url=get_unique_filename_img(form.playlist_cover_url.data.filename))
+                        playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data))
         db.session.add(newPlaylist)
         db.session.commit()
-        photo1 = upload_img_to_s3(form.playlist_cover_url.data)
-        print("PICTURE: ", photo1)
         return redirect("/api/playlists")
     return "Get shit on"
