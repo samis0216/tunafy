@@ -24,7 +24,6 @@ export default function CreateSong() {
         formData.append("song_cover_url", song_cover);
         formData.append("song_file_url", song_file);
         formData.append('duration', 260)
-        console.log(formData.entries())
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setAwsLoading(true);
