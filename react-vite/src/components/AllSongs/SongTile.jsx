@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { loadUserByIdThunk, loadUsersThunk } from '../../redux/users'
 import './SongTile.css'
 
-export default function SongTile({ song, artist, albums }) {
-    const user = useSelector(state => state.session.user)
-    const minutes = Math.floor(song.duration / 60)
+export default function SongTile({ song, albums, artist}) {
     const [clicked, setClicked] = useState(false)
+    const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     return (
@@ -17,19 +17,20 @@ export default function SongTile({ song, artist, albums }) {
                         <img src={song.song_cover_url} className='album-picture-small' />
                         <div className='song-items'>
                             <p style={{ color: 'white' }}>{song.song_name}</p>
-                            {song.artist_id === user.id ? <p>{user.username}</p> : null}
+                            <p>{artist?.username}</p>
                         </div>
                     </div>
                     {albums[song.album_id] ? <p>{albums[song.album_id].album_name}</p> : <p>None</p>}
                     <p>{`${minutes}:${seconds}`}</p>
                 </div> :
+
                 <div className="song-tile" onClick={() => setClicked(true)}>
                     <div id='pic'>
                         <p style={{ width: 10 }}>{song.id}</p>
                         <img src={song.song_cover_url} className='album-picture-small' />
                         <div className='song-items'>
                             <p style={{ color: 'white' }}>{song.song_name}</p>
-                            {song.artist_id === user.id ? <p>{user.username}</p> : null}
+                            <p>{artist?.username}</p>
                         </div>
                     </div>
                     {albums[song.album_id] ? <p>{albums[song.album_id].album_name}</p> : <p>None</p>}

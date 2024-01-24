@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
 import { loadSongsThunk } from "../../redux/songs";
 import { loadAlbumsThunk } from "../../redux/albums";
+import { loadUsersThunk } from "../../redux/users";
 import SongTile from "./SongTile";
 import './AllSongs.css'
 
@@ -15,10 +16,12 @@ export default function AllSongs() {
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
+        dispatch(loadUsersThunk())
     }, [dispatch])
 
     const songs = useSelector(state => state.songs)
     const albums = useSelector(state => state.albums)
+    const users = useSelector(state=> state.users)
     const keys = Object.keys(songs)
 
     return (
@@ -26,7 +29,7 @@ export default function AllSongs() {
             <div className="songs-header" style={{ width: 1050 }}>
                 <div className="bring-it">
                     <h1 style={{ fontSize: '6em' }}>All Songs</h1>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '1050px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1050px' }}>
                         <div className="play-button">
                             <i style={{ position: 'relative', left: 1 }} className="fa-solid fa-play fa-2xl"></i>
                         </div>
@@ -48,9 +51,9 @@ export default function AllSongs() {
             </div>
             <div className="song-tiles-container">
                 <hr />
-                {
+                {users &&
                     keys.map((id) => (
-                        <SongTile key={id} song={songs[id]} albums={albums}/>
+                        <SongTile key={id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
                     ))
                 }
             </div>
