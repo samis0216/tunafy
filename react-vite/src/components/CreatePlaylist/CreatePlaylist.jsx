@@ -29,51 +29,59 @@ export default function CreatePlaylist() {
   }
 
   return (
-    <form
-      action="/api/playlists/new"
-      onSubmit={handleSubmit}
-      encType="multipart/form-data"
-    >
-      <div className="playlist-form-container">
-        <div className="playlist-form-name">
-          <p>Playlist Name</p>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
+    <div className="playlist-form-container">
+      <h1>Create a playlist</h1>
 
-        <div className="playlist-form-file">
-          <p>Upload Cover Art</p>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </div>
+      <form
+        action="/api/playlists/new"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="playlist-form"
+      >
 
-        <div className="playlist-form-description">
-          <p>Description</p>
-          <input
-            type="text"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+          <div className="playlist-form-box">
+            <p>Playlist Name</p>
+            <input
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-        <div className="playlist-form-private">
-          <input
-            type="checkbox"
-            onChange={(e) => setPriv(e.target.value)}
-          />
-          <p>Make my playlist private</p>
-        </div>
+          <div className="playlist-form-box">
+            <p>Upload Cover Art</p>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
 
-        <button
-          className="playlist-form-button"
-          type="submit"
-          > Submit </button>
-        {(imageLoading) && <p style={{"color": "white"}}>Loading...</p>}
-      </div>
-    </form>
+          <div className="playlist-form-box">
+            <p>Description</p>
+            <input
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+
+          <div className="playlist-form-box">
+            <div className="playlist-checkbox">
+              <input
+                type="checkbox"
+                onChange={(e) => setPriv(e.target.value)}
+              />
+              <p>Make my playlist private</p>
+            </div>
+          </div>
+
+          <div>
+            <button
+              className="playlist-form-button"
+              type="submit"
+              > Create Playlist </button>
+          </div>
+          {(imageLoading) && <p style={{"color": "white", alignSelf: "center"}}>Loading...</p>}
+      </form>
+    </div>
   )
 }

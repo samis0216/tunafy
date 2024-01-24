@@ -2,23 +2,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.playlist-form-name {
   color: white;
+  gap: 10px;
+  justify-content: center;
+  height: 80%;
+  background-color: black;
+  margin: 0 33%;
+  padding: 40px 0 20px 0;
 }
 
-.playlist-form-file {
-  color: white;
-}
-
-.playlist-form-description {
-  color: white;
-}
-
-.playlist-form-private {
+.playlist-checkbox {
   display: flex;
+  gap: 10px;
+}
+
+.playlist-form-box {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-form-box > p {
+  padding-bottom: 6px;
+}
+
+.playlist-form {
+  display: flex;
+  flex-direction: column;
   color: white;
+  justify-content: space-around;
+  padding: 25px 100px 50px 100px;
+  gap: 30px;
+}
+
+.playlist-form-button {
+  color: black;
+  font-weight: bold;
+  border: #548AAE 2px solid;
+  background-color: #548AAE;
+  width: 250px;
+  height: 40px;
+  border-radius: 30px;
 }
 
 input[type='file']:hover{
