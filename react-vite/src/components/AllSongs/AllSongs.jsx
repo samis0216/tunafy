@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loadSongsThunk } from "../../redux/songs";
 import { loadAlbumsThunk } from "../../redux/albums";
 import { loadUsersThunk } from "../../redux/users";
 import SongTile from "./SongTile";
 import './AllSongs.css'
-
-
 
 export default function AllSongs() {
     const navigate = useNavigate()
@@ -40,7 +38,7 @@ export default function AllSongs() {
                 </div>
             </div>
             <div className="song-tile-header" style={{ paddingTop: 20 }}>
-                <div id='pic2' onClick={() => setClicked(true)}>
+                <div id='pic2'>
                     <p style={{ width: 10 }}>#</p>
                     <div className='song-items'>
                         <p>Name</p>
