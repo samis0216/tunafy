@@ -1,11 +1,11 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
   background-color: #121212;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .left-bar {
@@ -122,9 +122,47 @@ body {
   background-color: #f2f2f2;
 }
 
+.profile-button {
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.fa-circle-user {
+  font-size: 34px;
+  color: #538aad;
+}
+
 .profile-dropdown {
   position: absolute;
+  top: 54px;
+  right: 30px;
+  background-color: #282828;
   color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 10px;
+  border-radius: 3px;
+}
+
+.profile-user-info {
+  cursor: default;
+  font-size: 15px;
+  padding-right: 50px;
+}
+
+.button-divider {
+  border-top: 1px solid #3E3D3D;
+  padding-top: 10px;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .preview {
