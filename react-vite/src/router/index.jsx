@@ -8,6 +8,7 @@ import Layout from './Layout';
 import CreateAlbum from '../components/CreateAlbum/CreateAlbum';
 import AllPlaylists from '../components/AllPlaylists/AllPlaylists';
 import AllSongs from '../components/AllSongs/AllSongs';
+import AllAlbums from '../components/AllAlbums/AllAlbums';
 
 export const router = createBrowserRouter([
   {
@@ -25,24 +26,24 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
-      {
-        path: "songs",
-        element: <AllSongs />,
-        children: [
-          {
-            path: "new",
-            element: <CreateSong />
-          },
-          // {
-          //   path: ":songId",
-          //   element: <SongDetails />
-          // },
-          // {
-          //   path: ":songId/update",
-          //   element: <UpdateSong />
-          // },
-        ]
-      },
+      // {
+      //   path: "songs",
+      //   element: <AllSongs />,
+      //   children: [
+      //     {
+      //       path: "new",
+      //       element: <CreateSong />
+      //     },
+      //     // {
+      //     //   path: ":songId",
+      //     //   element: <SongDetails />
+      //     // },
+      //     // {
+      //     //   path: ":songId/update",
+      //     //   element: <UpdateSong />
+      //     // },
+      //   ]
+      // },
       // {
       //   path: "albums",
       //   element: <AllAlbums />,
@@ -51,30 +52,30 @@ export const router = createBrowserRouter([
       //       path: "new",
       //       element: <CreateAlbum />
       //       },
-          // {
-          //   path: ":albumId",
-          //   element: <AlbumDetails />
-          // },
-          // {
-          //   path: ":albumId/update",
-          //   element: <UpdateAlbum />
-          // }
+      //     // {
+      //     //   path: ":albumId",
+      //     //   element: <AlbumDetails />
+      //     // },
+      //     // {
+      //     //   path: ":albumId/update",
+      //     //   element: <UpdateAlbum />
+      //     // }
       //   ]
       // },
-      // {
-      //   path: "playlists",
-      //   element: <AllPlaylists />,
-      //   children: [
-      //     {
-      //       path: "new",
-      //       element: <CreatePlaylist />
-      //       },
+      {
+        path: "playlists",
+        element: <AllPlaylists />,
+        children: [
+          {
+            path: "new",
+            element: <CreatePlaylist />
+            },
           // {
           //   path: ":playlistId",
           //   element: <PlaylistDetails />
           // },
-        // ]
-      // },
+        ]
+      },
       // {
       //   path: "collection/tracks",
       //   element: <LikedSongs />

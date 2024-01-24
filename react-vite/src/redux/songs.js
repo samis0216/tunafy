@@ -48,8 +48,7 @@ export const loadSongsThunk = () => async(dispatch) => {
 export const addSongThunk = (song) => async(dispatch) => {
     const res = await fetch('/api/songs', {
         method: "POST",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(song)
+        body: song
     })
 
     if (res.ok) {
@@ -63,8 +62,7 @@ export const addSongThunk = (song) => async(dispatch) => {
 export const editSongThunk = (song, songId) => async(dispatch) => {
     const res = await fetch(`/api/songs/${songId}`, {
         method: "PUT",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(song)
+        body: song
     })
 
     if (res.ok) {

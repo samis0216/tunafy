@@ -48,8 +48,7 @@ export const loadAlbumsThunk = () => async(dispatch) => {
 export const addAlbumThunk = (album) => async(dispatch) => {
     const res = await fetch('/api/albums', {
         method: "POST",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(album)
+        body: album
     })
 
     if (res.ok) {
@@ -63,8 +62,7 @@ export const addAlbumThunk = (album) => async(dispatch) => {
 export const editAlbumThunk = (album, albumId) => async(dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`, {
         method: "PUT",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(album)
+        body: album
     })
 
     if (res.ok) {
