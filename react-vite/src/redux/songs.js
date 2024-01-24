@@ -91,22 +91,22 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
             const newState = { ...state };
-
+            action.songs.Songs.forEach(song => {
+                newState[song.id] = song
+            })
             return newState;
         }
         case ADD_SONG: {
-            const newState = { ...state }
-
+            const newState = { ...state, [action.song.id]: action.song }
             return newState;
         }
         case EDIT_SONG: {
-            const newState = { ...state }
-
+            const newState = { ...state, [action.song.id]: action.song }
             return newState;
         }
         case DELETE_SONG: {
             const newState = { ...state };
-
+            delete newState[action.songId]
             return newState;
         }
         default:
