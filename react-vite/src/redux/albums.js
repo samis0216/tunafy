@@ -48,8 +48,7 @@ export const loadAlbumsThunk = () => async(dispatch) => {
 export const addAlbumThunk = (album) => async(dispatch) => {
     const res = await fetch('/api/albums', {
         method: "POST",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(album)
+        body: album
     })
 
     if (res.ok) {
@@ -63,8 +62,7 @@ export const addAlbumThunk = (album) => async(dispatch) => {
 export const editAlbumThunk = (album, albumId) => async(dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`, {
         method: "PUT",
-        headers: {"Content-Type": 'application/json'},
-        body: JSON.stringify(album)
+        body: album
     })
 
     if (res.ok) {
@@ -91,7 +89,7 @@ const albumReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALBUMS: {
             const newState = { ...state };
-            action.albums.Albums.forEach(album => {
+            action.albums.albums.forEach(album => {
                 newState[album.id] = album
             })
             return newState;

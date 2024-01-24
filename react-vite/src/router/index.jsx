@@ -63,16 +63,19 @@ export const router = createBrowserRouter([
       {
         path: "playlists",
         element: <AllPlaylists />,
-        children: [
-          {
-            path: "new",
-            element: <CreatePlaylist />
-            },
           // {
           //   path: ":playlistId",
           //   element: <PlaylistDetails />
           // },
-        ]
+
+      },
+      {
+        path: "/playlists/new",
+        element: <CreatePlaylist />
+      },
+      {
+        path: "/albums/new",
+        element: <CreateAlbum />
       },
       // {
       //   path: "collection/tracks",
