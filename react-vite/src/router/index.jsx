@@ -9,6 +9,7 @@ import CreateAlbum from '../components/CreateAlbum/CreateAlbum';
 import AllPlaylists from '../components/AllPlaylists/AllPlaylists';
 import AllAlbums from '../components/AllAlbums/AllAlbums'
 import AllSongs from '../components/AllSongs/AllSongs';
+import AlbumDetails from '../components/AlbumDetails/AlbumDetails'
 
 export const router = createBrowserRouter([
   {
@@ -54,10 +55,10 @@ export const router = createBrowserRouter([
         path: "albums/:albumId",
         element: <AlbumDetails />
       },
-      {
-        path: "albums/:albumId/update",
-        element: <UpdateAlbum />
-      },
+      // {
+      //   path: "albums/:albumId/update",
+      //   element: <UpdateAlbum />
+      // },
       {
         path: "playlists",
         element: <AllPlaylists />,
@@ -66,14 +67,14 @@ export const router = createBrowserRouter([
         path: "playlists/new",
         element: <CreatePlaylist />
       },
-      {
-        path: "playlists/:playlistId",
-        element: <PlaylistDetails />
-      },
-      {
-        path: "collection/tracks",
-        element: <LikedSongs />
-      }
+      // {
+      //   path: "playlists/:playlistId",
+      //   element: <PlaylistDetails />
+      // },
+      // {
+      //   path: "collection/tracks",
+      //   element: <LikedSongs />
+      // }
     ],
   },
 ]);
