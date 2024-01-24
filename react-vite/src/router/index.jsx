@@ -7,6 +7,8 @@ import CreatePlaylist from '../components/CreatePlaylist/CreatePlaylist'
 import Layout from './Layout';
 import CreateAlbum from '../components/CreateAlbum/CreateAlbum';
 import AllPlaylists from '../components/AllPlaylists/AllPlaylists';
+import AllAlbums from '../components/AllAlbums/AllAlbums'
+import AllSongs from '../components/AllSongs/AllSongs';
 
 export const router = createBrowserRouter([
   {
@@ -36,27 +38,28 @@ export const router = createBrowserRouter([
         path: "albums",
         element: <AllAlbums />,
       },
-
       {
-        path: ":albumId",
+        path: "albums/new",
+        element: <CreateAlbum />
+      },
+      {
+        path: "albums/:albumId",
         element: <AlbumDetails />
       },
       {
-        path: ":albumId/update",
+        path: "albums/:albumId/update",
         element: <UpdateAlbum />
-
       },
       {
         path: "playlists",
         element: <AllPlaylists />,
       },
-
       {
-        path: "new",
+        path: "playlists/new",
         element: <CreatePlaylist />
       },
       {
-        path: ":playlistId",
+        path: "playlists/:playlistId",
         element: <PlaylistDetails />
       },
       {
