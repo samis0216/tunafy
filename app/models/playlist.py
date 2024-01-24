@@ -10,6 +10,7 @@ class Playlist(db.Model):
     playlist_name = db.Column(db.String(30), nullable=False)
     creator_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     playlist_cover_url = db.Column(db.String, nullable=False)
+    description = db.Column(db.String(255), nullable=True)
     private = db.Column(db.Boolean, default=False, nullable=False)
 
     playlist_song = db.relationship('PlaylistSong', back_populates='playlist')
@@ -20,5 +21,6 @@ class Playlist(db.Model):
           'playlist_name': self.playlist_name,
           'creator_id': self.creator_id,
           'playlist_cover_url': self.playlist_cover_url,
+          'description': self.description,
           'private': self.private
        }

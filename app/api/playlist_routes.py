@@ -25,8 +25,9 @@ def playlistSub():
         form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
                         creator_id=1,
-                        private=data['private'],
-                        playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data))
+                        playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data),
+                        description=data['description'],
+                        private=data['private'])
         db.session.add(newPlaylist)
         db.session.commit()
         return redirect("/api/playlists")
