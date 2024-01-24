@@ -1,63 +1,35 @@
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import { loadPlaylistsThunk } from "../../redux/playlists"
 import "./HomePage.css"
-import playlistCover from './playlist1.jpg'
 
 const LoadHomePage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const playlistObj = useSelector(state => state.playlists)
+    const playlists = Object.values(playlistObj)
+
+    useEffect(() => {
+        dispatch(loadPlaylistsThunk())
+    }, [dispatch])
+
     return (
         <>
         <div className="main-container">
             <div className="playlists">
-                <h2>Tunafy Playlists</h2>
-                <div className="list">
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
+                <h2 onClick={() => navigate(`/playlists`)}>Tunafy Playlists</h2>
+                <div className="home-page-list">
+                    {playlists.map((playlist) => (
+                        <div className="item" key={playlist.id} onClick={() => navigate(`/playlists`)}>
+                            <img src={playlist.playlist_cover_url} alt='playlist-cover' />
+                            <div className="play">
+                                <span className="fa fa-play" style={{color: "white"}}></span>
+                            </div>
+                            <h4>{playlist.playlist_name}</h4>
+                            <p className="playlist-description">{playlist.description}</p>
                         </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
-                        </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
-                        </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
-                        </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
-                        </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
-                    <div className="item">
-                        <img src={playlistCover} />
-                        <div className="play">
-                            <span className="fa fa-play" style={{color: "white"}}></span>
-                        </div>
-                        <h4>Today&apos;s Top Hits</h4>
-                        <p>Jack Harlow is on top of the Hottest 50!</p>
-                    </div>
+                    ))}
                 </div>
                 <hr />
             </div>

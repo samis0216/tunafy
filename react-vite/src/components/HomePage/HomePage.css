@@ -12,16 +12,18 @@
     font-size: 22px;
     margin-bottom: 20px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
-.list {
+.home-page-list {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     overflow: hidden;
 }
 
 .item {
-    min-width: 140px;
+    min-width: 170px;
+    max-height: 255px;
     width: 160px;
     padding: 15px;
     background-color: #181818;
