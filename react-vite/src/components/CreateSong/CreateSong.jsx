@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import './CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
+import { addSongThunk } from "../../redux/songs"
 
 export default function CreateSong() {
     // const history = useHistory()
@@ -12,20 +13,23 @@ export default function CreateSong() {
     const [song_file, setSongFile] = useState('')
     const [awsLoading, setAwsLoading] = useState(false)
     const user = useSelector(state => state.session.user)
-    const artistId = user.id
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const artistId = user.id
+        console.log(artistId)
         const formData = new FormData();
         formData.append("song_name", songName)
         formData.append("artist_id", artistId)
-        formData.append("song_cover", song_cover);
-        formData.append("song_file", song_file);
+        formData.append("song_cover_url", song_cover);
+        formData.append("song_file_url", song_file);
+        formData.append('duration', 260)
+        console.log(formData.entries())
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setAwsLoading(true);
-        // await dispatch(createPost(formData));
-        // navigate('/')
+        await dispatch(addSongThunk(formData));
+        // navigate('/songs')
     }
 
     return (
