@@ -6,6 +6,7 @@ import CreateSong from '../components/CreateSong/CreateSong';
 import CreatePlaylist from '../components/CreatePlaylist/CreatePlaylist'
 import Layout from './Layout';
 import CreateAlbum from '../components/CreateAlbum/CreateAlbum';
+import AllPlaylists from '../components/AllPlaylists/AllPlaylists';
 
 export const router = createBrowserRouter([
   {
@@ -23,42 +24,42 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
-      {
-        path: "songs",
-        element: <AllSongs />,
-        children: [
-          {
-            path: "new",
-            element: <CreateSong />
-          },
-          // {
-          //   path: ":songId",
-          //   element: <SongDetails />
-          // },
-          // {
-          //   path: ":songId/update",
-          //   element: <UpdateSong />
-          // },
-        ]
-      },
-      {
-        path: "albums",
-        element: <AllAlbums />,
-        children:[
-            {
-            path: "new",
-            element: <CreateAlbum />
-            },
-          // {
-          //   path: ":albumId",
-          //   element: <AlbumDetails />
-          // },
-          // {
-          //   path: ":albumId/update",
-          //   element: <UpdateAlbum />
-          // }
-        ]
-      },
+      // {
+      //   path: "songs",
+      //   element: <AllSongs />,
+      //   children: [
+      //     {
+      //       path: "new",
+      //       element: <CreateSong />
+      //     },
+      //     // {
+      //     //   path: ":songId",
+      //     //   element: <SongDetails />
+      //     // },
+      //     // {
+      //     //   path: ":songId/update",
+      //     //   element: <UpdateSong />
+      //     // },
+      //   ]
+      // },
+      // {
+      //   path: "albums",
+      //   element: <AllAlbums />,
+      //   children:[
+      //       {
+      //       path: "new",
+      //       element: <CreateAlbum />
+      //       },
+      //     // {
+      //     //   path: ":albumId",
+      //     //   element: <AlbumDetails />
+      //     // },
+      //     // {
+      //     //   path: ":albumId/update",
+      //     //   element: <UpdateAlbum />
+      //     // }
+      //   ]
+      // },
       {
         path: "playlists",
         element: <AllPlaylists />,
@@ -73,10 +74,10 @@ export const router = createBrowserRouter([
           // },
         ]
       },
-      {
-        path: "collection/tracks",
-        element: <LikedSongs />
-      }
+      // {
+      //   path: "collection/tracks",
+      //   element: <LikedSongs />
+      // }
     ],
   },
 ]);
