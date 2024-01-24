@@ -1,0 +1,9 @@
+.song-tile {
+    display: flex;
+    padding: 10px;
+    gap: 70px;
+}
+
+.album-picture-small {
+    width: 50px;
+}

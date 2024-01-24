@@ -91,7 +91,7 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
             const newState = { ...state };
-            action.songs.Songs.forEach(song => {
+            action.songs.songs.forEach(song => {
                 newState[song.id] = song
             })
             return newState;
