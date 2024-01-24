@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { redirect, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import './CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
@@ -33,7 +33,10 @@ export default function CreateSong() {
 
     return (
         <div className="main-body" id="container">
-            <h1>Create a song</h1>
+            <div>
+                <h1>All Songs</h1>
+                <button onClick={() => redirect('/songs/new')}>Upload Song</button>
+            </div>
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
@@ -57,7 +60,7 @@ export default function CreateSong() {
                         onChange={(e) => {
                             setSongCover(e.target.files[0])
                             console.log(e.target.files[0])
-                            }
+                        }
                         }
                     />
                 </div>
@@ -72,7 +75,7 @@ export default function CreateSong() {
                 <div>
                     <button type="submit" id="submit_butt">Create song</button>
                 </div>
-                {(awsLoading) && <p style={{alignSelf: "center"}}>Loading...</p>}
+                {(awsLoading) && <p style={{ alignSelf: "center" }}>Loading...</p>}
             </form>
         </div>
     )
