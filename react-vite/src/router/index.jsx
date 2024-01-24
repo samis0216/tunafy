@@ -55,14 +55,14 @@ export const router = createBrowserRouter([
       //       path: "new",
       //       element: <CreateAlbum />
       //       },
-          // {
-          //   path: ":albumId",
-          //   element: <AlbumDetails />
-          // },
-          // {
-          //   path: ":albumId/update",
-          //   element: <UpdateAlbum />
-          // }
+      // {
+      //   path: ":albumId",
+      //   element: <AlbumDetails />
+      // },
+      // {
+      //   path: ":albumId/update",
+      //   element: <UpdateAlbum />
+      // }
       //   ]
       // },
       // {
@@ -73,11 +73,11 @@ export const router = createBrowserRouter([
       //       path: "new",
       //       element: <CreatePlaylist />
       //       },
-          // {
-          //   path: ":playlistId",
-          //   element: <PlaylistDetails />
-          // },
-        // ]
+      // {
+      //   path: ":playlistId",
+      //   element: <PlaylistDetails />
+      // },
+      // ]
       // },
       // {
       //   path: "collection/tracks",
