@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Outlet, createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import LoadHomePage from '../components/HomePage/HomePage';
@@ -26,24 +26,27 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
-      // {
-      //   path: "songs",
-      //   element: <AllSongs />,
-      //   children: [
-      //     {
-      //       path: "new",
-      //       element: <CreateSong />
-      //     },
-      //     // {
-      //     //   path: ":songId",
-      //     //   element: <SongDetails />
-      //     // },
-      //     // {
-      //     //   path: ":songId/update",
-      //     //   element: <UpdateSong />
-      //     // },
-      //   ]
-      // },
+      {
+        path: "songs",
+        element: <>
+            <AllSongs />
+          <Outlet />
+        </>,
+        children: [,
+          // {
+          //   path: ":songId",
+          //   element: <SongDetails />
+          // },
+          // {
+          //   path: ":songId/update",
+          //   element: <UpdateSong />
+          // },
+        ]
+      },
+      {
+        path: "songs/new",
+        element: <CreateSong />
+      }
       // {
       //   path: "albums",
       //   element: <AllAlbums />,
@@ -52,30 +55,30 @@ export const router = createBrowserRouter([
       //       path: "new",
       //       element: <CreateAlbum />
       //       },
-      //     // {
-      //     //   path: ":albumId",
-      //     //   element: <AlbumDetails />
-      //     // },
-      //     // {
-      //     //   path: ":albumId/update",
-      //     //   element: <UpdateAlbum />
-      //     // }
+          // {
+          //   path: ":albumId",
+          //   element: <AlbumDetails />
+          // },
+          // {
+          //   path: ":albumId/update",
+          //   element: <UpdateAlbum />
+          // }
       //   ]
       // },
-      {
-        path: "playlists",
-        element: <AllPlaylists />,
-        children: [
-          {
-            path: "new",
-            element: <CreatePlaylist />
-            },
+      // {
+      //   path: "playlists",
+      //   element: <AllPlaylists />,
+      //   children: [
+      //     {
+      //       path: "new",
+      //       element: <CreatePlaylist />
+      //       },
           // {
           //   path: ":playlistId",
           //   element: <PlaylistDetails />
           // },
-        ]
-      },
+        // ]
+      // },
       // {
       //   path: "collection/tracks",
       //   element: <LikedSongs />
