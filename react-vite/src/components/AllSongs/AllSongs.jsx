@@ -21,11 +21,22 @@ export default function AllSongs() {
 
     return (
         <div className="page-container">
-            <div>
+            <div className="songs-header" style={{width: 1050}}>
                 <h1>All Songs</h1>
                 {/* <button><i></i></button> ADD PLAY ICON */}
             </div>
-            <div>
+            <div className="song-tile-header" style={{paddingTop: 30}}>
+                <div id='pic2' onClick={() => setClicked(true)}>
+                    <p style={{ width: 10 }}>#</p>
+                    <div className='song-items'>
+                        <p>Name</p>
+                    </div>
+                </div>
+                <p>Album</p>
+                <p>Duration</p>
+            </div>
+            <div className="song-tiles-container">
+                <hr />
                 {
                     keys.map((id) => (
                         <SongTile key={id} song={songs[id]} albums={albums} />
