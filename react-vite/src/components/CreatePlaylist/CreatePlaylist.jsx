@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./CreatePlaylist.css"
+import { addPlaylistThunk } from "../../redux/playlists";
 
 export default function CreatePlaylist() {
   const dispatch = useDispatch();
   const user = useSelector((state => state.session.user))
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [priv, setPriv] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -17,12 +19,13 @@ export default function CreatePlaylist() {
     formData.append("playlist_name", name);
     formData.append("private", priv);
     formData.append("creator_id", user.id);
+    formData.append("description", description);
 
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(addPlaylist(formData));
+    await dispatch(addPlaylistThunk(formData));
   }
 
   return (
@@ -46,6 +49,14 @@ export default function CreatePlaylist() {
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
+          />
+        </div>
+
+        <div className="playlist-form-description">
+          <p>Description</p>
+          <input
+            type="text"
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 

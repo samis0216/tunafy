@@ -12,6 +12,10 @@
   color: white;
 }
 
+.playlist-form-description {
+  color: white;
+}
+
 .playlist-form-private {
   display: flex;
   color: white;

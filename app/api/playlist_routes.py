@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 from app.models import Playlist, db
 from app.forms.playlist_form import PlaylistForm
 from .aws_images import get_unique_filename_img, upload_img_to_s3, remove_img_from_s3
@@ -20,17 +20,18 @@ def playlistNew():
 @playlist_routes.route('/new', methods=["POST"])
 def playlistSub():
     form = PlaylistForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
                         creator_id=1,
-                        playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data),
+                        playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data).get('url'),
                         description=data['description'],
                         private=data['private'])
         db.session.add(newPlaylist)
         db.session.commit()
-        return redirect("/api/playlists")
+        return redirect('/api/playlists')
     return "Get shit on"
 
 @playlist_routes.route('/<int:id>')
