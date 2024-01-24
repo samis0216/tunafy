@@ -1,0 +1,29 @@
+.login-modal {
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #252525;
+   
+}
+.modal-contents h2 {
+    color: white;
+}
+.modal-contents{
+    margin-top: 30px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-modal-button {
+    background-color: #538aad;
+    color: white;
+    font-weight: bold;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 30px;
+    margin-top: 20px;
+}

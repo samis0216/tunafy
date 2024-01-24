@@ -5,11 +5,25 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import ProfileButton from "./ProfileButton";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import LoginModal from "../LoginModal/LoginModal";
+import { useModal } from "../../context/Modal";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
   const sessionUser = useSelector((state) => state.session.user)
+  const { setModalContent } = useModal()
+
+  const openModal = () => {
+    setModalContent(<LoginModal />);
+  }
+
+  const leftBarClick = e => {
+    if(!sessionUser) {
+      e.preventDefault();
+      openModal();
+    }
+  }
 
   const Player = () => (
     <AudioPlayer
@@ -44,19 +58,19 @@ function Navigation() {
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/">
+              <a href="/" onClick={leftBarClick}>
                 <span className="fa-solid fa-book bar-icon"></span>
                 <span>Your Library</span>
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" onClick={leftBarClick}>
                 <span className="fa-solid fa-square-plus bar-icon"></span>
                 <span>Create Playlist</span>
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" onClick={leftBarClick}>
                 <span className="fa-solid fa-heart bar-icon"></span>
                 <span>Liked Songs</span>
               </a>

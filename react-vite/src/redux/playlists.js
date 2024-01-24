@@ -48,9 +48,8 @@ export const loadPlaylistsThunk = () => async(dispatch) => {
 }
 
 export const addPlaylistThunk = (playlist) => async(dispatch) => {
-    const res = await fetch('/api/playlists', {
+    const res = await fetch('/api/playlists/new', {
         method: "POST",
-
         body: playlist
     })
 
@@ -98,6 +97,7 @@ const playlistReducer = (state = initialState, action) => {
             return newState;
         }
         case ADD_PLAYLIST: {
+            console.log(action)
             const newState = { ...state, [action.playlist.id]: action.playlist}
             return newState;
         }

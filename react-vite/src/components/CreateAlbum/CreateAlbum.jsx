@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateAlbum.css"
+import { addAlbumThunk } from "../../redux/albums";
 
 export default function CreateAlbum() {
   const dispatch = useDispatch();
@@ -20,17 +21,23 @@ export default function CreateAlbum() {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(addAlbum(formData));
+    await dispatch(addAlbumThunk(formData));
   }
 
+  useEffect(() => {
+
+  }, [dispatch])
+
   return (
-    <form
-    action="/api/albums/new"
-    onSubmit={handleSubmit}
-    encType="multipart/form-data"
-    >
-      <div className="album-form-container">
-        <div className="album-form-name">
+    <div className="album-main">
+      <h1>Create an album</h1>
+      <form
+      action="/api/albums/new"
+      onSubmit={handleSubmit}
+      className="album-form"
+      encType="multipart/form-data"
+      >
+        <div className="album-form-box">
           <p>Album Name</p>
           <input
             type="text"
@@ -38,7 +45,7 @@ export default function CreateAlbum() {
             />
         </div>
 
-        <div className="album-form-file">
+        <div className="album-form-box">
           <p>Upload Cover Art</p>
           <input
             type="file"
@@ -47,12 +54,14 @@ export default function CreateAlbum() {
             />
         </div>
 
-        <button
-          className="album-form-button"
-          type="submit"
-          > Submit </button>
-        {(imageLoading) && <p style={{"color": "white"}}>Loading...</p>}
-      </div>
-    </form>
+        <div>
+          <button
+            className="submit_butt"
+            type="submit"
+          > Create Album </button>
+        </div>
+        {(imageLoading) && <p style={{"color": "white", alignSelf: "center"}}>Loading...</p>}
+      </form>
+    </div>
   )
 }
