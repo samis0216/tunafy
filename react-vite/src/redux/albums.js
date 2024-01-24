@@ -1,4 +1,5 @@
 const LOAD_ALBUMS = 'album/loadAlbums';
+const LOAD_ONE_ALBUM = 'album/loadOneAlbum';
 const ADD_ALBUM = 'album/addAlbum';
 const EDIT_ALBUM = 'album/editAlbum';
 const DELETE_ALBUM = 'album/deleteAlbum';
@@ -8,6 +9,13 @@ const loadAlbums = (albums) => {
     return {
         type: LOAD_ALBUMS,
         albums
+    }
+}
+
+const loadOneAlbum = (album) => {
+    return {
+        type: LOAD_ONE_ALBUM,
+        album
     }
 }
 
@@ -43,6 +51,16 @@ export const loadAlbumsThunk = () => async(dispatch) => {
         return data
     }
 
+}
+
+export const loadOneAlbumThunk = (albumId) => async (dispatch) => {
+    const res = await fetch(`/albums/${albumId}`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadOneAlbum(data))
+        return data
+    }
 }
 
 export const addAlbumThunk = (album) => async(dispatch) => {
@@ -88,10 +106,15 @@ const initialState = {}
 const albumReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALBUMS: {
-            const newState = {};
+            const newState = {...state};
             action.albums.albums.forEach(album => {
                 newState[album.id] = album
             })
+            return newState;
+        }
+        case LOAD_ONE_ALBUM: {
+            const newState = { ...state };
+            newState[action.album.id] = action.album
             return newState;
         }
         case ADD_ALBUM: {

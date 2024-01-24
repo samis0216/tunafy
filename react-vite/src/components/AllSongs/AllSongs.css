@@ -10,6 +10,34 @@
 
 .songs-header {
     padding: 20px 0 0 0;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-song-button {
+    padding: 5px;
+    border-radius: 30px;
+    border: #548AAE 2px solid;
+    background-color: #548AAE;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.bring-it {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.play-button {
+    display: flex;
+    justify-content: center;
+    border: 2px #548AAE solid;
+    background-color: #548AAE;
+    padding: 30px;
+    width: 3px;
+    border-radius: 50px;
 }
 
 .songs-header-labels {
@@ -41,4 +69,12 @@ hr {
     gap: 90px;
     align-items: center;
     width: 300px;
+}
+
+.play-button:hover {
+    cursor: pointer;
+}
+
+.create-song-button:hover {
+    cursor: pointer;
 }
