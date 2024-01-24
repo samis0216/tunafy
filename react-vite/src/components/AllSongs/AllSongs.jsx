@@ -13,21 +13,22 @@ export default function AllSongs() {
 
     useEffect(() => {
         dispatch(loadSongsThunk())
+        dispatch(loadAlbumsThunk())
     }, [dispatch])
     const songs = useSelector(state => state.songs)
-    const users = useSelector(state = state.session)
+    const albums = useSelector(state => state.albums)
     const keys = Object.keys(songs)
 
     return (
         <div className="page-container">
             <div>
                 <h1>All Songs</h1>
-                <button><i></i></button> {/* ADD PLAY ICON */}
+                {/* <button><i></i></button> ADD PLAY ICON */}
             </div>
             <div>
                 {
                     keys.map((id) => (
-                        <SongTile key={id} song={songs[id]} artists={artists} />
+                        <SongTile key={id} song={songs[id]} albums={albums} />
                     ))
                 }
             </div>
