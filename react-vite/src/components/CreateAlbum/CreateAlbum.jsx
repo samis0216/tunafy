@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateAlbum.css"
+import { addAlbumThunk } from "../../redux/albums";
 
 export default function CreateAlbum() {
   const dispatch = useDispatch();
@@ -20,8 +21,12 @@ export default function CreateAlbum() {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(addAlbum(formData));
+    await dispatch(addAlbumThunk(formData));
   }
+
+  useEffect(() => {
+
+  }, [dispatch])
 
   return (
     <form
