@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Song, db
+from app.models import Song, SongLike, db
 from app.forms.song_form import SongForm
 from .aws_songs import upload_song_to_s3, get_unique_filename_songs, remove_song_from_s3
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
@@ -9,6 +9,11 @@ song_routes = Blueprint('song', __name__)
 @song_routes.route('/')
 def songs():
     all_songs = Song.query.all()
+    return {'songs': [song.to_dict() for song in all_songs]}
+
+@song_routes.route('/<int:id>/likes')
+def songs(id):
+    all_songs = SongLike.query.filter(SongLike.user_id == id).all()
     return {'songs': [song.to_dict() for song in all_songs]}
 
 @song_routes.route('/new')
