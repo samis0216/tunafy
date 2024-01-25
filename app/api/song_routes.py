@@ -45,6 +45,11 @@ def oneSong(id):
     song = Song.query.get(id)
     return song.to_dict()
 
+@song_routes.route("/<int:id>")
+def editSong(id):
+    song = Song.query.get(id)
+    song.song_name
+
 @song_routes.route("/<int:id>", methods=['DELETE'])
 def deleteSong(id):
     song = Song.query.get(id)
