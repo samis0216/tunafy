@@ -45,7 +45,7 @@ def oneSong(id):
     song = Song.query.get(id)
     return song.to_dict()
 
-@song_routes.route("/<int:id>")
+@song_routes.route("/<int:id>/update")
 def editSong(id):
     song = Song.query.get(id)
     song.song_name

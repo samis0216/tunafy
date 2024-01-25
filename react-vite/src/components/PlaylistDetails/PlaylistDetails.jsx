@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { loadOnePlaylistThunk, loadPlaylistSongsThunk } from "../../redux/playlists";
+import { loadOnePlaylistThunk} from "../../redux/playlists";
+import { loadPlaylistSongsThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
 import './PlaylistDetails.css'
 
