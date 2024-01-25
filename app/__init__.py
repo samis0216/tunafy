@@ -7,6 +7,9 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.song_routes import song_routes
+from .api.album_routes import album_routes
+from .api.playlist_routes import playlist_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,7 +31,22 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(song_routes, url_prefix='/api/songs')
+app.register_blueprint(album_routes, url_prefix='/api/albums')
+app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
+
 db.init_app(app)
+
+#! DELETE BEFORE ANYTHING IMPORTANT
+if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
+    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa
+        dbapi_con.execute('pragma foreign_keys=ON')
+
+    with app.app_context():
+        from sqlalchemy import event
+        event.listen(db.engine, 'connect', _fk_pragma_on_connect)
+#! DELETE BEFORE ANYTHING IMPORTANT
+
 Migrate(app, db)
 
 # Application Security

@@ -1,0 +1,24 @@
+.playlist-section {
+    margin-left: 285px;
+    padding: 20px 40px;
+}
+
+.playlist-section h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.playlist-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

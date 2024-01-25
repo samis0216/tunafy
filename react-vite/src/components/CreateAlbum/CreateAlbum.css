@@ -1,0 +1,51 @@
+.album-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  justify-content: center;
+  height: 80%;
+  background-color: black;
+  margin: 0 33%;
+  padding: 40px 0 20px 0;
+}
+
+.album-form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: space-around;
+  padding: 25px 100px 50px 100px;
+  gap: 30px   ;
+}
+
+
+.album-form-box {
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-form-box > p{
+  padding-bottom: 10px;
+}
+
+input[type='file']:hover{
+  cursor: pointer;
+}
+
+.album-form-button:hover {
+  cursor: pointer;
+}
+
+.submit_butt {
+  color: black;
+  font-weight: bold;
+  border: #548AAE 2px solid;
+  background-color: #548AAE;
+  width: 250px;
+  height: 40px;
+  border-radius: 30px;
+}

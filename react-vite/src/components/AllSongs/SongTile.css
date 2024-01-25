@@ -1,0 +1,49 @@
+.song-tile {
+    width: 1050px;
+    display: flex;
+    padding: 10px;
+    gap: 70px;
+    color: #A7A7A7;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.album-picture-small {
+    width: 50px;
+}
+
+.song-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-tile > p {
+    width: 120px;
+}
+
+
+#pic {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 300px;
+}
+
+.song-tile:hover {
+    border-radius: 3px;
+    background-color: rgb(189, 189, 189, 0.5)
+}
+
+.song-tile:hover > * {
+    color: white;
+}
+
+/* #clicked {
+    border-radius: 3px;
+    background-color: rgb(189, 189, 189, 0.8);
+    color: white;
+} */
+
+/* #clicked {
+    color: white;
+} */

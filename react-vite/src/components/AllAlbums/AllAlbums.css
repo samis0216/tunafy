@@ -1,0 +1,11 @@
+.all-albums {
+    margin-left: 285px;
+    padding: 20px 40px;
+}
+
+.all-albums h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
