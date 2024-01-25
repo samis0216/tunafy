@@ -17,7 +17,7 @@
   color: white;
   justify-content: space-around;
   padding: 25px 100px 50px 100px;
-  gap: 30px   ;
+  gap: 30px;
 }
 
 
@@ -39,7 +39,12 @@ input[type='file']:hover{
 .album-form-button:hover {
   cursor: pointer;
 }
-
+.update-button {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .submit_butt {
   color: black;
   font-weight: bold;
@@ -48,4 +53,5 @@ input[type='file']:hover{
   width: 250px;
   height: 40px;
   border-radius: 30px;
+  cursor: pointer;
 }

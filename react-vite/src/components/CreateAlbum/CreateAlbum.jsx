@@ -54,7 +54,7 @@ export default function CreateAlbum() {
             />
         </div>
 
-        <div>
+        <div className="update-button">
           <button
             className="submit_butt"
             type="submit"

@@ -56,10 +56,10 @@ export const router = createBrowserRouter([
         path: "albums/:albumId",
         element: <AlbumDetails />
       },
-      // {
-      //   path: "albums/:albumId/update",
-      //   element: <UpdateAlbum />
-      // },
+      {
+        path: "albums/:albumId/update",
+        element: <UpdateAlbum />
+      },
       {
         path: "playlists",
         element: <AllPlaylists />,
