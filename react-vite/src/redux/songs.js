@@ -1,4 +1,5 @@
 const LOAD_SONGS = 'song/loadSongs';
+const LOAD_ALBUM_SONGS = 'album/loadAlbumSongs';
 const ADD_SONG = 'song/addSong';
 const EDIT_SONG = 'song/editSong';
 const DELETE_SONG = 'song/deleteSong';
@@ -7,6 +8,13 @@ const DELETE_SONG = 'song/deleteSong';
 const loadSongs = (songs) => {
     return {
         type: LOAD_SONGS,
+        songs
+    }
+}
+
+const loadAlbumSongs = (songs) => {
+    return {
+        type: LOAD_ALBUM_SONGS,
         songs
     }
 }
@@ -43,6 +51,16 @@ export const loadSongsThunk = () => async(dispatch) => {
         return data
     }
 
+}
+
+export const loadAlbumSongsThunk = (albumId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/songs`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadAlbumSongs(data))
+        return data
+    }
 }
 
 export const addSongThunk = (song) => async(dispatch) => {
@@ -89,6 +107,13 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
             const newState = { ...state };
+            action.songs.songs.forEach(song => {
+                newState[song.id] = song
+            })
+            return newState;
+        }
+        case LOAD_ALBUM_SONGS: {
+            const newState = {  };
             action.songs.songs.forEach(song => {
                 newState[song.id] = song
             })
