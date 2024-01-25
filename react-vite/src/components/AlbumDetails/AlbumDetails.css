@@ -1,8 +1,15 @@
 .album-details-container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   padding-left: 320px;
   padding-top: 20px;
+  margin-top: 60px;
+}
+
+.album-headers-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .album-image-container img {
@@ -15,12 +22,13 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-left: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .album-headers p {
   color: white;
   font-size: 20px;
+
 
 }
 
