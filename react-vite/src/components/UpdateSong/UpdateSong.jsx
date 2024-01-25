@@ -1,14 +1,24 @@
-import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import '../CreateSong/CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
 import { addSongThunk } from "../../redux/songs"
+import { loadOneSongThunk } from "../../redux/songs"
 
 export default function UpdateSong() {
     // const history = useHistory()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [songName, setSongName] = useState('')
+    const id = useParams().songId
+    console.log(id)
+
+    const song = useSelector(state => state.songs?.[id])
+    const [songName, setSongName] = useState(song?.song_name)
+    useEffect(()=> {
+        dispatch(loadOneSongThunk(id))
+    }, [dispatch, songName])
+
+    console.log(song)
     const [song_cover, setSongCover] = useState('')
     const [song_file, setSongFile] = useState('')
     const [awsLoading, setAwsLoading] = useState(false)
@@ -33,7 +43,7 @@ export default function UpdateSong() {
 
     return (
         <div className="main-body" id="container">
-            <h1>Update a song</h1>
+            <h1>Update "{song?.song_name}"</h1>
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
@@ -43,8 +53,8 @@ export default function UpdateSong() {
                     <h4>Song Name</h4>
                     <input
                         type="text"
-                        placeholder="Song Name"
-                        value={songName}
+                        placeholder={song ? song.song_name : "Song Name"}
+                        value={song?.song_name}
                         onChange={(e) => setSongName(e.target.value)}
                         className="song-inputs"
                     />
