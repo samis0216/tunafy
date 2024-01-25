@@ -1,9 +1,9 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
+// import { useState } from "react"
+// import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import './AlbumDetails.css'
-export default function AlbumDetails({album}) {
-  const albums = useSelector((store) => store.albums)
+export default function AlbumDetails() {
+  // const albums = useSelector((store) => store.albums)
   const {albumId} = useParams()
   console.log(albumId)
   return (

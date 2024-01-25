@@ -24,7 +24,7 @@ export const loadUsersThunk = () => async(dispatch) => {
         return data
     }
 }
-export const loadUserByIdThunk = (user) => async(dispatch) => {
+export const loadUserByIdThunk = () => async(dispatch) => {
     const res = await fetch('/api/users/:userId')
 
     if (res.ok) {

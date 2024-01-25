@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { loadUserByIdThunk, loadUsersThunk } from '../../redux/users'
+import { useState } from 'react'
 import './SongTile.css'
 
 export default function SongTile({ song, albums, artist}) {
