@@ -8,7 +8,7 @@ class Playlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     playlist_name = db.Column(db.String(30), nullable=False)
-    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    creator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     playlist_cover_url = db.Column(db.String, nullable=False)
     description = db.Column(db.String(255), nullable=True)
     private = db.Column(db.Boolean, default=False, nullable=False)
