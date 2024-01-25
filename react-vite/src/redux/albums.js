@@ -54,7 +54,7 @@ export const loadAlbumsThunk = () => async(dispatch) => {
 }
 
 export const loadOneAlbumThunk = (albumId) => async (dispatch) => {
-    const res = await fetch(`/albums/${albumId}`)
+    const res = await fetch(`/api/albums/${albumId}`)
 
     if (res.ok) {
         const data = await res.json();
@@ -106,7 +106,7 @@ const initialState = {}
 const albumReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALBUMS: {
-            const newState = {...state};
+            const newState = { ...state };
             action.albums.albums.forEach(album => {
                 newState[album.id] = album
             })

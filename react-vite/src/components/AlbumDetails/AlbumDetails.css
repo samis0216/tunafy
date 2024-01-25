@@ -1,0 +1,25 @@
+.album-details-container {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 320px;
+  padding-top: 20px;
+}
+
+.album-headers {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 20px;
+  padding-bottom: 50px;
+}
+
+.album-headers p {
+  color: white;
+  font-size: 20px;
+
+}
+
+.album-headers h1 {
+  font-size: 150px;
+  color: white;
+}
