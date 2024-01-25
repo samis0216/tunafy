@@ -3,6 +3,7 @@ import { loadUsersThunk } from "../../redux/users";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { loadOneAlbumThunk } from "../../redux/albums";
 
 export default function SongDetails() {
@@ -11,6 +12,10 @@ export default function SongDetails() {
     const song = useSelector(state  => state.songs[songId])
     const user = useSelector(state => state.users)
     const album = useSelector(state => state.albums[song?.album_id])
+
+    const minutes = Math.floor(song?.duration / 60)
+    let seconds = song?.duration % 60
+    if (seconds < 10) seconds = `0${seconds}`
 
     useEffect(() => {
         dispatch(loadOneSongThunk(songId))
@@ -21,7 +26,7 @@ export default function SongDetails() {
     console.log('song', song, 'album', album)
     if (!album) dispatch(loadOneAlbumThunk(song?.album_id))
 
-    if (song && album) return (
+    if (song) return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
                 <img className='playlist-detail-cover' src={album? album.album_cover_url : song?.song_cover_url} />
@@ -31,10 +36,20 @@ export default function SongDetails() {
                     <h1 style={{ whiteSpace: 'nowrap' }} className="playlist-detail-name">{song?.song_name}</h1>
                     <div className="playlist-user-songs">
                         <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-                        <div>
+                        <div style={{display: 'flex', gap: 5, alignItems: "center"}}>
+                            <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user[song.artist_id]?.username}`}</p>
+                            <span>•</span>
+                            {album?.album_name?
+
+                            <div className="hover-song" style={{display: "flex", alignItems: 'center'}}><Link to={`/albums/${song.album_id}`}
+                            style={{fontSize: 14, textDecoration: 'none', color: 'white'}}>{`${album.album_name}`}</Link> </div>
+
+                            : null}
+
+                            {album && <span>•</span>}
+                            <p style={{fontSize: 14}}>{`${minutes}:${seconds}`}</p>
 
                         </div>
-                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user[song.artist_id]?.username}`}{album?.album_name? `  •  ${album.album_name}` : null}</p>
                     </div>
                 </div>
             </div>
