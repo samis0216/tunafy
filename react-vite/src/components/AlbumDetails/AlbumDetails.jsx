@@ -29,15 +29,13 @@ export default function AlbumDetails() {
     return null
   }
   return (
-    <div className="album-details-container">
-      <div className="album-headers-container">
-        <div className="album-image-container">
-          <img src={album.album_cover_url} alt="album-details-cover" />
-        </div>
+    <section className="album-details-section">
+      <div className="album-detail-header">
+        <img src={album.album_cover_url} alt="album-details-cover" />
         <div className="album-headers">
           <p>Album</p>
           <h1>{album.album_name}</h1>
-          <p>{user?.username} ‧  ‧ duration</p>
+          <p>{user?.username} ‧ {Object.keys(songs).length} ‧ duration</p>
         </div>
       </div>
       <div className="album-song-tiles-container">
@@ -48,6 +46,6 @@ export default function AlbumDetails() {
           ))
         }
       </div>
-    </div>
+    </section>
   )
 }
