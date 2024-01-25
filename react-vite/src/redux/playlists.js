@@ -1,6 +1,7 @@
-
 // ACTION TYPES
 const LOAD_PLAYLISTS = 'playlist/loadPlaylists';
+const LOAD_ONE_PLAYLIST = 'playlist/loadOnePlaylist';
+const LOAD_PLAYLIST_SONGS = 'playlist/loadPlaylistSongs';
 const ADD_PLAYLIST = 'playlist/addPlaylist';
 const EDIT_PLAYLIST = 'playlist/editPlaylist';
 const DELETE_PLAYLIST = 'playlist/deletePlaylist';
@@ -10,6 +11,20 @@ const loadPlaylists = (playlists) => {
     return {
         type: LOAD_PLAYLISTS,
         playlists
+    }
+}
+
+const loadOnePlaylist = (playlist) => {
+    return {
+        type: LOAD_ONE_PLAYLIST,
+        playlist
+    }
+}
+
+const loadPlaylistSongs = (songs) => {
+    return {
+        type: LOAD_PLAYLIST_SONGS,
+        songs
     }
 }
 
@@ -44,7 +59,26 @@ export const loadPlaylistsThunk = () => async(dispatch) => {
         dispatch(loadPlaylists(data))
         return data
     }
+}
 
+export const loadOnePlaylistThunk = (playlistId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadOnePlaylist(data))
+        return data
+    }
+}
+
+export const loadPlaylistSongsThunk = (playlistId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}/songs`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadPlaylistSongs(data))
+        return data
+    }
 }
 
 export const addPlaylistThunk = (playlist) => async(dispatch) => {
@@ -58,7 +92,6 @@ export const addPlaylistThunk = (playlist) => async(dispatch) => {
         dispatch(addPlaylist(data))
         return data
     }
-
 }
 
 export const editPlaylistThunk = (playlist, playlistId) => async(dispatch) => {
@@ -82,7 +115,6 @@ export const deletePlaylistThunk = (playlistId) => async(dispatch) => {
     if (res.ok) {
         dispatch(deletePlaylist(playlistId))
     }
-
 }
 
 const initialState = {}
@@ -96,8 +128,20 @@ const playlistReducer = (state = initialState, action) => {
             });
             return newState;
         }
+        case LOAD_ONE_PLAYLIST: {
+            const newState = { ...state };
+            newState[action.playlist.id] = action.playlist
+            return newState;
+        }
+        case LOAD_PLAYLIST_SONGS: {
+            const newState = { ...state };
+            newState.songs = {}
+            action.songs.playlist_songs.forEach(song => {
+                newState.songs[song.id] = song
+            })
+            return newState;
+        }
         case ADD_PLAYLIST: {
-            console.log(action)
             const newState = { ...state, [action.playlist.id]: action.playlist}
             return newState;
         }

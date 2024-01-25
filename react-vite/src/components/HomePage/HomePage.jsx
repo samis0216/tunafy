@@ -26,7 +26,7 @@ const LoadHomePage = () => {
                 <h2 onClick={() => navigate(`/playlists`)}>Tunafy Playlists</h2>
                 <div className="home-page-list">
                     {playlists.map((playlist) => (
-                        <div className="item" key={playlist.id} onClick={() => navigate(`/playlists`)}>
+                        <div className="item" key={playlist.id} onClick={() => navigate(`/playlists/${playlist.id}`)}>
                             <img src={playlist.playlist_cover_url} alt='playlist-cover' />
                             <div className="play">
                                 <span className="fa fa-play" style={{color: "white"}}></span>
