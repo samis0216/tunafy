@@ -6,7 +6,7 @@ class PlaylistSong(db.Model):
     if environment == "production":
       __table_args__ = {'schema': SCHEMA}
 
-    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'), nullable=False, primary_key=True)
+    playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('playlists.id')), nullable=False, primary_key=True)
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'), nullable=False, primary_key=True)
 
     playlist = db.relationship('Playlist', back_populates='playlist_song')
