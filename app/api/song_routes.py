@@ -12,7 +12,7 @@ def songs():
     return {'songs': [song.to_dict() for song in all_songs]}
 
 @song_routes.route('/<int:id>/likes')
-def songs(id):
+def likedSongs(id):
     all_songs = SongLike.query.filter(SongLike.user_id == id).all()
     return {'songs': [song.to_dict() for song in all_songs]}
 
