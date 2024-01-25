@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -18,7 +18,7 @@ function Navigation() {
     setModalContent(<LoginModal />);
   }
 
-  const leftBarClick = e => {
+  const notLoggedIn = e => {
     if(!sessionUser) {
       e.preventDefault();
       openModal();
@@ -40,40 +40,52 @@ function Navigation() {
       <>
       <div className="left-bar">
         <div className="logo">
-          <a className="left-bar-logo" href="/">
+          <NavLink className="left-bar-logo" to="/">
             <img className="logo" src={tunafyLogo} alt="logo" />
             <h3>Tunafy</h3>
-          </a>
+          </NavLink>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/">
+              <NavLink to="/">
                 <span className="fa-solid fa-home bar-icon"></span>
                 <span>Home</span>
-              </a>
+              </NavLink >
             </li>
           </ul>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <NavLink to="/" onClick={notLoggedIn}>
                 <span className="fa-solid fa-book bar-icon"></span>
                 <span>Your Library</span>
-              </a>
+              </NavLink >
             </li>
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
                 <span className="fa-solid fa-square-plus bar-icon"></span>
                 <span>Create Playlist</span>
-              </a>
+              </div>
             </li>
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Song</span>
+              </div>
+            </li>
+            <li>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Album</span>
+              </div>
+            </li>
+            <li>
+              <NavLink to="/" onClick={notLoggedIn}>
                 <span className="fa-solid fa-heart bar-icon"></span>
                 <span>Liked Songs</span>
-              </a>
+              </NavLink >
             </li>
           </ul>
         </div>

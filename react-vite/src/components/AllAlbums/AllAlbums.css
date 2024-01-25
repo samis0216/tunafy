@@ -1,6 +1,7 @@
 .all-albums {
     margin-left: 285px;
     padding: 20px 40px;
+    margin-top: 60px;
 }
 
 .all-albums h2 {
@@ -8,4 +9,5 @@
     font-size: 22px;
     margin-bottom: 20px;
     white-space: nowrap;
+    cursor: pointer;
 }
