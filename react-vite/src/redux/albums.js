@@ -78,7 +78,7 @@ export const addAlbumThunk = (album) => async(dispatch) => {
 }
 
 export const editAlbumThunk = (album, albumId) => async(dispatch) => {
-    const res = await fetch(`/api/albums/${albumId}`, {
+    const res = await fetch(`/api/albums/${albumId}/update`, {
         method: "PUT",
         body: album
     })

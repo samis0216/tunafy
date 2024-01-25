@@ -35,6 +35,25 @@ def singleAlbum(id):
     album = Album.query.get(id)
     return album.to_dict()
 
+@album_routes.route("/<int:albumId>/update", methods=["PUT"])
+def updateAlbum(albumId):
+    form = AlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        updatedAlbum = Album.query.get(albumId)
+        data = form.data
+        form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
+        updatedAlbum.album_name = data["album_name"]
+        updatedAlbum.album_cover_url = upload_img_to_s3(form.album_cover_url.data).get('url')
+        print("DATA: ", data)
+        print("UPDATED: ", updatedAlbum)
+        db.session.commit()
+        return redirect('/api/albums')
+    return "Bad Data"
+
+
+
+
 @album_routes.route('/<int:id>', methods=["DELETE"])
 def albumDel(id):
     album = Album.query.get(id)
