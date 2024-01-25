@@ -8,28 +8,29 @@
     color: white;
     font-size: 40px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 60px;
-    padding-left: 45px;
+    margin-bottom: 50px;
+    width: 470px;
 }
 
 .signup-container {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 160px;
 }
 
 #signup-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    width: 470px;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 470px;
 }
 
 .signup-labels {
@@ -64,6 +65,7 @@
     white-space: nowrap;
     border: none;
     cursor: pointer;
+    width: 470px;
 }
 
 .log-in-link {
