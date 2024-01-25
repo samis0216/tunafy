@@ -5,6 +5,11 @@
   padding-top: 20px;
 }
 
+.album-image-container img {
+  height: 300px;
+  width: 300px;
+}
+
 .album-headers {
   display: flex;
   flex-direction: column;

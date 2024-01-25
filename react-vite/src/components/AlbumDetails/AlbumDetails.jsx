@@ -16,7 +16,6 @@ export default function AlbumDetails() {
 
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
-  console.log(album)
   if (!album) {
     return null
   }

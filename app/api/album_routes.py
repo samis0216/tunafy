@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Album, db
+from app.models import Album, db, Song
 from app.forms.album_form import AlbumForm
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
 
@@ -51,8 +51,10 @@ def updateAlbum(albumId):
         return redirect('/api/albums')
     return "Bad Data"
 
-
-
+@album_routes.route('/<int:id>/songs')
+def albumSongs(id):
+    songs = Song.query.filter(Song.album_id == id).all()
+    return {'songs': [song.to_dict() for song in songs]}
 
 @album_routes.route('/<int:id>', methods=["DELETE"])
 def albumDel(id):
