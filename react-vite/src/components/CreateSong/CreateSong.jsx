@@ -28,7 +28,7 @@ export default function CreateSong() {
         // some sort of loading message is a good idea
         setAwsLoading(true);
         await dispatch(addSongThunk(formData));
-        // navigate('/songs')
+        navigate('/songs')
     }
 
     return (
