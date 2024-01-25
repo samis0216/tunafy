@@ -38,6 +38,10 @@
     color: white;
 }
 
+.hover-song:hover {
+    text-decoration: underline;
+}
+
 /* #clicked {
     border-radius: 3px;
     background-color: rgb(189, 189, 189, 0.8);

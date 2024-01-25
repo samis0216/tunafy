@@ -3,6 +3,8 @@ from app.models import Song, SongLike, db
 from app.forms.song_form import SongForm
 from .aws_songs import upload_song_to_s3, get_unique_filename_songs, remove_song_from_s3
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
+from mutagen.mp3 import MP3
+import math
 
 song_routes = Blueprint('song', __name__)
 
@@ -30,11 +32,13 @@ def song_form():
         data = form.data
         form.song_cover_url.data.filename = get_unique_filename_img(form.song_cover_url.data.filename)
         form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
+        newDuration = math.floor(MP3(form.song_file_url.data).info.length)
+        print(newDuration)
         new_song = Song(song_name=data['song_name'],
                         artist_id=data['artist_id'],
                         song_cover_url=upload_img_to_s3(form.song_cover_url.data).get("url"),
                         song_file_url=upload_song_to_s3(form.song_file_url.data).get("url"),
-                        duration=data['duration'])
+                        duration=newDuration)
         db.session.add(new_song)
         db.session.commit()
         return redirect('/api/songs')
