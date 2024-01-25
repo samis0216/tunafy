@@ -80,8 +80,8 @@ function Navigation() {
       </div>
       <div className="top-bar">
         <div className="back-forward-buttons">
-          <button type="button" className="fa fas fa-chevron-left"></button>
-          <button type="button" className="fa fas fa-chevron-right"></button>
+          <button onClick={() => navigate(-1)} type="button" className="fa fas fa-chevron-left"></button>
+          <button onClick={() => navigate(1)} type="button" className="fa fas fa-chevron-right"></button>
         </div>
         <div className="nav-bar">
           {!sessionUser && (
