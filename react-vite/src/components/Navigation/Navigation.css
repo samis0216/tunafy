@@ -47,10 +47,19 @@ body {
   font-size: 15px;
 }
 
+.left-bar .nav li div {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+}
+
 .left-bar .nav li a:hover,
 .left-bar .nav li a:active,
+.left-bar .nav li div:hover,
 .left-bar .nav li a:focus {
   color: white;
+  cursor: pointer;
 }
 
 .bar-icon {
