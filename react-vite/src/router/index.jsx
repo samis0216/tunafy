@@ -11,6 +11,7 @@ import AllAlbums from '../components/AllAlbums/AllAlbums'
 import AllSongs from '../components/AllSongs/AllSongs';
 import AlbumDetails from '../components/AlbumDetails/AlbumDetails'
 import PlaylistDetails from '../components/PlaylistDetails/PlaylistDetails';
+import UpdateAlbum from '../components/UpdateAlbum/UpdateAlbum';
 
 export const router = createBrowserRouter([
   {
