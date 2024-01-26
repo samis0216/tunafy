@@ -29,7 +29,7 @@ export default function AllSongs() {
                     <h1 style={{ fontSize: '6em' }}>All Songs</h1>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1050px' }}>
                         <div className="play-button">
-                            <i style={{ position: 'relative', left: 1 }} className="fa-solid fa-play fa-2xl"></i>
+                            <i className="fa-solid fa-play fa-2xl"></i>
                         </div>
                         <div>
                             {user && <button className='create-song-button' onClick={() => navigate('/songs/new')}>Create a song</button>}

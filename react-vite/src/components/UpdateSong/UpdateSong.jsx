@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import '../CreateSong/CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
-import { addSongThunk } from "../../redux/songs"
+import { editSongThunk } from "../../redux/songs"
 import { loadOneSongThunk } from "../../redux/songs"
 
 export default function UpdateSong() {
@@ -37,8 +37,8 @@ export default function UpdateSong() {
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setAwsLoading(true);
-        await dispatch(addSongThunk(formData));
-        navigate('/songs')
+        await dispatch(editSongThunk(formData, song.id));
+        navigate(`/songs/${song.id}`)
     }
 
     return (
@@ -54,7 +54,7 @@ export default function UpdateSong() {
                     <input
                         type="text"
                         placeholder={song ? song.song_name : "Song Name"}
-                        value={song?.song_name}
+                        value={songName}
                         onChange={(e) => setSongName(e.target.value)}
                         className="song-inputs"
                     />
@@ -80,7 +80,7 @@ export default function UpdateSong() {
                     />
                 </div>
                 <div>
-                    <button type="submit" id="submit_butt">Create song</button>
+                    <button type="submit" id="submit_butt">Update song</button>
                 </div>
                 {(awsLoading) && <p style={{alignSelf: "center"}}>Loading...</p>}
             </form>
