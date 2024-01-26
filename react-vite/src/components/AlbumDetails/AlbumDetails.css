@@ -26,11 +26,13 @@
 
 .album-detail-name {
   font-size: 80px;
+  white-space: nowrap;
 }
 
 .album-stuff {
   display: flex;
-  gap: 15px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .album-song-list {
@@ -49,10 +51,19 @@
   display: flex;
   justify-content: center;
   background-color: #538aad;
-  padding: 30px;
+  padding: 28px;
   width: 3px;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.play-icon {
+  font-size: 25px;
+  padding-left: 2px;
+}
+
+.play-icon:active, .play-icon:hover, .play-icon:focus {
+  font-size: 27px;
 }
 
 .album-icon {
@@ -64,4 +75,33 @@
 .album-icon:active,
 .album-icon:focus {
   color: white;
+}
+
+.song-list-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 35px 20px 10px;
+  border-bottom: 1px solid #3E3D3D;
+  color: #b3b3b3;
+  font-size: small;
+}
+
+.hashtag-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.hashtag {
+  padding-right: 10px;
+}
+
+.duration-icon {
+  padding-right: 10px;
+}
+
+.song-info {
+  color: #b3b3b3;
+  padding-top: 15px;
+  font-size: small;
 }

@@ -1,12 +1,15 @@
 import { useModal } from "../../context/Modal";
 import { deleteAlbumsThunk } from "../../redux/albums";
-import { useDispatch } from "react-redux";
-import '../DeleteModal/DeleteAlbum.css'
-import { redirect, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import './DeleteAlbum.css'
+import { useNavigate } from "react-router-dom";
+
 function DeleteAlbumModal({albumId}) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const album = useSelector(state => state.albums[albumId])
   const {closeModal} = useModal();
+
   const deleteAlbum = (e) => {
     e.stopPropagation()
     dispatch(deleteAlbumsThunk(albumId)).then(closeModal())
@@ -14,15 +17,19 @@ function DeleteAlbumModal({albumId}) {
   }
 
   return (
-    <div className="album-delete-container">
-      <h1>Confirm Delete</h1>
-      <p>Are you sure you want to delete this album?</p>
-      <button style={{color: "white", backgroundColor: "red"}} onClick={deleteAlbum}>
-        Yes
-      </button>
-      <button style={{color: "white", backgroundColor: "grey"}} onClick={closeModal}>
-        No
-      </button>
+    <div className="delete-playlist-modal">
+      <div className="delete-info-modal">
+        <h2 className="delete-header-text">Delete from Your Library?</h2>
+        <p className="delete-text">{`This will delete ${album?.album_name} from Your Library.`}</p>
+        <div className="playlist-delete-buttons">
+          <button className='playlist-cancel-button' onClick={closeModal}>
+          Cancel
+          </button>
+          <button className='playlist-delete-button' onClick={deleteAlbum}>
+          Delete
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
