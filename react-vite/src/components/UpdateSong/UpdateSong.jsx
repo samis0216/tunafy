@@ -38,7 +38,7 @@ export default function UpdateSong() {
         // some sort of loading message is a good idea
         setAwsLoading(true);
         await dispatch(editSongThunk(formData, song.id));
-        navigate('/songs')
+        navigate(`/songs/${song.id}`)
     }
 
     return (
@@ -80,7 +80,7 @@ export default function UpdateSong() {
                     />
                 </div>
                 <div>
-                    <button type="submit" id="submit_butt">Create song</button>
+                    <button type="submit" id="submit_butt">Update song</button>
                 </div>
                 {(awsLoading) && <p style={{alignSelf: "center"}}>Loading...</p>}
             </form>
