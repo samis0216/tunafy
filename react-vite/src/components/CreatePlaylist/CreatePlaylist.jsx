@@ -74,7 +74,7 @@ export default function CreatePlaylist() {
             </div>
           </div>
 
-          <div>
+          <div className="submit-playlist">
             <button
               className="playlist-form-button"
               type="submit"

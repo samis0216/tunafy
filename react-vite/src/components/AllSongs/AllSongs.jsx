@@ -10,7 +10,6 @@ import './AllSongs.css'
 export default function AllSongs() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
@@ -20,6 +19,7 @@ export default function AllSongs() {
     const songs = useSelector(state => state.songs)
     const albums = useSelector(state => state.albums)
     const users = useSelector(state=> state.users)
+    const user = useSelector(state => state.session.user)
     const keys = Object.keys(songs)
 
     return (
@@ -29,10 +29,10 @@ export default function AllSongs() {
                     <h1 style={{ fontSize: '6em' }}>All Songs</h1>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1050px' }}>
                         <div className="play-button">
-                            <i style={{ position: 'relative', left: 1 }} className="fa-solid fa-play fa-2xl"></i>
+                            <i className="fa-solid fa-play fa-2xl"></i>
                         </div>
                         <div>
-                            <button className='create-song-button' onClick={() => navigate('/songs/new')}>Create a song</button>
+                            {user && <button className='create-song-button' onClick={() => navigate('/songs/new')}>Create a song</button>}
                         </div>
                     </div>
                 </div>
