@@ -14,7 +14,7 @@ export default function SongTile({ song, albums, artist }) {
         <>
             <div onClick={() => setSrv(`${song.song_file_url}`)}>
                     <div className="song-tile">
-                        <div id='pic' onClick={() => setClicked(true)}>
+                        <div id='pic'>
                             <p style={{ width: 10 }}>{song.id}</p>
                             <img src={song.song_cover_url} className='album-picture-small' />
                             <div className='song-items'>
