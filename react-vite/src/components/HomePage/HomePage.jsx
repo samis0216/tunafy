@@ -66,6 +66,7 @@ const LoadHomePage = () => {
                                     <span className="fa fa-play" style={{color: "white"}}></span>
                                 </div>
                                 <h4>{album.album_name}</h4>
+                                <p className="album-artist">{`By ${user[album?.artist_id]?.username}`}</p>
                             </div>
                         </NavLink>
                     ))}
