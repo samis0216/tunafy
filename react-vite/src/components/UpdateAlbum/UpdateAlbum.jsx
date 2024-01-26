@@ -9,10 +9,10 @@ export default function UpdateAlbum() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const user = useSelector((state => state.session.user))
-    const album = useSelector((state) => state.albums[albumId])
+    const album = useSelector((state) => state.albums?.[albumId])
 
     const [image, setImage] = useState(null);
-    const [name, setName] = useState("")
+    const [name, setName] = useState(album?.album_name)
     const [imageLoading, setImageLoading] = useState(false);
 
     
@@ -27,6 +27,7 @@ export default function UpdateAlbum() {
         }
     }, [album])
     
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -42,7 +43,7 @@ export default function UpdateAlbum() {
 
   return (
     <div className="album-main">
-      <h1>Update an album</h1>
+      <h1>Update "{album?.album_name}"</h1>
       <form
       action={`/api/albums/${albumId}`}
       onSubmit={handleSubmit}
@@ -53,6 +54,7 @@ export default function UpdateAlbum() {
           <p>Album Name</p>
           <input
             type="text"
+            value={name}
             onChange={(e) => setName(e.target.value)}
             />
         </div>
