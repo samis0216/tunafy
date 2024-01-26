@@ -9,3 +9,10 @@ class SongLike(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
+
+    def to_dict(self):
+       return {
+          'id': self.id,
+          'user_id': self.user_id,
+          'song_id': self.song_id
+       }
