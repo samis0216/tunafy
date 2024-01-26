@@ -34,7 +34,7 @@ export default function PlaylistDetails() {
                 <img className='playlist-detail-cover' src={playlist?.playlist_cover_url} />
                 <div className="playlist-detail-info">
                     <p style={{ fontSize: 14, color: '#b3b3b3' }}>Playlist</p>
-                    <h1 style={{ whiteSpace: 'nowrap' }} className="playlist-detail-name">{playlist?.playlist_name}</h1>
+                    <h1 className="playlist-detail-name">{playlist?.playlist_name}</h1>
                     <p style={{ fontSize: 14, color: '#b3b3b3', whiteSpace: 'nowrap' }}>{playlist?.description}</p>
                     <div className="playlist-user-songs">
                         <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
@@ -47,7 +47,7 @@ export default function PlaylistDetails() {
                     <div className="playlist-play-button">
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    <i style={{ fontSize: 40 }} className="fa-regular fa-heart playlist-icon"></i>
+                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
                     <PlaylistDropdown playlistId={playlistId} />
                 </div>
                 <div className="song-list-info-header">

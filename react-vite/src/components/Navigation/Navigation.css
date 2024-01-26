@@ -155,20 +155,28 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  gap: 10px;
+  padding: 4px;
+  /* gap: 10px; */
   border-radius: 3px;
 }
 
 .profile-user-info {
   cursor: default;
   font-size: 15px;
-  padding-right: 50px;
+  padding: 10px 70px 10px 20px;
+}
+
+.profile-user-info:hover {
+  background-color: #3E3D3D;
 }
 
 .button-divider {
   border-top: 1px solid #3E3D3D;
-  padding-top: 10px;
+  padding: 10px 70px 10px 20px;
+}
+
+.button-divider:hover {
+  background-color: #3E3D3D;
 }
 
 .logout-button {

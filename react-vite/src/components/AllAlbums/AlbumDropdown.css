@@ -21,11 +21,11 @@
     background-color: #3E3D3D;
 }
 
-.fa-circle-minus {
+.fa-circle-minus, .fa-pen {
     color: #b3b3b3;
 }
 
-.playlist-delete {
+.album-dropdown-item {
     cursor: pointer;
     padding-left: 12px;
 }
