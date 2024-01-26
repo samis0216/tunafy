@@ -1,15 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkLogout } from "../../redux/session";
+// import { useSelector } from "react-redux";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteSongModal from "../SongModals/DeleteSongModal";
 import { Link } from "react-router-dom";
 import "./SongDropdown.css"
 
-function SongDropdown({song, album}) {
-    const dispatch = useDispatch();
+function SongDropdown({ song, album }) {
     const [showMenu, setShowMenu] = useState(false);
-    const user = useSelector((store) => store.session.user);
+    // const user = useSelector((store) => store.session.user);
     const ulRef = useRef();
 
     const toggleMenu = (e) => {
@@ -40,31 +38,15 @@ function SongDropdown({song, album}) {
             </button>
             {showMenu && (
                 <ul className="song-dropdown" ref={ulRef}>
-                    {user ? (
-                        <>
-                            <div className='menu-links'><Link style={{textDecoration: 'none', color: "white"}}>Add to Playlist</Link></div>
-                            {!album && <div><Link style={{textDecoration: 'none', color: "white"}}>Add to an Album</Link></div>}
-                            <div className="menu-links"><Link style={{textDecoration: 'none', color: "white"}} to={`/songs/${song.id}/update`}>Update</Link></div>
-                            <span className="button-divider">
-                                <OpenModalMenuItem
-                                itemText="Delete" onItemClick={closeMenu} modalComponent={<DeleteSongModal song={song}/>}/>
-
-                            </span>
-                        </>
-                    ) : (
-                        <>
+                    <>
+                        <div className='menu-links'><Link style={{ textDecoration: 'none', color: "white" }}>Add to Playlist</Link></div>
+                        {!album && <div><Link style={{ textDecoration: 'none', color: "white" }}>Add to an Album</Link></div>}
+                        <div className="menu-links"><Link style={{ textDecoration: 'none', color: "white" }} to={`/songs/${song.id}/update`}>Update</Link></div>
+                        <span className="button-divider">
                             <OpenModalMenuItem
-                                itemText=""
-                                onItemClick={closeMenu}
-                                modalComponent={<LoginFormModal />}
-                            />
-                            <OpenModalMenuItem
-                                itemText="Sign Up"
-                                onItemClick={closeMenu}
-                                modalComponent={<SignupFormModal />}
-                            />
-                        </>
-                    )}
+                                itemText="Delete" onItemClick={closeMenu} modalComponent={<DeleteSongModal song={song} />} />
+                        </span>
+                    </>
                 </ul>
             )}
         </>
