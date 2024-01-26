@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { MusicContext } from "../../context/MusicContext";
 import './SongTile.css'
 
 export default function SongTile({ song, albums, artist}) {
+    const [srv, setSrv] = useContext(MusicContext);
     const [clicked, setClicked] = useState(false)
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     return (
-        <div>
+        <div onClick={()=> setSrv(`${song.song_file_url}`)}>
             {clicked ?
                 <div className="song-tile" id="clicked" onClick={()=> setClicked(false)}>
                     <div id='pic' onClick={() => setClicked(true)}>

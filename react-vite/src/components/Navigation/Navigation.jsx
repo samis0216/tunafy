@@ -7,10 +7,13 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
+import { useContext } from "react";
+import { MusicContext } from "../../context/MusicContext";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
+  const [srv, setSrv] = useContext(MusicContext)
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
 
@@ -27,8 +30,9 @@ function Navigation() {
 
   const Player = () => (
     <AudioPlayer
-      autoPlay
-      src="http://example.com/audio.mp3"
+      autoPlay={true}
+      src={srv}
+      volume={0.1}
       // onPlay={e => console.log("onPlay")}
       // other props here
     />

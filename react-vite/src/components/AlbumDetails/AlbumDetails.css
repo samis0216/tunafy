@@ -1,38 +1,67 @@
-.album-details-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-left: 320px;
-  padding-top: 20px;
+.album-details-section {
+  margin-left: 285px;
   margin-top: 60px;
+  color: white;
 }
 
-.album-headers-container {
+.album-detail-header {
+  padding: 30px;
   display: flex;
   flex-direction: row;
 }
 
-.album-image-container img {
-  height: 300px;
-  width: 300px;
+.album-detail-cover {
+  height: 230px;
+  width: 230px;
+  border-radius: 4px;
 }
 
-.album-headers {
+.album-detail-info {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-left: 20px;
-  padding-bottom: 10px;
+  padding-left: 30px;
+  gap: 10px;
 }
 
-.album-headers p {
-  color: white;
-  font-size: 20px;
-
-
+.album-detail-name {
+  font-size: 80px;
 }
 
-.album-headers h1 {
-  font-size: 150px;
+.album-stuff {
+  display: flex;
+  gap: 15px;
+}
+
+.album-song-list {
+  padding: 30px;
+  background-image: linear-gradient(rgb(56, 56, 56), 1%, #121212);
+}
+
+.song-list-symbols {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.album-play-button {
+  display: flex;
+  justify-content: center;
+  background-color: #538aad;
+  padding: 30px;
+  width: 3px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.album-icon {
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+.album-icon:hover,
+.album-icon:active,
+.album-icon:focus {
   color: white;
 }

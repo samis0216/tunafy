@@ -10,7 +10,6 @@ import './AllSongs.css'
 export default function AllSongs() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
