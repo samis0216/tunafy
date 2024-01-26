@@ -1,20 +1,17 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router";
 import { NavLink } from "react-router-dom"
 import { loadPlaylistsThunk } from "../../redux/playlists"
 import { loadAlbumsThunk } from "../../redux/albums";
+import { loadUsersThunk } from "../../redux/users";
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
 import "./HomePage.css"
-import { loadUsersThunk } from "../../redux/users";
 
 const LoadHomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { playlistId } = useParams()
-    const playlist = useSelector(state => state.playlists[playlistId])
     const user = useSelector(state => state.users)
     const playlistObj = useSelector(state => state.playlists)
     const playlists = Object.values(playlistObj)
