@@ -1,4 +1,4 @@
-import { loadOneSongThunk } from "../../redux/songs";
+import { deleteSongThunk, loadOneSongThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -49,16 +49,35 @@ def oneSong(id):
     song = Song.query.get(id)
     return song.to_dict()
 
-@song_routes.route("/<int:id>/update")
-def editSong(id):
-    song = Song.query.get(id)
-    song.song_name
-
 @song_routes.route("/<int:id>", methods=['DELETE'])
 def deleteSong(id):
     song = Song.query.get(id)
-    remove_img_from_s3(song["song_cover_url"])
-    remove_song_from_s3(song["song_file_url"])
+    print("MADE IT TO BACKEND")
+    remove_img_from_s3(song.to_dict()["song_cover_url"])
+    remove_song_from_s3(song.to_dict()["song_file_url"])
     db.session.delete(song)
     db.session.commit()
-    return "Successfully deleted"
+    return redirect('/api/songs')
+
+@song_routes.route("/<int:id>/update", methods=['PUT'])
+def editSong(id):
+    song = Song.query.get(id)
+    remove_img_from_s3(song.song_cover_url)
+    remove_song_from_s3(song.song_file_url)
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    newDuration = math.floor(MP3(form.song_file_url.data).info.length)
+    print(form.data)
+    if form.validate_on_submit():
+        data = form.data
+        form.song_cover_url.data.filename = get_unique_filename_img(form.song_cover_url.data.filename)
+        form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
+        newDuration = math.floor(MP3(form.song_file_url.data).info.length)
+        song.song_name = data.song_name
+        song.artist_id = data.artist_id
+        song.song_cover_url=upload_img_to_s3(form.song_cover_url.data).get("url")
+        song.song_file_url=upload_song_to_s3(form.song_file_url.data).get("url")
+        song.duration = newDuration
+        db.session.commit()
+        return redirect('/api/songs/<int:id>')
+    return 'Bad Data'
