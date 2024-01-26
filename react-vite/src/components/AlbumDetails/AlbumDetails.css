@@ -1,0 +1,107 @@
+.album-details-section {
+  margin-left: 285px;
+  margin-top: 60px;
+  color: white;
+}
+
+.album-detail-header {
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.album-detail-cover {
+  height: 230px;
+  width: 230px;
+  border-radius: 4px;
+}
+
+.album-detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 30px;
+  gap: 10px;
+}
+
+.album-detail-name {
+  font-size: 80px;
+  white-space: nowrap;
+}
+
+.album-stuff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.album-song-list {
+  padding: 30px;
+  background-image: linear-gradient(rgb(56, 56, 56), 1%, #121212);
+}
+
+.song-list-symbols {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.album-play-button {
+  display: flex;
+  justify-content: center;
+  background-color: #538aad;
+  padding: 28px;
+  width: 3px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.play-icon {
+  font-size: 25px;
+  padding-left: 2px;
+}
+
+.play-icon:active, .play-icon:hover, .play-icon:focus {
+  font-size: 27px;
+}
+
+.album-icon {
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+.album-icon:hover,
+.album-icon:active,
+.album-icon:focus {
+  color: white;
+}
+
+.song-list-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 35px 20px 10px;
+  border-bottom: 1px solid #3E3D3D;
+  color: #b3b3b3;
+  font-size: small;
+}
+
+.hashtag-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.hashtag {
+  padding-right: 10px;
+}
+
+.duration-icon {
+  padding-right: 10px;
+}
+
+.song-info {
+  color: #b3b3b3;
+  padding-top: 15px;
+  font-size: small;
+}

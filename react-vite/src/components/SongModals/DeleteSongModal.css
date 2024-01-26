@@ -1,0 +1,25 @@
+.delete-modal{
+    width: 430px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #252525;;
+}
+
+.delete-buttons-holder {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.delete-modal-button {
+    background-color: #538aad;
+    color: white;
+    font-weight: bold;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 30px;
+    margin-top: 20px;
+}

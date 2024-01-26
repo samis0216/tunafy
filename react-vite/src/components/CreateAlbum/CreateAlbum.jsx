@@ -2,9 +2,11 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateAlbum.css"
 import { addAlbumThunk } from "../../redux/albums";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateAlbum() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state => state.session.user))
   const [image, setImage] = useState(null);
   const [name, setName] = useState("")
@@ -22,6 +24,7 @@ export default function CreateAlbum() {
     // some sort of loading message is a good idea
     setImageLoading(true);
     await dispatch(addAlbumThunk(formData));
+    navigate('/albums')
   }
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export default function CreateAlbum() {
             />
         </div>
 
-        <div>
+        <div className="update-button">
           <button
             className="submit_butt"
             type="submit"

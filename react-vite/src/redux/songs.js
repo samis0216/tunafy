@@ -1,12 +1,35 @@
 const LOAD_SONGS = 'song/loadSongs';
+const LOAD_ALBUM_SONGS = 'album/loadAlbumSongs';
 const ADD_SONG = 'song/addSong';
 const EDIT_SONG = 'song/editSong';
 const DELETE_SONG = 'song/deleteSong';
+const LOAD_PLAYLIST_SONGS = 'playlist/loadPlaylistSongs';
+const LOAD_ONE_SONG = 'song/loadOneSong'
 
 // ACTION CREATORS
 const loadSongs = (songs) => {
     return {
         type: LOAD_SONGS,
+        songs
+    }
+}
+
+const loadOneSong = (song) => {
+    return {
+        type: LOAD_ONE_SONG,
+        song
+    }
+}
+
+const loadPlaylistSongs = (songs) => {
+    return {
+        type: LOAD_PLAYLIST_SONGS,
+        songs
+    }
+}
+const loadAlbumSongs = (songs) => {
+    return {
+        type: LOAD_ALBUM_SONGS,
         songs
     }
 }
@@ -18,10 +41,10 @@ const addSong = (song) => {
     }
 }
 
-const editSong = (songId) => {
+const editSong = (song) => {
     return {
         type: EDIT_SONG,
-        songId
+        song,
     }
 }
 
@@ -45,6 +68,36 @@ export const loadSongsThunk = () => async(dispatch) => {
 
 }
 
+export const loadOneSongThunk = (songId) => async(dispatch) => {
+    const res = await fetch(`/api/songs/${songId}`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(loadOneSong(data))
+        return data
+    }
+}
+
+export const loadPlaylistSongsThunk = (playlistId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}/songs`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadPlaylistSongs(data))
+        return data
+    }
+}
+
+export const loadAlbumSongsThunk = (albumId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/songs`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadAlbumSongs(data))
+        return data
+    }
+}
+
 export const addSongThunk = (song) => async(dispatch) => {
     const res = await fetch('/api/songs/new', {
         method: "POST",
@@ -60,7 +113,7 @@ export const addSongThunk = (song) => async(dispatch) => {
 }
 
 export const editSongThunk = (song, songId) => async(dispatch) => {
-    const res = await fetch(`/api/songs/${songId}`, {
+    const res = await fetch(`/api/songs/${songId}/update`, {
         method: "PUT",
         body: song
     })
@@ -73,8 +126,10 @@ export const editSongThunk = (song, songId) => async(dispatch) => {
 }
 
 export const deleteSongThunk = (songId) => async(dispatch) => {
+    console.log(songId)
     const res = await fetch(`/api/songs/${songId}`, {
-        method: "DELETE"
+        method: "DELETE",
+        body: songId
     })
 
     if (res.ok) {
@@ -89,6 +144,26 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
             const newState = { ...state };
+            action.songs.songs.forEach(song => {
+                newState[song.id] = song
+            })
+            return newState;
+        }
+        case LOAD_ONE_SONG: {
+            const newState = { ...state }
+            newState[action.song.id] = action.song
+            return newState
+        }
+        case LOAD_PLAYLIST_SONGS: {
+            const newState = {  };
+            newState.songs = {}
+            action.songs.playlist_songs.forEach(song => {
+                newState.songs[song.id] = song
+            })
+            return newState;
+        }
+        case LOAD_ALBUM_SONGS: {
+            const newState = {  };
             action.songs.songs.forEach(song => {
                 newState[song.id] = song
             })

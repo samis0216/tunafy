@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MusicContext } from '../context/MusicContext';
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
@@ -6,6 +7,7 @@ import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
 
 export default function Layout() {
+  const [srv, setSrv] = useState(null)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -15,9 +17,11 @@ export default function Layout() {
   return (
     <>
       <ModalProvider>
-        <Navigation />
-        {isLoaded && <Outlet />}
-        <Modal />
+        <MusicContext.Provider value={[srv, setSrv]}>
+          <Navigation />
+          {isLoaded && <Outlet />}
+          <Modal />
+        </ MusicContext.Provider>
       </ModalProvider>
     </>
   );

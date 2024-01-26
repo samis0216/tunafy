@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Playlist, db
+from app.models import Playlist, db, PlaylistSong, Song
 from app.forms.playlist_form import PlaylistForm
 from .aws_images import get_unique_filename_img, upload_img_to_s3, remove_img_from_s3
 
@@ -38,6 +38,11 @@ def playlistSub():
 def singlePlaylist(id):
     playlist = Playlist.query.get(id)
     return playlist.to_dict()
+
+@playlist_routes.route('/<int:id>/songs')
+def playlistSong(id):
+    playlist = PlaylistSong.query.filter_by(playlist_id=id).all()
+    return {'playlist_songs': [Song.query.get(play.song_id).to_dict() for play in playlist]}
 
 @playlist_routes.route('/<int:id>', methods=['DELETE'])
 def playlistDel(id):

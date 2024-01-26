@@ -1,0 +1,44 @@
+.delete-playlist-modal {
+    padding: 35px;
+}
+
+.delete-info-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-header-text {
+    font-size: 22px;
+}
+
+.delete-text {
+    font-size: small;
+    padding-top: 8px;
+}
+
+.playlist-delete-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 40px;
+    padding-top: 30px;
+}
+
+.playlist-cancel-button {
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.playlist-delete-button {
+    border-radius: 30px;
+    background-color: #538aad;
+    padding: 16px 30px;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}

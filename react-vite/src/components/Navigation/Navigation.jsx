@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -7,10 +7,13 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
+import { useContext } from "react";
+import { MusicContext } from "../../context/MusicContext";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
+  const [srv, setSrv] = useContext(MusicContext)
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
 
@@ -18,7 +21,7 @@ function Navigation() {
     setModalContent(<LoginModal />);
   }
 
-  const leftBarClick = e => {
+  const notLoggedIn = e => {
     if(!sessionUser) {
       e.preventDefault();
       openModal();
@@ -27,8 +30,9 @@ function Navigation() {
 
   const Player = () => (
     <AudioPlayer
-      autoPlay
-      src="http://example.com/audio.mp3"
+      autoPlay={true}
+      src={srv}
+      volume={0.1}
       // onPlay={e => console.log("onPlay")}
       // other props here
     />
@@ -40,48 +44,66 @@ function Navigation() {
       <>
       <div className="left-bar">
         <div className="logo">
-          <a className="left-bar-logo" href="/">
+          <NavLink className="left-bar-logo" to="/">
             <img className="logo" src={tunafyLogo} alt="logo" />
             <h3>Tunafy</h3>
-          </a>
+          </NavLink>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/">
+              <NavLink to="/">
                 <span className="fa-solid fa-home bar-icon"></span>
                 <span>Home</span>
-              </a>
+              </NavLink >
             </li>
           </ul>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <NavLink to="/" onClick={notLoggedIn}>
                 <span className="fa-solid fa-book bar-icon"></span>
                 <span>Your Library</span>
-              </a>
+              </NavLink >
             </li>
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs`) }}>
+                <span className="fa-solid fa-music bar-icon"></span>
+                <span>All Songs</span>
+              </div>
+            </li>
+            <li>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
                 <span className="fa-solid fa-square-plus bar-icon"></span>
                 <span>Create Playlist</span>
-              </a>
+              </div>
             </li>
             <li>
-              <a href="/" onClick={leftBarClick}>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Song</span>
+              </div>
+            </li>
+            <li>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Album</span>
+              </div>
+            </li>
+            <li>
+              <NavLink to="/" onClick={notLoggedIn}>
                 <span className="fa-solid fa-heart bar-icon"></span>
                 <span>Liked Songs</span>
-              </a>
+              </NavLink >
             </li>
           </ul>
         </div>
       </div>
       <div className="top-bar">
         <div className="back-forward-buttons">
-          <button type="button" className="fa fas fa-chevron-left"></button>
-          <button type="button" className="fa fas fa-chevron-right"></button>
+          <button onClick={() => navigate(-1)} type="button" className="fa fas fa-chevron-left"></button>
+          <button onClick={() => navigate(1)} type="button" className="fa fas fa-chevron-right"></button>
         </div>
         <div className="nav-bar">
           {!sessionUser && (
