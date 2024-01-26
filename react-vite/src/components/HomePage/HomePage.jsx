@@ -1,16 +1,21 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router";
 import { NavLink } from "react-router-dom"
 import { loadPlaylistsThunk } from "../../redux/playlists"
 import { loadAlbumsThunk } from "../../redux/albums";
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
 import "./HomePage.css"
+import { loadUsersThunk } from "../../redux/users";
 
 const LoadHomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { playlistId } = useParams()
+    const playlist = useSelector(state => state.playlists[playlistId])
+    const user = useSelector(state => state.users)
     const playlistObj = useSelector(state => state.playlists)
     const playlists = Object.values(playlistObj)
     const albumObj = useSelector(state => state.albums)
@@ -21,7 +26,7 @@ const LoadHomePage = () => {
     const openModal = () => {
         setModalContent(<LoginModal />);
       }
-    
+
       const notLoggedIn = e => {
         if(!sessionUser) {
           e.preventDefault();
@@ -32,6 +37,7 @@ const LoadHomePage = () => {
     useEffect(() => {
         dispatch(loadPlaylistsThunk())
         dispatch(loadAlbumsThunk())
+        dispatch(loadUsersThunk())
     }, [dispatch])
 
     return (
@@ -47,7 +53,7 @@ const LoadHomePage = () => {
                                 <span className="fa fa-play" style={{color: "white"}}></span>
                             </div>
                             <h4>{playlist.playlist_name}</h4>
-                            <p className="playlist-description">{playlist.description}</p>
+                            <p className="playlist-description">{playlist.description ? playlist.description : `By ${user[playlist?.creator_id]?.username}`}</p>
                         </div>
                     ))}
                 </div>
