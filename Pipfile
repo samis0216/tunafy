@@ -29,6 +29,7 @@ importlib-metadata = "==6.9.0"
 zipp = "==3.17.0"
 boto3 = "*"
 botocore = "*"
+mutagen = "*"
 
 [dev-packages]
 

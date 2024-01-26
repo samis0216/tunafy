@@ -24,7 +24,12 @@ export default function AlbumDetails() {
   const users = useSelector((store) => store.users)
   const user = users[album?.artist_id]
   const keys = Object.keys(songs)
+  const values = Object.values(songs)
   // console.log(user)
+  const playFunction = (values) => {
+
+  }
+
   if (!album) {
     return null
   }
