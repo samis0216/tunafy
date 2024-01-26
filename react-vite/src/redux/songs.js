@@ -41,10 +41,10 @@ const addSong = (song) => {
     }
 }
 
-const editSong = (songId) => {
+const editSong = (song) => {
     return {
         type: EDIT_SONG,
-        songId
+        song,
     }
 }
 
@@ -113,7 +113,7 @@ export const addSongThunk = (song) => async(dispatch) => {
 }
 
 export const editSongThunk = (song, songId) => async(dispatch) => {
-    const res = await fetch(`/api/songs/${songId}`, {
+    const res = await fetch(`/api/songs/${songId}/update`, {
         method: "PUT",
         body: song
     })
