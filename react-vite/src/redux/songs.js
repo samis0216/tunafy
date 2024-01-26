@@ -158,6 +158,7 @@ const songReducer = (state = initialState, action) => {
             action.songs.playlist_songs.forEach(song => {
                 newState.songs[song.id] = song
             })
+            return newState;
         }
         case LOAD_ALBUM_SONGS: {
             const newState = {  };
