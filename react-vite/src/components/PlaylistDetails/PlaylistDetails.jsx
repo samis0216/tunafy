@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useContext } from "react";
 import { loadOnePlaylistThunk} from "../../redux/playlists";
 import { loadPlaylistSongsThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
 import './PlaylistDetails.css'
 import { loadAlbumsThunk } from "../../redux/albums";
 import PlaylistDropdown from "./PlaylistDropdown";
+import { MusicContext } from "../../context/MusicContext";
 
 export default function PlaylistDetails() {
     const navigate = useNavigate()
@@ -17,6 +19,8 @@ export default function PlaylistDetails() {
     const user = useSelector(state => state.users)
     const playlistSongs = useSelector(state => state.songs.songs)
     const album = useSelector(state => state.albums)
+    const [srv, setSrv] = useContext(MusicContext);
+    console.log(srv)
 
     useEffect(() => {
         dispatch(loadOnePlaylistThunk(playlistId))
@@ -60,7 +64,7 @@ export default function PlaylistDetails() {
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (
-                        <div key={song?.id} className="playlist-song-tile">
+                        <div key={song?.id} className="playlist-song-tile" onClick={()=> setSrv(`${song.song_file_url}`)}>
                             <div className="song-info-div">
                                 <p className="song-id">{song?.id}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
