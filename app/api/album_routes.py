@@ -59,7 +59,8 @@ def albumSongs(id):
 @album_routes.route('/<int:id>', methods=["DELETE"])
 def albumDel(id):
     album = Album.query.get(id)
-    remove_img_from_s3(album['album_cover_url'])
+    print('HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+    remove_img_from_s3(album.album_cover_url)
     db.session.delete(album)
     db.session.commit()
     return "Successfully Deleted"
