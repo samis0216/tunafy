@@ -1,11 +1,12 @@
-// import { useContext } from 'react'
-// import { MusicContext } from "../../context/MusicContext";
+import { useContext } from 'react'
+import { MusicContext } from "../../context/MusicContext";
 import './SongTile.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function SongTile({ song, albums, artist }) {
     const navigate = useNavigate()
-    const setSrv = useContext(MusicContext);
+    const [srv, setSrv] = useContext(MusicContext);
+    if(srv === 'cool') console.log(srv)
 
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
