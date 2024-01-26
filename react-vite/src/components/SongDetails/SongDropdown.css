@@ -1,0 +1,29 @@
+.drop-down-button {
+    background-color: #161616;
+    border: #161616;
+}
+
+.song-dropdown {
+    position: relative;
+    border-radius: 3px;
+    top: 60px;
+    right: 60px;
+    display: flex;
+    flex-direction: column;
+    border: #1A1A1A 2px solid;
+    background-color: #1A1A1A;
+    padding: 5px;
+}
+
+.song-dropdown-item {
+    padding: 3px;
+}
+
+.menu-links {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-links:hover {
+    cursor: pointer;
+}

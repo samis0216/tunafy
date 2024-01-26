@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { loadOneAlbumThunk } from "../../redux/albums";
+import SongDropdown from "./SongDropdown";
 
 export default function SongDetails() {
     const dispatch = useDispatch()
@@ -59,7 +60,7 @@ export default function SongDetails() {
                         <i className="fa-solid fa-play fa-2xl"></i>
                     </div>
                     <i style={{ fontSize: 40 }} className="fa-regular fa-heart playlist-icon"></i>
-                    <i style={{ fontSize: 30 }} className="fa-solid fa-ellipsis playlist-icon"></i>
+                    <SongDropdown song={song}/>
                 </div>
 
             </div>
