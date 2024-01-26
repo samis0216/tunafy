@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function SongTile({ song, albums, artist }) {
     const navigate = useNavigate()
-    // const [srv, setSrv] = useContext(MusicContext);
+    const setSrv = useContext(MusicContext);
 
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
@@ -13,7 +13,7 @@ export default function SongTile({ song, albums, artist }) {
     return (
         <>
             <div>
-                <div className='playlist-song-tile'>
+                <div className='playlist-song-tile' onClick={()=> setSrv(`${song.song_file_url}`)}>
                     <div className="song-info-div">
                         <p className="song-id">{song?.id}</p>
                         <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
