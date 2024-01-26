@@ -64,6 +64,12 @@ function Navigation() {
               </NavLink >
             </li>
             <li>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs`) }}>
+                <span className="fa-solid fa-music bar-icon"></span>
+                <span>All Songs</span>
+              </div>
+            </li>
+            <li>
               <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
                 <span className="fa-solid fa-square-plus bar-icon"></span>
                 <span>Create Playlist</span>
