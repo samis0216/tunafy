@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { loadOnePlaylistThunk} from "../../redux/playlists";
@@ -6,8 +7,10 @@ import { loadPlaylistSongsThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
 import './PlaylistDetails.css'
 import { loadAlbumsThunk } from "../../redux/albums";
+import PlaylistDropdown from "./PlaylistDropdown";
 
 export default function PlaylistDetails() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { playlistId } = useParams()
     const playlist = useSelector(state => state.playlists[playlistId])
@@ -45,7 +48,7 @@ export default function PlaylistDetails() {
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     <i style={{ fontSize: 40 }} className="fa-regular fa-heart playlist-icon"></i>
-                    <i style={{ fontSize: 30 }} className="fa-solid fa-ellipsis playlist-icon"></i>
+                    <PlaylistDropdown playlistId={playlistId} />
                 </div>
                 <div className="song-list-info-header">
                     <div className="hashtag-title">
@@ -53,7 +56,7 @@ export default function PlaylistDetails() {
                         <p>Title</p>
                     </div>
                     <p>Album</p>
-                    <i className="fa-regular fa-clock"></i>
+                    <i className="fa-regular fa-clock duration-icon"></i>
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (
@@ -62,12 +65,12 @@ export default function PlaylistDetails() {
                                 <p className="song-id">{song?.id}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
                                 <div className="song-name-artist">
-                                    <p style={{ fontWeight: 'bold', color: 'white', whiteSpace: 'nowrap' }}>{song?.song_name}</p>
+                                    <p className='song-name' onClick={() => navigate(`/songs/${song?.id}`)}>{song?.song_name}</p>
                                     <p>{user[song?.artist_id]?.username}</p>
                                 </div>
                             </div>
-                            <p className="song-album-name">{album[song?.album_id]?.album_name}</p>
-                            <p>duration</p>
+                            <p className="song-album-name" onClick={() => navigate(`/albums/${song?.id}`)}>{album[song?.album_id]?.album_name}</p>
+                            <p>{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                         </div>
                     ))}
                 </div>

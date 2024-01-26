@@ -2,11 +2,13 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { loadPlaylistsThunk } from "../../redux/playlists"
+import { loadUsersThunk } from "../../redux/users";
 import './AllPlaylists.css'
 
 const AllPlaylists = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.users)
     const playlistObj = useSelector(state => state.playlists)
     const playlists = Object.values(playlistObj)
 
@@ -25,7 +27,7 @@ const AllPlaylists = () => {
                             <span className="fa fa-play" style={{color: "white"}}></span>
                         </div>
                         <h4>{playlist.playlist_name}</h4>
-                        <p className="playlist-description">{playlist.description}</p>
+                        <p className="playlist-description">{playlist.description ? playlist.description : `By ${user[playlist?.creator_id]?.username}`}</p>
                     </div>
                 ))}
             </div>

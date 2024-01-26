@@ -1,0 +1,31 @@
+.playlist-dropdown {
+    position: absolute;
+    top: 440px;
+    left: 480px;
+    background-color: #282828;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 4px;
+    border-radius: 3px;
+}
+
+.playlist-delete-drop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 70px 12px 12px;
+}
+
+.playlist-delete-drop:hover {
+    background-color: #3E3D3D;
+}
+
+.fa-circle-minus {
+    color: #b3b3b3;
+}
+
+.playlist-delete {
+    cursor: pointer;
+    padding-left: 12px;
+}
