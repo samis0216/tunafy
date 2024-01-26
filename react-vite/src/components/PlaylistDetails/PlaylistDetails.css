@@ -58,6 +58,15 @@
     cursor: pointer;
 }
 
+.play-icon {
+    font-size: 25px;
+    padding-left: 2px;
+}
+
+.play-icon:active, .play-icon:hover, .play-icon:focus {
+    font-size: 27px;
+}
+
 .playlist-icon {
     color: #b3b3b3;
     cursor: pointer;
@@ -67,4 +76,72 @@
 .playlist-icon:active,
 .playlist-icon:focus {
     color: white;
+}
+
+.song-list-info-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px 20px 10px;
+    border-bottom: 1px solid #3E3D3D;
+    color: #b3b3b3;
+}
+
+.hashtag-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.hashtag {
+    padding-right: 10px;
+}
+
+.song-info {
+    color: #b3b3b3;
+    padding-top: 15px;
+}
+
+.playlist-song-tile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.playlist-song-tile:hover {
+    background-color: #3E3D3D;
+}
+
+.song-info-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 130px;
+    max-width: 130px;
+}
+
+.song-id {
+    min-width: 20px;
+}
+
+.song-cover-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 2px;
+}
+
+.song-name-artist {
+    padding-left: 10px;
+}
+
+.song-album-name {
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+#clicked:hover {
+    background-color: #3E3D3D;
 }
