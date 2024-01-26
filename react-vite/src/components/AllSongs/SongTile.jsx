@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function SongTile({ song, albums, artist }) {
-    const navigate = useNavigate
     const [srv, setSrv] = useContext(MusicContext);
 
     const minutes = Math.floor(song.duration / 60)
