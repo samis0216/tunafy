@@ -16,7 +16,7 @@ export default function UpdateSong() {
     const [songName, setSongName] = useState(song?.song_name)
     useEffect(()=> {
         dispatch(loadOneSongThunk(id))
-    }, [dispatch, songName])
+    }, [dispatch, songName, id])
 
     console.log(song)
     const [song_cover, setSongCover] = useState('')
@@ -43,7 +43,7 @@ export default function UpdateSong() {
 
     return (
         <div className="main-body" id="container">
-            <h1>Update "{song?.song_name}"</h1>
+            <h1>Update &quot;{song?.song_name}&quot;</h1>
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"

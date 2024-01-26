@@ -13,7 +13,7 @@ import { MusicContext } from "../../context/MusicContext";
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
-  const [srv, setSrv] = useContext(MusicContext)
+  const srv = useContext(MusicContext)
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
 

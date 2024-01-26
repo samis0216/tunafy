@@ -15,18 +15,18 @@ export default function UpdateAlbum() {
     const [name, setName] = useState(album?.album_name)
     const [imageLoading, setImageLoading] = useState(false);
 
-    
+
     useEffect(() => {
         dispatch(loadOneAlbumThunk(albumId));
     }, [dispatch, albumId])
-    
+
     useEffect(() => {
         if (album) {
             setName(album?.album_name || '')
             setImage(album?.album_cover_url || '')
         }
     }, [album])
-    
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export default function UpdateAlbum() {
 
   return (
     <div className="album-main">
-      <h1>Update "{album?.album_name}"</h1>
+      <h1>Update &quot;{album?.album_name}&quot;</h1>
       <form
       action={`/api/albums/${albumId}`}
       onSubmit={handleSubmit}
@@ -68,7 +68,7 @@ export default function UpdateAlbum() {
             />
         </div>
 
-        <div className="update-button"> 
+        <div className="update-button">
           <button
             className="submit_butt"
             type="submit"

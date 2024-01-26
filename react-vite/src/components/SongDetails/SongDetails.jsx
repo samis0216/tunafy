@@ -1,4 +1,4 @@
-import { deleteSongThunk, loadOneSongThunk } from "../../redux/songs";
+import { loadOneSongThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ export default function SongDetails() {
         dispatch(loadOneSongThunk(songId))
         dispatch(loadOneAlbumThunk(song?.album_id))
         dispatch(loadUsersThunk())
-    }, [dispatch])
+    }, [dispatch, songId])
 
     console.log('song', song, 'album', album)
     if (!album) dispatch(loadOneAlbumThunk(song?.album_id))

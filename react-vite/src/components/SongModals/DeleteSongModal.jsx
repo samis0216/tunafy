@@ -11,7 +11,7 @@ const DeleteSongModal = ({song}) => {
     const { closeModal } = useModal()
 
     const handleDelete = (songId) => {
-        const res = dispatch(deleteSongThunk(songId))
+        dispatch(deleteSongThunk(songId))
         navigate('/songs')
 
     }
@@ -20,7 +20,7 @@ const DeleteSongModal = ({song}) => {
         <div className="delete-modal">
             <div className="modal-contents">
                 <h2>Are you sure?</h2>
-                <p style={{color: "white",  paddingTop: 5}}>Deleting "{`${song.song_name}`}" cannot be reversed.</p>
+                <p style={{color: "white",  paddingTop: 5}}>Deleting &quot;{`${song.song_name}`}&quot; cannot be reversed.</p>
                 <div className="delete-buttons-holder">
                     <button className="delete-modal-button" onClick={()=> {
                         closeModal()
