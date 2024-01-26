@@ -14,6 +14,7 @@ const AllPlaylists = () => {
 
     useEffect(() => {
         dispatch(loadPlaylistsThunk())
+        dispatch(loadUsersThunk())
     }, [dispatch])
 
     return (
