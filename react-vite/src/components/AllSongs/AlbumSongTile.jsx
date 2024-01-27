@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { MusicContext } from "../../context/MusicContext";
 import { useContext } from 'react';
 
-export default function SongTile({ song, albums, artist }) {
+export default function AlbumSongTile({ song, album, artist }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
     // console.log(Object.values(albums))
@@ -22,12 +22,10 @@ export default function SongTile({ song, albums, artist }) {
                             <p>{artist?.username}</p>
                         </div>
                     </div>
-                    <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{albums[song.album_id] ? albums[song.album_id].album_name : song.song_name}</p>
+                    <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{album ? album.album_name : song.song_name}</p>
                     <p>{`${minutes}:${seconds}`}</p>
                 </div>
             </div>
         </>
     )
 }
-
-// onClick={() => setSrv(`${song.song_file_url}`)}
