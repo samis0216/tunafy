@@ -11,10 +11,13 @@ export default function DeletePlaylistModal({playlistId}) {
     const {closeModal} = useModal();
 
     const deletePlaylist = (e) => {
-      e.stopPropagation()
-      dispatch(deletePlaylistThunk(playlistId)).then(closeModal())
-      navigate('/playlists')
-    }
+      e.preventDefault();
+      dispatch(deletePlaylistThunk(playlistId))
+          .then(() => {
+              closeModal();
+              navigate('/playlists');
+          });
+  };
 
     return (
       <div className="delete-playlist-modal">
