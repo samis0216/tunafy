@@ -28,10 +28,24 @@ def seed_albums():
     artist_id = 3,
     album_cover_url = 'https://upload.wikimedia.org/wikipedia/en/0/08/I_Let_It_in_and_It_Took_Everything.jpg'
   )
+  album6 =Album(
+    album_name="UNFORGIVEN",
+    artist_id=5,
+    album_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png'
+  )
+  album7= Album(
+    album_name='Room 202',
+    artist_id=6,
+    album_cover_url='https://e.snmc.io/i/600/s/3f700cfd13c410cf4d54931180ccc788/10650803/knock2-room202-ep-Cover-Art.jpg'
+  )
 
   db.session.add(album1)
   db.session.add(album2)
   db.session.add(album3)
+  db.session.add(album4)
+  db.session.add(album5)
+  db.session.add(album6)
+  db.session.add(album7)
   db.session.commit()
 
 def undo_albums():
