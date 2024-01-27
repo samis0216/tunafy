@@ -44,6 +44,8 @@ const LoadHomePage = () => {
                 <h2 onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists`) }}>Tunafy Playlists</h2>
                 <div className="home-page-list">
                     {playlists.map((playlist) => (
+                        <>
+                        {!playlist?.private || (playlist?.private && sessionUser?.id == playlist?.creator_id) ?
                         <div className="item" key={playlist.id} onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/${playlist.id}`) }}>
                             <img src={playlist.playlist_cover_url} alt='playlist-cover' />
                             <div className="play">
@@ -52,6 +54,8 @@ const LoadHomePage = () => {
                             <h4>{playlist.playlist_name}</h4>
                             <p className="playlist-description">{playlist.description ? playlist.description : `By ${user[playlist?.creator_id]?.username}`}</p>
                         </div>
+                        : null }
+                        </>
                     ))}
                 </div>
             </div>

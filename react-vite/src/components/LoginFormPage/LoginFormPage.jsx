@@ -52,7 +52,7 @@ function LoginFormPage() {
         <div id="login-box">
           <h1 id="login-header">Log in to Tunafy</h1>
           {errors.length > 0 &&
-            errors.map((message) => <p  className='error-message'key={message}>{message}</p>)}
+            errors.map((message) => <p className='error-message'key={message}>{message}</p>)}
           <form className="login-form" onSubmit={handleSubmit}>
             {errors.email && <p className='error-message'>{errors.email}</p>}
             <label className="login-email">

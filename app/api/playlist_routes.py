@@ -23,9 +23,10 @@ def playlistSub():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print(data)
         form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
-                        creator_id=1,
+                        creator_id=data['creator_id'],
                         playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data).get('url'),
                         description=data['description'],
                         private=data['private'])
