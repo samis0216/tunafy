@@ -6,6 +6,7 @@ import { loadUsersThunk } from "../../redux/users"
 import { useContext } from "react"
 import { MusicContext } from "../../context/MusicContext"
 import { useNavigate} from "react-router-dom"
+import likedSongsCover from './13.png'
 
 export default function Collection() {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function Collection() {
     return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
-                {/* <img className='playlist-detail-cover' src={playlist?.playlist_cover_url} /> */}
+                <img className='playlist-detail-cover' src={likedSongsCover} />
                 <div className="playlist-detail-info">
                     <p style={{ fontSize: 14, color: '#b3b3b3' }}>Playlist</p>
                     <h1 className="playlist-detail-name">Liked Songs</h1>
