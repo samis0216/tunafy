@@ -22,16 +22,28 @@
     align-items: center;
 }
 
-#login-header {
-    color: white;
-    margin-bottom: 60px;
-    font-size: 40px;
+#login-page {
     display: flex;
-    align-items: flex-start;
     justify-content: center;
+    flex-direction: column;
 }
 
-.login-email {
+#login-header {
+    color: white;
+    margin-bottom: 50px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    width: 470px;
+}
+
+.login-labels {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+/* .login-email {
     color: white;
     display: flex;
     flex-direction: column;
@@ -43,67 +55,83 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-}
-
-#login-page {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
+} */
 
 .login-container {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 #login-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
-    width: auto;
-    padding: 80px 70px;
+    width: 470px;
+    padding: 50px 70px;
+    /* background-color: black; */
+    /* width: auto; */
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-}
-
-#login-submit {
-    padding: 15px 120px;
-    border-radius: 25px;
-    background-color: #538aad;
-    color: black;
-    font-weight: bolder;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    width: 476px;
+    width: 470px;
 }
 
 .login-inputs {
     margin-top: 5px;
     padding: 8px 3px;
-    border: 1px white solid;
+    border: 1px #b3b3b3 solid;
     background-color: rgb(19, 17, 17);
     color: white;
     border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.login-inputs:hover {
+    border: 1px solid white;
+}
+
+.user-login-button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#login-submit {
+    padding: 15px 155px;
+    border-radius: 25px;
+    background-color: #538aad;
+    color: black;
+    font-weight: bolder;
+    font-size: 15px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
     width: 470px;
 }
 
+#login-submit:hover {
+    font-size: 16px;
+    transform: scale(1.02);
+}
+
 .demo-user-login {
-    margin-top: 20px;
+    margin-top: 30px;
     color: white;
     cursor: pointer;
     text-decoration: underline;
 }
 
+.demo-user-login:hover {
+    color: #538aad;
+}
+
 .sign-up-link {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     color: #b3b3b3;
     gap: 10px;
 }
@@ -111,6 +139,10 @@
 .tunafy-signup-link {
     color: white;
     font-weight: 600;
+}
+
+.tunafy-signup-link:hover {
+    color: #538aad;
 }
 
 .error-message {

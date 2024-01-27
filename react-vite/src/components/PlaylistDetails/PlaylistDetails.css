@@ -1,6 +1,7 @@
 .playlist-details-section {
     margin-left: 285px;
     margin-top: 60px;
+    margin-bottom: 100px;
     color: white;
 }
 
@@ -14,6 +15,7 @@
     height: 230px;
     width: 230px;
     border-radius: 4px;
+    object-fit: cover;
 }
 
 .playlist-detail-info {
@@ -134,6 +136,7 @@
     height: 40px;
     width: 40px;
     border-radius: 2px;
+    object-fit: cover;
 }
 
 .song-name-artist {

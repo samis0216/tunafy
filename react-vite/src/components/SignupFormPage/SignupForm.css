@@ -9,7 +9,6 @@
     font-size: 40px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     margin-bottom: 50px;
     width: 470px;
 }
@@ -17,7 +16,7 @@
 .signup-container {
     display: flex;
     justify-content: center;
-    margin-top: 140px;
+    margin-top: 120px;
 }
 
 #signup-box {
@@ -42,11 +41,15 @@
 .signup-inputs {
     margin-top: 5px;
     padding: 8px 3px;
-    border: 1px white solid;
+    border: 1px #b3b3b3 solid;
     background-color: rgb(19, 17, 17);
     color: white;
     border-radius: 3px;
     margin-bottom: 10px;
+}
+
+.signup-inputs:hover {
+    border: 1px solid white;
 }
 
 .sign-up-button {
@@ -68,10 +71,15 @@
     width: 470px;
 }
 
+#signup-submit:hover {
+    font-size: 16px;
+    transform: scale(1.02);
+}
+
 .log-in-link {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
     color: #b3b3b3;
     gap: 10px;
 }
@@ -79,4 +87,8 @@
 .tunafy-login-link {
     color: white;
     font-weight: 600;
+}
+
+.tunafy-login-link:hover {
+    color: #538aad;
 }

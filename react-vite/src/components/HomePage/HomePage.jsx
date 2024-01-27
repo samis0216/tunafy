@@ -41,7 +41,10 @@ const LoadHomePage = () => {
         <>
         <div className="main-container">
             <div className="playlists">
-                <h2 onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists`) }}>Tunafy Playlists</h2>
+                <div className="show-all">
+                    <h2 className='home-h2' onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists`) }}>Tunafy Playlists</h2>
+                    <p className='show-all-link' onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists`) }}>Show all</p>
+                </div>
                 <div className="home-page-list">
                     {playlists.map((playlist) => (
                         <>
@@ -60,7 +63,10 @@ const LoadHomePage = () => {
                 </div>
             </div>
             <div className="home-albums">
-                <h2 onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums`) }}>Tunafy Albums</h2>
+                <div className="show-all">
+                    <h2 className='home-h2' onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums`) }}>Tunafy Albums</h2>
+                    <p className='show-all-link' onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums`) }}>Show all</p>
+                </div>
                 <div className="home-page-list">
                     {albums.map((album) => (
                         <NavLink className='album-links' key={album.id} to={`/albums/${album.id}`} onClick={(e) => notLoggedIn(e)}>
