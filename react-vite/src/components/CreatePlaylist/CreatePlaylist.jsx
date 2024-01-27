@@ -28,17 +28,9 @@ export default function CreatePlaylist() {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    const result = await dispatch(addPlaylistThunk(formData));
-    // console.log("Result from addAlbumThunk: ", result);
-
-  
-  const playlistsArray = result.playlists
-  const newPlaylist = playlistsArray && playlistsArray[playlistsArray.length - 1];
-  const newPlaylistId = newPlaylist ? newPlaylist.id : null;
-
-  if (newPlaylistId) {
-    navigate(`/playlists/${newPlaylistId}`);
-  } 
+    await dispatch(addPlaylistThunk(formData));
+    navigate(`/playlists`);
+ 
   }
 
   return (

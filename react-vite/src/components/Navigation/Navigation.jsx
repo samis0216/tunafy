@@ -79,18 +79,18 @@ function Navigation() {
       <>
       <div className="left-bar">
         <div className="logo">
-          <a className="left-bar-logo" href="/">
+          <NavLink className="left-bar-logo" to="/">
             <img className="logo" src={tunafyLogo} alt="logo" />
             <h3>Tunafy</h3>
-          </a>
+          </NavLink>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <a href="/">
+              <NavLink href="/">
                 <span className="fa-solid fa-home bar-icon"></span>
                 <span>Home</span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadAlbumsThunk } from "../../redux/albums";
-import { loadUsersThunk } from "../../redux/users";
+// import { loadUsersThunk } from "../../redux/users";
 import "./AllAlbums.css";
 
 const AllAlbums = () => {
@@ -13,10 +13,11 @@ const AllAlbums = () => {
 
     const validKeys = Object.keys(albumObj).filter(key => key !== 'undefined');
 
+    const [update, setUpdate] = useState(0);
+
     useEffect(() => {
-        dispatch(loadAlbumsThunk());
-        dispatch(loadUsersThunk());
-    }, [dispatch, validKeys.length]);
+        dispatch(loadAlbumsThunk()).then(() => setUpdate(update + 1));
+    }, [dispatch, update]);
 
     return (
         <div className="all-albums">
