@@ -12,11 +12,8 @@ export default function DeletePlaylistModal({playlistId}) {
 
     const deletePlaylist = (e) => {
       e.preventDefault();
-      dispatch(deletePlaylistThunk(playlistId))
-          .then(() => {
-              closeModal();
-              navigate('/playlists');
-          });
+      dispatch(deletePlaylistThunk(playlistId)).then(closeModal());
+      navigate('/playlists');
   };
 
     return (
