@@ -30,12 +30,12 @@ def seed_albums():
   )
   album6 =Album(
     album_name="UNFORGIVEN",
-    artist_id=5,
+    artist_id=4,
     album_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png'
   )
   album7= Album(
     album_name='Room 202',
-    artist_id=6,
+    artist_id=5,
     album_cover_url='https://e.snmc.io/i/600/s/3f700cfd13c410cf4d54931180ccc788/10650803/knock2-room202-ep-Cover-Art.jpg'
   )
 
