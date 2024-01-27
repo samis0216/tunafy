@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadSongsThunk } from "../../redux/songs";
 import { loadAlbumsThunk } from "../../redux/albums";
 import { loadUsersThunk } from "../../redux/users";
+import { MusicContext } from "../../context/MusicContext";
 import SongTile from "./SongTile";
 import './AllSongs.css'
 
 export default function AllSongs() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [songList, setSongList] = useContext(MusicContext);
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
@@ -22,13 +24,14 @@ export default function AllSongs() {
     const user = useSelector(state => state.session.user)
     const keys = Object.keys(songs)
 
+    const songers = Object.values(songs)
     return (
         <div className="page-container">
             <div className="songs-header" style={{ width: 1050 }}>
                 <div className="bring-it">
                     <h1 style={{ fontSize: '6em' }}>All Songs</h1>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '1050px' }}>
-                        <div className="play-button">
+                        <div className="play-button" onClick={() => setSongList(songers)}>
                             <i className="fa-solid fa-play fa-2xl"></i>
                         </div>
                         <div>
