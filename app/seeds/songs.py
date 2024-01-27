@@ -292,7 +292,7 @@ def seed_songs():
   )
   song33 = Song(
     song_name = 'REWiND',
-    artist_id = 6,
+    artist_id = 5,
     album_id = 7,
     song_cover_url = 'https://e.snmc.io/i/600/s/3f700cfd13c410cf4d54931180ccc788/10650803/knock2-room202-ep-Cover-Art.jpg',
     song_file_url = 'http://tunafy-music.s3.amazonaws.com/600f2961f0844cae9febcd61dc4d41f0.mp3',
@@ -300,13 +300,43 @@ def seed_songs():
     duration = 184
   )
 
+  songs = [
+    song1,
+    song2,
+    song3,
+    song4,
+    song5,
+    song6,
+    song7,
+    song8,
+    song9,
+    song10,
+    song11,
+    song12,
+    song13,
+    song14,
+    song15,
+    song16,
+    song17,
+    song18,
+    song19,
+    song20,
+    song21,
+    song22,
+    song23,
+    song24,
+    song25,
+    song26,
+    song27,
+    song28,
+    song29,
+    song31,
+    song32,
+    song33
+  ]
 
-
-
-
-  db.session.add(song1)
-  db.session.add(song2)
-  db.session.add(song3)
+  for song in songs:
+    db.session.add(song)
   db.session.commit()
 
 def undo_songs():

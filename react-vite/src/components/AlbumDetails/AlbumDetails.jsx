@@ -5,7 +5,7 @@ import { loadOneAlbumThunk } from "../../redux/albums"
 import { loadAlbumSongsThunk } from "../../redux/songs"
 import { loadUsersThunk } from "../../redux/users"
 import { MusicContext } from "../../context/MusicContext";
-import SongTile from "../AllSongs/SongTile"
+import AlbumSongTile from "../AllSongs/AlbumSongTile"
 import './AlbumDetails.css'
 import AlbumDropdown from "../AllAlbums/AlbumDropdown"
 
@@ -14,6 +14,7 @@ export default function AlbumDetails() {
   const {albumId} = useParams()
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
+  console.log(album)
   const [songList, setSongList] = useContext(MusicContext);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function AlbumDetails() {
         <div className="song-info">
           {
             keys.map((id) => (
-              <SongTile key={id} song={songs[id]} albums={album} artist={users[songs[id]['artist_id']]}/>
+              <AlbumSongTile key={id} song={songs[id]} album={album} artist={users[songs[id]['artist_id']]} onClick={() => console.log("hi")}/>
             ))
           }
         </div>
