@@ -11,6 +11,7 @@ export default function CreateAlbum() {
   const [image, setImage] = useState(null);
   const [name, setName] = useState("")
   const [imageLoading, setImageLoading] = useState(false);
+  // const album = useSelector((state) => state.albums?.[albumId])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +24,18 @@ export default function CreateAlbum() {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(addAlbumThunk(formData));
-    navigate('/albums')
-  }
+    const result = await dispatch(addAlbumThunk(formData));
+    // console.log("Result from addAlbumThunk: ", result);
+
+  
+  const albumsArray = result.albums
+  const newAlbum = albumsArray && albumsArray[albumsArray.length - 1];
+  const newAlbumId = newAlbum ? newAlbum.id : null;
+
+  if (newAlbumId) {
+    navigate(`/albums/${newAlbumId}`);
+  } 
+}
 
   useEffect(() => {
 

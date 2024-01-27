@@ -31,6 +31,8 @@ function Navigation() {
     }
   }
 
+  
+
   const Player = () => (
     <AudioPlayer
       autoPlay={true}
@@ -47,18 +49,18 @@ function Navigation() {
       <>
       <div className="left-bar">
         <div className="logo">
-          <NavLink className="left-bar-logo" to="/">
+          <a className="left-bar-logo" href="/">
             <img className="logo" src={tunafyLogo} alt="logo" />
             <h3>Tunafy</h3>
-          </NavLink>
+          </a>
         </div>
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <NavLink to="/">
+              <a href="/">
                 <span className="fa-solid fa-home bar-icon"></span>
                 <span>Home</span>
-              </NavLink >
+              </a>
             </li>
           </ul>
         </div>

@@ -2,9 +2,11 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./CreatePlaylist.css"
 import { addPlaylistThunk } from "../../redux/playlists";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePlaylist() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state => state.session.user))
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");
@@ -25,7 +27,17 @@ export default function CreatePlaylist() {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(addPlaylistThunk(formData));
+    const result = await dispatch(addPlaylistThunk(formData));
+    // console.log("Result from addAlbumThunk: ", result);
+
+  
+  const playlistsArray = result.playlists
+  const newPlaylist = playlistsArray && playlistsArray[playlistsArray.length - 1];
+  const newPlaylistId = newPlaylist ? newPlaylist.id : null;
+
+  if (newPlaylistId) {
+    navigate(`/playlists/${newPlaylistId}`);
+  } 
   }
 
   return (
