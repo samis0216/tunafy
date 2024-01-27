@@ -21,15 +21,15 @@ const LoginModal = ()=> {
     return(
     <div className="login-modal">
         <div className="modal-contents">
-        <h2>Please log in</h2>
-        <button className='login-modal-button' type="button" onClick={handleLoginClick}>Log in</button>
-        <div className="sign-up-link">
-        <p>Don&apos;t have an account?</p>
-        <Link to='/signup' onClick={handleSignupClick} className='tunafy-signup-link'>Sign up for Tunafy.</Link>
-      </div>
+          <h2>Please log in</h2>
+          <button className='login-modal-button' type="button" onClick={handleLoginClick}>Log In</button>
+          <div className="sign-up-link-modal">
+            <p>Don&apos;t have an account?</p>
+            <Link to='/signup' onClick={handleSignupClick} className='tunafy-signup-link-modal'>Sign up here.</Link>
+          </div>
         </div>
     </div>
     )
-} 
+}
 
 export default LoginModal

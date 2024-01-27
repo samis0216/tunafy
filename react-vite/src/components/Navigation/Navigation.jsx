@@ -109,9 +109,9 @@ function Navigation() {
               </div>
             </li>
             <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
-                <span className="fa-solid fa-square-plus bar-icon"></span>
-                <span>Create Playlist</span>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
+                <span className="fa-solid fa-heart bar-icon"></span>
+                <span>Liked Songs</span>
               </div>
             </li>
             <li>
@@ -127,10 +127,10 @@ function Navigation() {
               </div>
             </li>
             <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
-                <span className="fa-solid fa-heart bar-icon"></span>
-                <span>Liked Songs</span>
-              </div >
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Playlist</span>
+              </div>
             </li>
           </ul>
         </div>
@@ -159,7 +159,7 @@ function Navigation() {
       {!sessionUser && (
         <div className="preview">
           <div className="text">
-            <h6>Preview of Spotify</h6>
+            <h6>Preview of Tunafy</h6>
             <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
           </div>
           <div className="button">

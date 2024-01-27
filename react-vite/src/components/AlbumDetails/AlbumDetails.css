@@ -14,6 +14,7 @@
   height: 230px;
   width: 230px;
   border-radius: 4px;
+  object-fit: cover;
 }
 
 .album-detail-info {
