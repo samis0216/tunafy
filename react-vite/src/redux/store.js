@@ -10,13 +10,15 @@ import playlistReducer from "./playlists";
 import songReducer from "./songs";
 import albumReducer from "./albums";
 import userReducer from "./users"
+import collectionReducer from './collection'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   playlists: playlistReducer,
   songs: songReducer,
   albums: albumReducer,
-  users: userReducer
+  users: userReducer,
+  collection: collectionReducer
 });
 
 let enhancer;
