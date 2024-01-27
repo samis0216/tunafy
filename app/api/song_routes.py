@@ -41,7 +41,7 @@ def song_form():
                         duration=newDuration)
         db.session.add(new_song)
         db.session.commit()
-        return redirect('/api/songs')
+        return new_song.to_dict()
     return 'Bad Data'
 
 @song_routes.route("/<int:id>")
