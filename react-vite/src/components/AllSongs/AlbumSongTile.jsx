@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { MusicContext } from "../../context/MusicContext";
 import { useContext } from 'react';
 
-export default function AlbumSongTile({ song, album, artist }) {
+export default function AlbumSongTile({ song, album, artist, count }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
     // console.log(Object.values(albums))
@@ -15,7 +15,7 @@ export default function AlbumSongTile({ song, album, artist }) {
             <div>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
-                        <p className="song-id">{song?.id}</p>
+                        <p className="song-id">{count}</p>
                         <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
                         <div className="song-name-artist">
                             <p className='song-name' onClick={() => navigate(`/songs/${song?.id}`)}>{song?.song_name}</p>
