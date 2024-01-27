@@ -23,7 +23,7 @@ def albumSub():
         data = form.data
         form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
         newAlbum = Album(album_name=data['album_name'],
-                        artist_id=1,
+                        artist_id=data['artist_id'],
                         album_cover_url=upload_img_to_s3(form.album_cover_url.data).get('url'))
         db.session.add(newAlbum)
         db.session.commit()

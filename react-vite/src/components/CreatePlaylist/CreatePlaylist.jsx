@@ -16,11 +16,12 @@ export default function CreatePlaylist() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const creatorId = user.id
     const formData = new FormData();
     formData.append("playlist_cover_url", image);
     formData.append("playlist_name", name);
     formData.append("private", priv);
-    formData.append("creator_id", user.id);
+    formData.append("creator_id", creatorId);
     formData.append("description", description);
 
 

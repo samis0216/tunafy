@@ -9,6 +9,7 @@ const AllPlaylists = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.users)
+    const sessionUser = useSelector(state => state.session.user)
     const playlistObj = useSelector(state => state.playlists)
     const playlists = Object.values(playlistObj)
 
@@ -22,6 +23,8 @@ const AllPlaylists = () => {
             <h2 onClick={() => navigate(`/playlists`)}>Tunafy Playlists</h2>
             <div className="list">
                 {playlists.map((playlist) => (
+                    <>
+                    {!playlist?.private || (playlist?.private && sessionUser?.id == playlist?.creator_id) ?
                     <div className="item" key={playlist.id} onClick={() => navigate(`/playlists/${playlist.id}`)}>
                         <img src={playlist.playlist_cover_url} alt='playlist-cover' />
                         <div className="play">
@@ -30,6 +33,8 @@ const AllPlaylists = () => {
                         <h4>{playlist.playlist_name}</h4>
                         <p className="playlist-description">{playlist.description ? playlist.description : `By ${user[playlist?.creator_id]?.username}`}</p>
                     </div>
+                    : null }
+                    </>
                 ))}
             </div>
         </div>
