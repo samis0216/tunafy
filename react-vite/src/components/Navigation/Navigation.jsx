@@ -57,7 +57,7 @@ function Navigation() {
     }
   }
 
-  
+
 
   const Player = () => (
     <AudioPlayer
@@ -127,10 +127,10 @@ function Navigation() {
               </div>
             </li>
             <li>
-              <NavLink to="/" onClick={notLoggedIn}>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
                 <span className="fa-solid fa-heart bar-icon"></span>
                 <span>Liked Songs</span>
-              </NavLink >
+              </div >
             </li>
           </ul>
         </div>

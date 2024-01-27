@@ -27,8 +27,8 @@ export default function CreateSong() {
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setAwsLoading(true);
-        await dispatch(addSongThunk(formData));
-        navigate('/songs')
+        const newSong = await dispatch(addSongThunk(formData));
+        navigate(`/songs/${newSong.id}`)
     }
 
     return (
