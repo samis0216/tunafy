@@ -7,7 +7,7 @@ import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
 
 export default function Layout() {
-  const [srv, setSrv] = useState(null)
+  const [songList, setSongList] = useState([])
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Layout() {
   return (
     <>
       <ModalProvider>
-        <MusicContext.Provider value={[srv, setSrv]}>
+        <MusicContext.Provider value={[songList, setSongList]}>
           <Navigation />
           {isLoaded && <Outlet />}
           <Modal />

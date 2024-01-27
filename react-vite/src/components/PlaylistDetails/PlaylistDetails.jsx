@@ -19,8 +19,8 @@ export default function PlaylistDetails() {
     const user = useSelector(state => state.users)
     const playlistSongs = useSelector(state => state.songs.songs)
     const album = useSelector(state => state.albums)
-    const [srv, setSrv] = useContext(MusicContext);
-    console.log(srv)
+    const [songList, setSongList] = useContext(MusicContext);
+
 
     useEffect(() => {
         dispatch(loadOnePlaylistThunk(playlistId))
@@ -31,6 +31,7 @@ export default function PlaylistDetails() {
 
     if (!playlist || !playlistSongs) return null
     const songKeys = Object.values(playlistSongs)
+    const songers = Object.values(playlistSongs)
 
     return (
         <section className="playlist-details-section">
@@ -48,7 +49,7 @@ export default function PlaylistDetails() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button">
+                    <div className="playlist-play-button" onClick={() => setSongList(songers)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
@@ -64,7 +65,7 @@ export default function PlaylistDetails() {
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (
-                        <div key={song?.id} className="playlist-song-tile" onClick={()=> setSrv(`${song.song_file_url}`)}>
+                        <div key={song?.id} className="playlist-song-tile">
                             <div className="song-info-div">
                                 <p className="song-id">{song?.id}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />

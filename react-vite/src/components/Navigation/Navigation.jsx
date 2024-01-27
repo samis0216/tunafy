@@ -7,18 +7,44 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MusicContext } from "../../context/MusicContext";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
-  const [srv, setSrv] = useContext(MusicContext)
+  const [songList, setSongList] = useContext(MusicContext)
+  const [currentSong, setCurrentSong] = useState(0);
+
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
 
-  const False = false
-  if(False) setSrv()
+  useEffect(() => {
+
+  }, [songList])
+
+  const helperFunctionNext = (i) => {
+    console.log(i)
+    console.log(songList)
+    console.log(songList.length)
+    if (i + 1 > songList.length - 1) {
+      setSongList([])
+      return 0
+    } else {
+      return i + 1
+    }
+  }
+
+  const helperFunctionPrev = (i) => {
+    console.log(i)
+    console.log(songList)
+    console.log(songList.length)
+    if (i - 1 < 0) {
+      return 0
+    } else {
+      return i - 1
+    }
+  }
 
   const openModal = () => {
     setModalContent(<LoginModal />);
@@ -36,7 +62,11 @@ function Navigation() {
   const Player = () => (
     <AudioPlayer
       autoPlay={true}
-      src={srv}
+      showSkipControls={true}
+      onClickNext={() => setCurrentSong(i => i = helperFunctionNext(i))}
+      onClickPrevious={() => setCurrentSong(i => i = helperFunctionPrev(i))}
+      onEnded={() => setCurrentSong(i => i + 1)}
+      src={!songList.length || !songList[currentSong] ? [] : songList[currentSong].song_file_url}
       volume={0.1}
       // onPlay={e => console.log("onPlay")}
       // other props here
