@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { loadOneAlbumThunk } from "../../redux/albums"
 import { loadAlbumSongsThunk } from "../../redux/songs"
 import { loadUsersThunk } from "../../redux/users"
+import { MusicContext } from "../../context/MusicContext";
 import SongTile from "../AllSongs/SongTile"
 import './AlbumDetails.css'
 import AlbumDropdown from "../AllAlbums/AlbumDropdown"
@@ -13,6 +14,7 @@ export default function AlbumDetails() {
   const {albumId} = useParams()
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
+  const [songList, setSongList] = useContext(MusicContext);
 
   useEffect(() => {
     dispatch(loadOneAlbumThunk(albumId))
@@ -28,7 +30,7 @@ export default function AlbumDetails() {
   if (!album) {
     return null
   }
-
+  const songers = Object.values(songs)
   return (
     <section className="album-details-section">
       <div className="album-detail-header">
@@ -44,7 +46,7 @@ export default function AlbumDetails() {
       </div>
       <div className="album-song-list">
         <div className="song-list-symbols">
-          <div className="album-play-button">
+          <div className="album-play-button" onClick={() => setSongList(songers)}>
               <i className="fa-solid fa-play fa-2xl play-icon"></i>
           </div>
           <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i>

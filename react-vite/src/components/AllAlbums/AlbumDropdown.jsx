@@ -9,6 +9,8 @@ export default function AlbumDropdown({albumId}) {
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate()
     const user = useSelector((store) => store.session.user);
+    const albumObj = useSelector(state => state.albums);
+    const currentAlbum = albumObj[albumId];
     const ulRef = useRef();
 
     const toggleMenu = (e) => {
@@ -34,9 +36,11 @@ export default function AlbumDropdown({albumId}) {
 
     return (
         <>
-            <span onClick={toggleMenu}>
-                <i style={{ fontSize: 28 }} className="fa-solid fa-ellipsis playlist-icon"></i>
-            </span>
+            {currentAlbum && user.id === currentAlbum.artist_id && (
+                <span onClick={toggleMenu}>
+                    <i style={{ fontSize: 28 }} className="fa-solid fa-ellipsis playlist-icon"></i>
+                </span>
+            )}
             {showMenu && (
             <span className="playlist-dropdown" ref={ulRef}>
                 {user && (

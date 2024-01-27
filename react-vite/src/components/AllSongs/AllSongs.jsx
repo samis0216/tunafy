@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../redux/songs";
 import { loadAlbumsThunk } from "../../redux/albums";
 import { loadUsersThunk } from "../../redux/users";
+import { MusicContext } from "../../context/MusicContext";
 import SongTile from "./SongTile";
 import './AllSongs.css'
 import songCover from './14.png'
@@ -10,6 +11,7 @@ import AllSongsDropdown from "./AllSongsDropdown";
 
 export default function AllSongs() {
     const dispatch = useDispatch()
+    const [songList, setSongList] = useContext(MusicContext);
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
@@ -21,6 +23,7 @@ export default function AllSongs() {
     const users = useSelector(state=> state.users)
     const keys = Object.keys(songs)
 
+    const songers = Object.values(songs)
     return (
         <section className="page-container">
             <div className="songs-header">
@@ -33,7 +36,7 @@ export default function AllSongs() {
             </div>
             <div className="all-songs-list">
                 <div className="song-list-symbols">
-                    <div className="song-play-button">
+                    <div className="song-play-button" onClick={() => setSongList(songers)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i>

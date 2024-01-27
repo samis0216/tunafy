@@ -51,3 +51,4 @@ def playlistDel(id):
     remove_img_from_s3(playlist.playlist_cover_url)
     db.session.delete(playlist)
     db.session.commit()
+    return "Successfully Deleted"

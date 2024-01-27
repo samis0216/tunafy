@@ -18,14 +18,13 @@ const AllPlaylists = () => {
         dispatch(loadUsersThunk())
     }, [dispatch])
 
-    return (
-        <div className="playlist-section">
-            <h2 onClick={() => navigate(`/playlists`)}>Tunafy Playlists</h2>
-            <div className="list">
-                {playlists.map((playlist) => (
-                    <>
-                    {!playlist?.private || (playlist?.private && sessionUser?.id == playlist?.creator_id) ?
-                    <div className="item" key={playlist.id} onClick={() => navigate(`/playlists/${playlist.id}`)}>
+return (
+    <div className="playlist-section">
+        <h2 onClick={() => navigate(`/playlists`)}>Tunafy Playlists</h2>
+        <div className="list">
+            {playlists.map((playlist) => (
+                (!playlist?.private || (playlist?.private && sessionUser?.id === playlist?.creator_id)) && (
+                    <div key={playlist.id} className="item" onClick={() => navigate(`/playlists/${playlist.id}`)}>
                         <img src={playlist.playlist_cover_url} alt='playlist-cover' />
                         <div className="play">
                             <span className="fa fa-play" style={{color: "white"}}></span>
@@ -33,12 +32,10 @@ const AllPlaylists = () => {
                         <h4>{playlist.playlist_name}</h4>
                         <p className="playlist-description">{playlist.description ? playlist.description : `By ${user[playlist?.creator_id]?.username}`}</p>
                     </div>
-                    : null }
-                    </>
-                ))}
-            </div>
+                )
+            ))}
         </div>
-    )
+    </div>
+)
 }
-
 export default AllPlaylists;

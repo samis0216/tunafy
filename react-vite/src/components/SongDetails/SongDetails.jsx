@@ -1,15 +1,17 @@
 import { loadOneSongThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { loadOneAlbumThunk } from "../../redux/albums";
+import { MusicContext } from "../../context/MusicContext";
 import SongDropdown from "./SongDropdown";
 
 export default function SongDetails() {
     const dispatch = useDispatch()
     const { songId } = useParams()
+    const [songList, setSongList] = useContext(MusicContext);
     const song = useSelector(state  => state.songs[songId])
     const user = useSelector(state => state.users)
     const album = useSelector(state => state.albums[song?.album_id])
@@ -26,7 +28,8 @@ export default function SongDetails() {
 
     console.log('song', song, 'album', album)
     if (!album) dispatch(loadOneAlbumThunk(song?.album_id))
-
+    if (!song) return null
+    const songer = [song]
     if (song) return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
@@ -55,7 +58,7 @@ export default function SongDetails() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button">
+                    <div className="playlist-play-button" onClick={() => setSongList(songer)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
