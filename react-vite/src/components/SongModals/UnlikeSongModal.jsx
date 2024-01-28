@@ -11,16 +11,14 @@ const UnlikeSongModal = ({song, userId}) => {
     const { closeModal } = useModal()
 
     const handleRemove = () => {
-        console.log(userId, song.id)
         dispatch(removeLikedSongsThunk(userId, song.id))
-        dispatch(loadLikedSongsThunk())
     }
 
     return (
         <div className="delete-modal">
             <div className="modal-contents">
-                <h2>Are you sure?</h2>
-                <p style={{color: "white",  paddingTop: 5}}>This will remove &quot;{`${song.song_name}`}&quot; from your collection</p>
+                <h2 style={{color: 'white', marginTop: 10}}>Are you sure?</h2>
+                <p style={{color: "white", padding: 10}}>This will remove &quot;{`${song.song_name}`}&quot; from your collection</p>
                 <div className="delete-buttons-holder">
                     <button className="delete-modal-button" onClick={()=> {
                         closeModal()

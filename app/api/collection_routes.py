@@ -33,4 +33,7 @@ def removeLikeSong(id):
     song = SongLike.query.get(songs.id)
     db.session.delete(song)
     db.session.commit()
-    return "Cool"
+    all_songs = SongLike.query.filter(SongLike.user_id == id).all()
+    songsId = [song.to_dict()["song_id"] for song in all_songs]
+    updatedsongs = [Song.query.get(songId).to_dict() for songId in songsId]
+    return updatedsongs

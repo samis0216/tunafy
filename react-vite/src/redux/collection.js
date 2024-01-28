@@ -18,10 +18,10 @@ const addLikeSong = (songLike) => {
     }
 }
 
-const removeLikeSong = (song) => {
+const removeLikeSong = (songs) => {
     return {
         type: REMOVE_LIKE_SONG,
-        songLike
+        songs
     }
 }
 
@@ -80,6 +80,11 @@ const collectionReducer = (state = initialState, action) => {
         }
         case REMOVE_LIKE_SONG: {
             const newState = { ...state }
+            let counter = 1
+            action.songs.forEach(song => {
+                newState[counter] = song
+                counter++
+            })
             return newState
         }
         default:
