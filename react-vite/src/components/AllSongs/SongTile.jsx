@@ -2,17 +2,19 @@ import './SongTile.css'
 import { useNavigate } from 'react-router-dom'
 import { MusicContext } from "../../context/MusicContext";
 import { useContext } from 'react';
+import { IndexContext } from '../../context/IndexContext';
 
-export default function SongTile({ song, albums, artist }) {
+export default function SongTile({ songs, song, albums, artist }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
+    const [currentSong, setCurrentSong] = useContext(IndexContext)
     // console.log(Object.values(albums))
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     return (
         <>
-            <div>
+            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(song.id - 1)}}>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
                         <p className="song-id">{song?.id}</p>

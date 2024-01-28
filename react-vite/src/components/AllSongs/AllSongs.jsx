@@ -53,7 +53,7 @@ export default function AllSongs() {
                 <div className="song-info">
                     {users &&
                         keys.map((id) => (
-                            <SongTile key={id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
+                            <SongTile key={id} songs={songers} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
                         ))
                     }
                 </div>

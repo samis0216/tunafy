@@ -9,12 +9,13 @@ import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
 import { useContext, useEffect, useState } from "react";
 import { MusicContext } from "../../context/MusicContext";
+import { IndexContext } from "../../context/IndexContext";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
   const [songList, setSongList] = useContext(MusicContext)
-  const [currentSong, setCurrentSong] = useState(0);
+  const [currentSong, setCurrentSong] = useContext(IndexContext)
 
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
