@@ -79,7 +79,7 @@ const collectionReducer = (state = initialState, action) => {
             return newState
         }
         case REMOVE_LIKE_SONG: {
-            const newState = { ...state }
+            const newState = {}
             let counter = 1
             action.songs.forEach(song => {
                 newState[counter] = song
