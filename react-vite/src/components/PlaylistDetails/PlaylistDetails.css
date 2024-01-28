@@ -29,6 +29,8 @@
 .playlist-detail-name {
     font-size: 80px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .playlist-user-songs {
@@ -64,7 +66,9 @@
     padding-left: 2px;
 }
 
-.play-icon:active, .play-icon:hover, .play-icon:focus {
+.play-icon:active,
+.play-icon:hover,
+.play-icon:focus {
     font-size: 27px;
 }
 
