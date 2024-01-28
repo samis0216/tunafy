@@ -10,6 +10,7 @@ import './PlaylistDetails.css'
 import { loadAlbumsThunk } from "../../redux/albums";
 import PlaylistDropdown from "./PlaylistDropdown";
 import { MusicContext } from "../../context/MusicContext";
+import { IndexContext } from "../../context/IndexContext";
 
 export default function PlaylistDetails() {
     const navigate = useNavigate()
@@ -20,7 +21,7 @@ export default function PlaylistDetails() {
     const playlistSongs = useSelector(state => state.songs.songs)
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
-
+    const [currentSong, setCurrentSong] = useContext(IndexContext)
 
     useEffect(() => {
         dispatch(loadOnePlaylistThunk(playlistId))
@@ -65,7 +66,7 @@ export default function PlaylistDetails() {
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (
-                        <div key={song?.id} className="playlist-song-tile">
+                        <div key={song?.id} className="playlist-song-tile" onClick={() => {setSongList(Object.values(songers)); setCurrentSong(song.id -1 )}}>
                             <div className="song-info-div">
                                 <p className="song-id">{song?.id}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />

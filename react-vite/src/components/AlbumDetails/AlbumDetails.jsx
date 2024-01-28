@@ -14,7 +14,6 @@ export default function AlbumDetails() {
   const {albumId} = useParams()
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
-  console.log(album)
   const [songList, setSongList] = useContext(MusicContext);
 
   useEffect(() => {
@@ -32,6 +31,7 @@ export default function AlbumDetails() {
     return null
   }
   const songers = Object.values(songs)
+  console.log(songers)
   return (
     <section className="album-details-section">
       <div className="album-detail-header">
