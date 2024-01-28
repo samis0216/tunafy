@@ -1,6 +1,7 @@
 const LOAD_LIKE_SONGS = 'collection/loadLikeSongs'
 const ADD_LIKE_SONG = 'collection/addLikeSong'
 const REMOVE_LIKE_SONG = 'collection/removeLikeSong'
+const CHECK_LIKED_IDS = 'collection/checkedLikedIds'
 
 
 // ACTION CREATORS
@@ -22,6 +23,13 @@ const removeLikeSong = (songs) => {
     return {
         type: REMOVE_LIKE_SONG,
         songs
+    }
+}
+
+const checkedLikedIds = (song) => {
+    return {
+        type: CHECK_LIKED_IDS,
+        song
     }
 }
 
@@ -61,12 +69,25 @@ export const removeLikedSongsThunk = (userId, songId) => async(dispatch) => {
     }
 }
 
+export const checkedLikedIdsThunk = (userId, songId) => async(dispatch) => {
+    const res = await fetch(`/api/collection/${userId}/liked/${songId}`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(checkedLikedIds(data))
+        return data
+    } else {
+        dispatch(checkedLikedIds([]))
+        return []
+    }
+}
+
 const initialState = {}
 
 const collectionReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_LIKE_SONGS: {
-            const newState = { ...state };
+            const newState = {};
             let counter = 1
             action.songs.forEach(song => {
                 newState[counter] = song
@@ -74,8 +95,15 @@ const collectionReducer = (state = initialState, action) => {
             })
             return newState;
         }
+        case CHECK_LIKED_IDS: {
+            const newState = {}
+            if (!action.song) return newState
+            newState[action.song?.song_id] = action.song
+            return newState
+        }
         case ADD_LIKE_SONG: {
-            const newState ={ ...state};
+            const newState ={};
+            newState[action.songLike.id] = action.songLike
             return newState
         }
         case REMOVE_LIKE_SONG: {
