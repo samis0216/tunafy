@@ -27,7 +27,7 @@ export default function AlbumDetails() {
   const users = useSelector((store) => store.users)
   const user = users[album?.artist_id]
   const keys = Object.keys(songs)
-  // console.log(user)
+  const totDur = Object.values(songs).reduce((total, obj) => obj.duration + total, 0)
   if (!album) {
     return null
   }
@@ -41,7 +41,7 @@ export default function AlbumDetails() {
           <h1 className="album-detail-name">{album.album_name}</h1>
           <div className="album-stuff">
             <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-            <p style={{ paddingLeft: 5, fontSize: 14 }}>{user?.username}  •  {Object.keys(songs).length}  •  duration</p>
+            <p style={{ paddingLeft: 5, fontSize: 14 }}>{user?.username}  •  {Object.keys(songs).length} {`${Object.keys(songs).length > 1 ? "songs" : "song"}`}  •  {`${Math.floor(totDur / 60)} min ${totDur % 60 == 0 ? "" : totDur % 60 + " seconds"}`}</p>
           </div>
         </div>
       </div>
