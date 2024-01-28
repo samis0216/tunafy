@@ -18,11 +18,6 @@ def likedSongs(id):
     all_songs = SongLike.query.filter(SongLike.user_id == id).all()
     return {'songs': [song.to_dict() for song in all_songs]}
 
-@song_routes.route('/new')
-def index():
-    form = SongForm()
-    return render_template('song_form.html', form=form)
-
 @song_routes.route('/new', methods=['GET', 'POST'])
 def song_form():
     form = SongForm()
@@ -42,7 +37,7 @@ def song_form():
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict()
-    return 'Bad Data'
+    return form.errors
 
 @song_routes.route("/<int:id>")
 def oneSong(id):
