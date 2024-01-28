@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPlaylistsThunk } from "../../redux/playlists";
@@ -14,11 +14,10 @@ const AllPlaylists = () => {
 
     const validKeys = Object.keys(playlistObj).filter(key => key !== 'undefined');
 
-    const [update, setUpdate] = useState(0);
-
     useEffect(() => {
-        dispatch(loadPlaylistsThunk()).then(() => setUpdate(update + 1));
-    }, [dispatch, update]);
+        dispatch(loadPlaylistsThunk());
+    }, [dispatch, validKeys.length]);
+
 
     return (
         <div className="playlist-section">
