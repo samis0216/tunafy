@@ -7,6 +7,8 @@ import { useContext } from "react"
 import { MusicContext } from "../../context/MusicContext"
 import { useNavigate} from "react-router-dom"
 import likedSongsCover from './13.png'
+import UnlikeSongModal from "../SongModals/UnlikeSongModal"
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 
 export default function Collection() {
     const dispatch = useDispatch()
@@ -20,6 +22,7 @@ export default function Collection() {
     console.log(srv)
 
     console.log(likedSongs)
+    console.log(keys)
 
     // if(likedOwnerId !== user.id) navigate(`/${likedOwnerId}/collection/tracks`)
     useEffect(() => {
@@ -69,6 +72,7 @@ export default function Collection() {
                                 </div>
                             </div>
                             <p className="song-album-name" onClick={() => navigate(`/albums/${likedSongs[key]?.id}`)}>{album[likedSongs[key]?.album_id]?.album_name}</p>
+                            <button><OpenModalMenuItem itemText={'Unlike'} modalComponent={<UnlikeSongModal song={likedSongs[key]} userId={user.id}/>}/></button>
                             <p>{`${Math.floor(likedSongs[key]?.duration / 60)}:${(likedSongs[key]?.duration % 60) < 10 ? `0${likedSongs[key]?.duration % 60}` : likedSongs[key]?.duration % 60}`}</p>
                         </div>
                     ))}

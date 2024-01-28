@@ -1,12 +1,13 @@
 import { loadOneSongThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { loadOneAlbumThunk } from "../../redux/albums";
 import { MusicContext } from "../../context/MusicContext";
 import SongDropdown from "./SongDropdown";
+import { addLikedSongsThunk, loadLikedSongsThunk } from "../../redux/collection";
 
 export default function SongDetails() {
     const dispatch = useDispatch()
@@ -15,6 +16,7 @@ export default function SongDetails() {
     const song = useSelector(state  => state.songs[songId])
     const user = useSelector(state => state.users)
     const album = useSelector(state => state.albums[song?.album_id])
+    const userId = useSelector(state => state.session.user)
 
     const minutes = Math.floor(song?.duration / 60)
     let seconds = song?.duration % 60
@@ -24,7 +26,12 @@ export default function SongDetails() {
         dispatch(loadOneSongThunk(songId))
         dispatch(loadOneAlbumThunk(song?.album_id))
         dispatch(loadUsersThunk())
+        // dispatch(loadLikedSongsThunk())
     }, [dispatch, songId])
+
+    const handleLike = () => {
+        dispatch(addLikedSongsThunk(userId.id, songId))
+    }
 
     console.log('song', song, 'album', album)
     if (!album) dispatch(loadOneAlbumThunk(song?.album_id))
@@ -61,7 +68,7 @@ export default function SongDetails() {
                     <div className="playlist-play-button" onClick={() => setSongList(songer)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
+                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon" onClick={()=> handleLike()}></i>
                     <SongDropdown song={song}/>
                 </div>
 

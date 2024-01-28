@@ -18,6 +18,7 @@ export default function AllSongs() {
         dispatch(loadUsersThunk())
     }, [dispatch])
 
+    const user = useSelector(state => state.session.user)
     const songs = useSelector(state => state.songs)
     const albums = useSelector(state => state.albums)
     const users = useSelector(state=> state.users)
@@ -39,7 +40,7 @@ export default function AllSongs() {
                     <div className="song-play-button" onClick={() => setSongList(songers)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i>
+                    {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
                     <AllSongsDropdown />
                 </div>
                 <div className="song-list-info-header">
@@ -53,7 +54,7 @@ export default function AllSongs() {
                 <div className="song-info">
                     {users &&
                         keys.map((id) => (
-                            <SongTile key={id} count={id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
+                            <SongTile key={id} count={id} user={user.id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
                         ))
                     }
                 </div>
