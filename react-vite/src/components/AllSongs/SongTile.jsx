@@ -10,7 +10,6 @@ export default function SongTile({ songs, song, albums, artist, count, user }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
     const [currentSong, setCurrentSong] = useContext(IndexContext)
-
     // console.log(Object.values(albums))
     const dispatch = useDispatch()
     const minutes = Math.floor(song.duration / 60)

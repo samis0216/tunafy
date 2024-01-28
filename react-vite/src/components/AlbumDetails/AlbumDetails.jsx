@@ -64,7 +64,7 @@ export default function AlbumDetails() {
         <div className="song-info">
           {
             keys.map((id) => (
-              <AlbumSongTile key={id} songs={songs} count={id} song={songs[id]} album={album} artist={users[songs[id]['artist_id']]} onClick={() => console.log("hi")}/>
+              <AlbumSongTile key={id} songs={songs} count={id} song={songs[id]} album={album} artist={users[songs[id]['artist_id']]}/>
             ))
           }
         </div>
