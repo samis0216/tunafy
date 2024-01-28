@@ -37,3 +37,11 @@ def removeLikeSong(id):
     songsId = [song.to_dict()["song_id"] for song in all_songs]
     updatedsongs = [Song.query.get(songId).to_dict() for songId in songsId]
     return updatedsongs
+
+@collection_routes.route('/<int:id>/liked/<int:songId>')
+def likedIds(id, songId):
+    songs = [song for song in SongLike.query.filter(SongLike.user_id == id, SongLike.song_id == songId).all()]
+    if songs:
+        return songs[0].to_dict()
+    else:
+        return {}
