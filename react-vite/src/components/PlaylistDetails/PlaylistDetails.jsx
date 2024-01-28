@@ -34,7 +34,7 @@ export default function PlaylistDetails() {
     if (!playlist || !playlistSongs) return null
     const songKeys = Object.values(playlistSongs)
     const songers = Object.values(playlistSongs)
-
+    const totDur = Object.values(songers).reduce((total, obj) => obj.duration + total, 0)
     return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
@@ -45,7 +45,7 @@ export default function PlaylistDetails() {
                     <p style={{ fontSize: 14, color: '#b3b3b3', whiteSpace: 'nowrap' }}>{playlist?.description}</p>
                     <div className="playlist-user-songs">
                         <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user[playlist?.creator_id]?.username}  •  # likes  •  ${Object.keys(playlistSongs).length} songs`}</p>
+                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user[playlist?.creator_id]?.username}  •  # likes  •  ${Object.keys(playlistSongs).length} songs • ${Math.floor(totDur / 60)} min ${totDur % 60 == 0 ? "" : totDur % 60 + " seconds"}`}</p>
                     </div>
                 </div>
             </div>
