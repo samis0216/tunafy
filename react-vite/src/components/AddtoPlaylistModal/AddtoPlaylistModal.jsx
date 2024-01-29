@@ -33,12 +33,12 @@ export default function AddtoPlaylistModal({ song }) {
   if (!playlists) return null
   return (
     <div className="delete-song-modal">
-            <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <h2 className="delete-header-text" style={{padding: 10}}>Your Playlists</h2>
-                <div style={{display: 'flex', gap: 10}}>
+            <div className="delete-info-modal" style={{alignItems: "center", paddingLeft: 30, paddingRight: 30}}>
+                <h2 className="delete-header-text" style={{paddingBottom: 20}}>Choose a playlist.</h2>
+                <div className="album-choose">
 
                 {choices.map(playlist => (
-                    <div className="item" key={playlist.id} onClick={() => handleSubmit(playlist.id)}>
+                    <div className="item choose" key={playlist.id} onClick={() => handleSubmit(playlist.id)}>
                         <img src={playlist.playlist_cover_url} alt='album-cover' />
                         <h4>{playlist.playlist_name}</h4>
                     </div>

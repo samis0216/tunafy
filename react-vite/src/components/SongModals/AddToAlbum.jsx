@@ -32,7 +32,7 @@ const AddToAlbum = ({ song }) => {
                 <div className="album-choose">
 
                 {values.map(album => (
-                    <div className="item" key={album.id} onClick={() => handleAdd(album.id)}>
+                    <div className="item choose" key={album.id} onClick={() => handleAdd(album.id)}>
                         <img src={album.album_cover_url} alt='album-cover' />
                         <h4>{album.album_name}</h4>
                     </div>
