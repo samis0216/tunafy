@@ -50,3 +50,11 @@
 .delete-modal-button:hover {
     transform: scale(1.04);
 }
+
+.album-choose {
+    cursor: pointer;
+}
+
+.album-choose:hover {
+    transform: scale(1.04);
+}

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { MusicContext } from "../../context/MusicContext";
 import { useContext } from 'react';
 import { IndexContext } from '../../context/IndexContext';
-// import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 // import UnlikeSongModal from '../SongModals/UnlikeSongModal';
 import { useSelector } from 'react-redux';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -35,10 +34,9 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
                     <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{album ? album.album_name : song.song_name}</p>
                     {isOwner && (
                     <div className="right-side-song">
-                        <OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/>
-                    </div>
-                    )}
-                    <p className="song-time">{`${minutes}:${seconds}`}</p>
+                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span>
+                        <p className="song-time">{`${minutes}:${seconds}`}</p>
+                    </div>)}
                 </div>
             </div>
         </>

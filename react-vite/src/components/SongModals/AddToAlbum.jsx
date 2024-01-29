@@ -27,9 +27,9 @@ const AddToAlbum = ({ song }) => {
 
     return (
         <div className="delete-song-modal">
-            <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <h2 className="delete-header-text" style={{padding: 10}}>Your Albums</h2>
-                <div style={{display: 'flex', gap: 10}}>
+            <div className="delete-info-modal" style={{alignItems: "center", paddingLeft: 30, paddingRight: 30}}>
+                <h2 className="delete-header-text" style={{paddingBottom: 20}}>Choose an album.</h2>
+                <div className="album-choose">
 
                 {values.map(album => (
                     <div className="item" key={album.id} onClick={() => handleAdd(album.id)}>
