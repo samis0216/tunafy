@@ -40,7 +40,7 @@ export default function Collection() {
                     <p style={{ fontSize: 14, color: '#b3b3b3', whiteSpace: 'nowrap' }}>Your favorite songs!</p>
                     <div className="playlist-user-songs">
                         <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user.username} •  ${Object.keys(likedSongs).length} songs`}</p>
+                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{user.username} •  {Object.keys(likedSongs).length} {`${Object.keys(likedSongs).length > 1 ? "songs" : "song"}`}</p>
                     </div>
                 </div>
             </div>
@@ -49,15 +49,18 @@ export default function Collection() {
                     <div className="playlist-play-button">
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
+                    {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                 </div>
                 <div className="song-list-info-header">
                     <div className="hashtag-title">
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p>Album</p>
-                    <i className="fa-regular fa-clock duration-icon"></i>
+                    <p style={{ paddingRight: 254 }}>Album</p>
+                    <div className="heart-duration">
+                        <i className="fa-regular fa-heart"></i>
+                        <i className="fa-regular fa-clock duration-icon"></i>
+                    </div>
                 </div>
                 <div className="song-info">
                     {keys?.map(key => (
@@ -70,9 +73,11 @@ export default function Collection() {
                                     <p>{users[likedSongs[key]?.artist_id]?.username}</p>
                                 </div>
                             </div>
-                            <p className="song-album-name" onClick={() => navigate(`/albums/${likedSongs[key]?.id}`)}>{album[likedSongs[key]?.album_id]?.album_name}</p>
-                            <button><OpenModalMenuItem itemText={'Unlike'} modalComponent={<UnlikeSongModal song={likedSongs[key]} userId={user.id}/>}/></button>
-                            <p>{`${Math.floor(likedSongs[key]?.duration / 60)}:${(likedSongs[key]?.duration % 60) < 10 ? `0${likedSongs[key]?.duration % 60}` : likedSongs[key]?.duration % 60}`}</p>
+                            <p className="song-album-name" onClick={() => navigate(`/albums/${album[likedSongs[key]?.album_id]?.id}`)}>{album[likedSongs[key]?.album_id]?.album_name}</p>
+                            <div className="right-side-song">
+                                <span><OpenModalMenuItem itemText={<i className="fa-solid fa-heart liked-heart"></i>} modalComponent={<UnlikeSongModal song={likedSongs[key]} userId={user.id}/>}/></span>
+                                <p className="song-time">{`${Math.floor(likedSongs[key]?.duration / 60)}:${(likedSongs[key]?.duration % 60) < 10 ? `0${likedSongs[key]?.duration % 60}` : likedSongs[key]?.duration % 60}`}</p>
+                            </div>
                         </div>
                     ))}
                 </div>

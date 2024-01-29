@@ -51,8 +51,11 @@ export default function AllSongs() {
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p>Album</p>
+                    <p style={{ paddingRight: 254 }}>Album</p>
+                    <div className="heart-duration">
+                    {/* <i className="fa-regular fa-heart"></i> */}
                     <i className="fa-regular fa-clock duration-icon"></i>
+                    </div>
                 </div>
                 <div className="song-info">
                     {users &&

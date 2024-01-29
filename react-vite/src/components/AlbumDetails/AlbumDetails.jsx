@@ -50,7 +50,7 @@ export default function AlbumDetails() {
           <div className="album-play-button" onClick={() => setSongList(songers)}>
               <i className="fa-solid fa-play fa-2xl play-icon"></i>
           </div>
-          <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i>
+          {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
           <AlbumDropdown albumId={albumId} />
         </div>
         <div className="song-list-info-header">
@@ -58,8 +58,11 @@ export default function AlbumDetails() {
                 <p className="hashtag">#</p>
                 <p>Title</p>
             </div>
-            <p>Album</p>
-            <i className="fa-regular fa-clock duration-icon"></i>
+            <p style={{ paddingRight: 254 }}>Album</p>
+            <div className="heart-duration">
+              {/* <i className="fa-regular fa-heart"></i> */}
+              <i className="fa-regular fa-clock duration-icon"></i>
+            </div>
         </div>
         <div className="song-info">
           {
