@@ -59,7 +59,7 @@ export default function AlbumDetails() {
                 <p className="hashtag">#</p>
                 <p>Title</p>
             </div>
-            <p style={{ paddingRight: 360 }}>Album</p>
+            <p style={{ paddingRight: 280 }}>Album</p>
             <div className="heart-duration">
               {/* <i className="fa-regular fa-heart"></i> */}
               <i className="fa-regular fa-clock duration-icon"></i>

@@ -19,6 +19,7 @@ export default function PlaylistDetails() {
     const dispatch = useDispatch()
     const { playlistId } = useParams()
     const playlist = useSelector(state => state.playlists[playlistId])
+    const userSession = useSelector(state => state.session.user)
     const user = useSelector(state => state.users)
     const playlistSongs = useSelector(state => state.songs.songs)
     const album = useSelector(state => state.albums)
@@ -38,6 +39,7 @@ export default function PlaylistDetails() {
     const songers = Object.values(playlistSongs)
     const totDur = Object.values(songers).reduce((total, obj) => obj.duration + total, 0)
     let songCounter = 1;
+    const isOwner = playlist.creator_id == userSession.id
 
     return (
         <section className="playlist-details-section">
@@ -66,7 +68,7 @@ export default function PlaylistDetails() {
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p style={{ paddingRight: 254 }}>Album</p>
+                    <p style={{ paddingRight: 280 }}>Album</p>
                     <div className="heart-duration">
                     {/* <i className="fa-regular fa-heart"></i> */}
                     <i className="fa-regular fa-clock duration-icon"></i>
@@ -85,9 +87,10 @@ export default function PlaylistDetails() {
                             </div>
                             <p className="song-album-name" onClick={() => navigate(`/albums/${album[song?.album_id]?.id}`)}>{album[song?.album_id]?.album_name}</p>
                             <div className="right-side-song">
-                                <OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/>
+                            {isOwner && (
+                                <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/></span>)}
+                                <p className="song-time">{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                             </div>
-                            <p>{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                         </div>
                     ))}
                 </div>
