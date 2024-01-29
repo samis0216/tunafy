@@ -5,6 +5,7 @@ const ADD_ALBUM = 'album/addAlbum';
 const ADD_SONG_TO_ALBUM = 'album/addSongToAlbum'
 const EDIT_ALBUM = 'album/editAlbum';
 const DELETE_ALBUM = 'album/deleteAlbum';
+const DELETE_FROM_ALBUM = 'album/deleteFromAlbum'
 
 // ACTION CREATORS
 const loadAlbums = (albums) => {
@@ -53,6 +54,13 @@ const deleteAlbum = (albumId) => {
     return {
         type: DELETE_ALBUM,
         albumId
+    }
+}
+
+const deleteFromAlbum = (album) => {
+    return {
+        type: DELETE_FROM_ALBUM,
+        album
     }
 }
 
@@ -137,7 +145,18 @@ export const deleteAlbumsThunk = (albumId) => async(dispatch) => {
     if (res.ok) {
         dispatch(deleteAlbum(albumId))
     }
+}
 
+export const deleteFromAlbumThunk = (songId, albumId) => async(dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/remove`, {
+        method: 'PUT',
+        body: songId
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(deleteFromAlbum(data))
+        return data
+    }
 }
 
 const initialState = {}
@@ -184,6 +203,11 @@ const albumReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.albumId]
             return newState;
+        }
+        case DELETE_FROM_ALBUM: {
+            const newState = {}
+            newState[action.album.id] = action.album
+            return newState
         }
         default:
             return state

@@ -78,3 +78,12 @@ def addSong(id):
     db.session.commit()
     albumSongs = [song.to_dict() for song in Song.query.filter(Song.album_id == id)]
     return albumSongs
+
+@album_routes.route('/<int:id>/remove', methods=['PUT'])
+def removeSong(id):
+    songId = int(request.data.decode())
+    song = Song.query.get(songId)
+    song.album_id = None
+    db.session.commit()
+    album = Album.query.get(id).to_dict
+    return album

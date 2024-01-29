@@ -16,6 +16,7 @@ export default function AlbumDetails() {
   const album = albumObj[albumId]
   console.log(album)
   const [songList, setSongList] = useContext(MusicContext);
+  console.log(songList)
 
   useEffect(() => {
     dispatch(loadOneAlbumThunk(albumId))
@@ -58,7 +59,7 @@ export default function AlbumDetails() {
                 <p className="hashtag">#</p>
                 <p>Title</p>
             </div>
-            <p style={{ paddingRight: 254 }}>Album</p>
+            <p style={{ paddingRight: 430 }}>Album</p>
             <div className="heart-duration">
               {/* <i className="fa-regular fa-heart"></i> */}
               <i className="fa-regular fa-clock duration-icon"></i>
