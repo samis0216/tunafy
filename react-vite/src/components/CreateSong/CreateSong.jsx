@@ -32,48 +32,51 @@ export default function CreateSong() {
     }
 
     return (
-        <div className="main-body" id="container">
-            <h1>Create a song</h1>
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-                className="form-body"
-            >
-                <div className="entry-container">
-                    <h4>Song Name</h4>
-                    <input
-                        type="text"
-                        placeholder="Song Name"
-                        value={songName}
-                        onChange={(e) => setSongName(e.target.value)}
-                        className="song-inputs"
-                    />
-                </div>
-                <div className="entry-container">
-                    <h4>Cover Photo</h4>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                            setSongCover(e.target.files[0])
-                            console.log(e.target.files[0])
+        <div className="song-main">
+            <div className="create-song-box">
+                <h1>Create a song</h1>
+                <form
+                    onSubmit={handleSubmit}
+                    encType="multipart/form-data"
+                    className="form-body"
+                >
+                    <div className="entry-container">
+                        <p>Song Name</p>
+                        <input
+                            type="text"
+                            value={songName}
+                            onChange={(e) => setSongName(e.target.value)}
+                            className="song-inputs"
+                        />
+                    </div>
+                    <div className="entry-container">
+                        <p>Upload Cover Photo</p>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                setSongCover(e.target.files[0])
+                                console.log(e.target.files[0])
+                                }
                             }
-                        }
-                    />
-                </div>
-                <div className="entry-container">
-                    <h4>Song File</h4>
-                    <input
-                        type="file"
-                        accept="audio/*"
-                        onChange={(e) => setSongFile(e.target.files[0])}
-                    />
-                </div>
-                <div>
-                    <button type="submit" id="submit_butt">Create song</button>
-                </div>
-                {(awsLoading) && <p style={{alignSelf: "center"}}>Loading...</p>}
-            </form>
+                            className="song-inputs"
+                        />
+                    </div>
+                    <div className="entry-container">
+                        <p>Upload Song File</p>
+                        <input
+                            type="file"
+                            accept="audio/*"
+                            className="song-inputs"
+                            onChange={(e) => setSongFile(e.target.files[0])}
+                        />
+                    </div>
+                    <div className="update-button">
+                        <button type="submit" id="submit_butt">Create Song</button>
+                    </div>
+                    {(awsLoading) && <p className="loading-text">Loading...</p>}
+                </form>
+            </div>
         </div>
     )
 }

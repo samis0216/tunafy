@@ -62,7 +62,7 @@ export default function UpdateAlbum() {
           </div>
 
           <div className="album-form-box">
-            <p>Upload Cover Art</p>
+            <p>Upload Cover Photo</p>
             <input
               className="update-album-inputs"
               type="file"
@@ -77,7 +77,7 @@ export default function UpdateAlbum() {
               type="submit"
             > Update Album </button>
           </div>
-          {(imageLoading) && <p style={{"color": "white", alignSelf: "center"}}>Loading...</p>}
+          {(imageLoading) && <p className="loading-text">Loading...</p>}
         </form>
       </div>
     </div>
