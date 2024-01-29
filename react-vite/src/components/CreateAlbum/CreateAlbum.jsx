@@ -11,7 +11,6 @@ export default function CreateAlbum() {
   const [image, setImage] = useState(null);
   const [name, setName] = useState("")
   const [imageLoading, setImageLoading] = useState(false);
-  // const album = useSelector((state) => state.albums?.[albumId])
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
@@ -41,8 +40,8 @@ export default function CreateAlbum() {
       // aws uploads can be a bit slow—displaying
       // some sort of loading message is a good idea
       setImageLoading(true);
-      dispatch(addAlbumThunk(formData));
-      navigate(`/albums`);
+      await dispatch(addAlbumThunk(formData));
+      navigate(`/albums`)
     }
 
   }
@@ -56,7 +55,7 @@ export default function CreateAlbum() {
       <div className="update-album-box">
         <h1>Create an album</h1>
         <form
-          action="/api/albums/new"
+          action= "/api/albums"
           onSubmit={handleSubmit}
           className="album-form"
           encType="multipart/form-data"

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadAlbumsThunk } from "../../redux/albums";
-// import { loadUsersThunk } from "../../redux/users";
+import { loadUsersThunk } from "../../redux/users";
 import "./AllAlbums.css";
 
 const AllAlbums = () => {
@@ -17,6 +17,7 @@ const AllAlbums = () => {
 
     useEffect(() => {
         dispatch(loadAlbumsThunk());
+        dispatch(loadUsersThunk())
     }, [dispatch, validKeys.length]);
 
     return (
