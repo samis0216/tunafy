@@ -6,7 +6,7 @@ const ADD_PLAYLIST = 'playlist/addPlaylist';
 const ADD_SONG_TO_PLAYLIST = 'playlist/addSongToPlaylist';
 const EDIT_PLAYLIST = 'playlist/editPlaylist';
 const DELETE_PLAYLIST = 'playlist/deletePlaylist';
-
+const DELETE_FROM_PLAYLIST = 'playlist/deleteFromPlaylist';
 // ACTION CREATORS
 const loadPlaylists = (playlists) => {
     return {
@@ -54,6 +54,13 @@ const deletePlaylist = (playlistId) => {
     return {
         type: DELETE_PLAYLIST,
         playlistId
+    }
+}
+
+const deleteFromPlaylist = (playlist) => {
+    return {
+        type: DELETE_FROM_PLAYLIST,
+        playlist
     }
 }
 
@@ -139,6 +146,20 @@ export const deletePlaylistThunk = (playlistId) => async(dispatch) => {
     }
 }
 
+export const deleteFromPlaylistThunk = (songId, playlistId) => async(dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}/remove`, {
+        method: 'DELETE',
+        body: songId
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(deleteFromPlaylist(data))
+        return data
+    }
+    const data = await res.json()
+    console.log(data)
+}
+
 const initialState = {}
 
 const playlistReducer = (state = initialState, action) => {
@@ -167,7 +188,6 @@ const playlistReducer = (state = initialState, action) => {
             return newState;
         }
         case ADD_SONG_TO_PLAYLIST: {
-            console.log(action)
             const newState = { }
             let counter = 1
             action.song.forEach((song) => {
@@ -183,6 +203,11 @@ const playlistReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.playlistId]
             return newState;
+        }
+        case DELETE_FROM_PLAYLIST: {
+            const newState = { ...state }
+            newState[action.playlist.id] = action.playlist
+            return newState
         }
         default:
             return state

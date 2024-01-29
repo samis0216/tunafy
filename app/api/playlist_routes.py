@@ -66,3 +66,11 @@ def addToPlaylist(id):
     db.session.add(newPlaylistSong)
     db.session.commit()
     return redirect('/api/playlists')
+
+@playlist_routes.route('/<int:id>/remove', methods=['DELETE'])
+def removeSong(id):
+    songId = int(request.data.decode())
+    playlist_song = PlaylistSong.query.filter_by(playlist_id=id, song_id=songId).all()[0]
+    db.session.delete(playlist_song)
+    db.session.commit()
+    return playlist_song.to_dict

@@ -11,6 +11,8 @@ import { loadAlbumsThunk } from "../../redux/albums";
 import PlaylistDropdown from "./PlaylistDropdown";
 import { MusicContext } from "../../context/MusicContext";
 import { IndexContext } from "../../context/IndexContext";
+import RemoveSongPlaylist from "../SongModals/RemoveSongPlaylist";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 
 export default function PlaylistDetails() {
     const navigate = useNavigate()
@@ -82,6 +84,9 @@ export default function PlaylistDetails() {
                                 </div>
                             </div>
                             <p className="song-album-name" onClick={() => navigate(`/albums/${album[song?.album_id]?.id}`)}>{album[song?.album_id]?.album_name}</p>
+                            <div className="right-side-song">
+                                <OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/>
+                            </div>
                             <p>{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                         </div>
                     ))}
