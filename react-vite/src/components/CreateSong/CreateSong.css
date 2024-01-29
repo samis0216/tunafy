@@ -1,60 +1,90 @@
+.song-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 100px;
+    border-radius: 10px;
+}
+
+.create-song-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 60px;
+    gap: 10px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.create-song-box h1 {
+    padding-bottom: 10px;
+  }
+
 .form-body {
     display: flex;
     flex-direction: column;
-    color: white;
-    justify-content: space-around;
-    padding: 25px 100px 50px 100px;
-    gap: 30px   ;
+    align-items: center;
 }
 
 .entry-container {
-    padding: 10px;
+    color: white;
+    padding: 10px 0px;
     display: flex;
     flex-direction: column;
+    width: 450px;
 }
 
-.entry-container > h4 {
-    font-weight: 500;
-    padding-bottom: 10px;
-}
+.entry-container > p{
+    padding-bottom: 5px;
+  }
 
 .song-inputs {
-    height: 30px;
-    background-color: #121212;
-    border: 1px #414141 solid;
-    width: 235px;
+    margin-top: 5px;
+    padding: 8px 3px;
+    border: 1px #b3b3b3 solid;
+    background-color: rgb(19, 17, 17);
     color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
 }
 
-#container {
+.song-inputs:hover {
+    border: 1px solid white;
+}
+
+input[type='file']:hover{
+    cursor: pointer;
+  }
+
+.update-button {
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
-    gap: 10px;
-    justify-content: center;
-    height: 80%;
-    background-color: black;
-    margin: 0 33%;
-    padding: 40px 0 20px 0;
-    margin-top: 60px;
-}
+  }
 
 #submit_butt {
+    padding: 15px 155px;
+    border-radius: 25px;
+    background-color: #538aad;
     color: black;
-    font-weight: bold;
-    border: #548AAE 2px solid;
-    background-color: #548AAE;
-    width: 250px;
-    height: 40px;
-    border-radius: 30px;
-}
-
-.song-inputs::placeholder {
-    color: #414141;
-    padding: 2px;
+    font-weight: bolder;
+    font-size: 15px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    width: 450px;
 }
 
 #submit_butt:hover {
-    cursor: pointer;
+    font-size: 16px;
+    transform: scale(1.02);
 }
+
+.loading-text {
+    color: white;
+    padding-top: 30px;
+  }

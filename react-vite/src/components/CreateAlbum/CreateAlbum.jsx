@@ -26,7 +26,7 @@ export default function CreateAlbum() {
     setImageLoading(true);
     dispatch(addAlbumThunk(formData));
     navigate(`/albums`);
-  
+
 }
 
   useEffect(() => {
@@ -35,38 +35,42 @@ export default function CreateAlbum() {
 
   return (
     <div className="album-main">
-      <h1>Create an album</h1>
-      <form
-      action="/api/albums/new"
-      onSubmit={handleSubmit}
-      className="album-form"
-      encType="multipart/form-data"
-      >
-        <div className="album-form-box">
-          <p>Album Name</p>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            />
-        </div>
+      <div className="update-album-box">
+        <h1>Create an album</h1>
+        <form
+        action="/api/albums/new"
+        onSubmit={handleSubmit}
+        className="album-form"
+        encType="multipart/form-data"
+        >
+          <div className="album-form-box">
+            <p>Album Name</p>
+            <input
+              className="update-album-inputs"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              />
+          </div>
 
-        <div className="album-form-box">
-          <p>Upload Cover Art</p>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            />
-        </div>
+          <div className="album-form-box">
+            <p>Upload Cover Photo</p>
+            <input
+              className="update-album-inputs"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              />
+          </div>
 
-        <div className="update-button">
-          <button
-            className="submit_butt"
-            type="submit"
-          > Create Album </button>
-        </div>
-        {(imageLoading) && <p style={{"color": "white", alignSelf: "center"}}>Loading...</p>}
-      </form>
+          <div className="update-button">
+            <button
+              className="submit_butt"
+              type="submit"
+            > Create Album </button>
+          </div>
+          {(imageLoading) && <p className="loading-text">Loading...</p>}
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,25 +1,52 @@
-.delete-modal{
-    width: 430px;
-    height: 260px;
+.delete-song-modal {
+    padding: 35px;
+}
+
+.delete-info-modal {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #252525;;
+    flex-direction: column;
+}
+
+.delete-header-text {
+    font-size: 22px;
+}
+
+.delete-text {
+    font-size: small;
+    padding-top: 8px;
 }
 
 .delete-buttons-holder {
     display: flex;
-    justify-content: center;
-    padding: 10px;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 40px;
+    padding-top: 30px;
+}
+
+.cancel-modal-button {
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.cancel-modal-button:hover {
+    transform: scale(1.04);
 }
 
 .delete-modal-button {
-    background-color: #538aad;
-    color: white;
-    font-weight: bold;
-    padding: 20px 50px;
-    border: none;
     border-radius: 30px;
-    margin-top: 20px;
+    background-color: #538aad;
+    padding: 16px 30px;
+    border: none;
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.delete-modal-button:hover {
+    transform: scale(1.04);
 }
