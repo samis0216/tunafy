@@ -47,9 +47,7 @@ function SongDropdown({ song }) {
                 {user && (
                 <>
                 <div className="playlist-delete-drop">
-
                     <i style={{ color: '#b3b3b3', paddingRight: 0 }} className="fa-solid fa-square-plus bar-icon"></i>
-                    {/* <i style={{ color: '#b3b3b3' }} className="fa-solid fa-square-plus bar-icon"></i> */}
                     <span className="album-dropdown-item">
                         <OpenModalMenuItem
                             itemText="Add to Playlist"
