@@ -23,8 +23,8 @@ const RemoveSongAlbum = ({ song, albumId }) => {
     return (
         <div className="delete-song-modal">
             <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <h2 className="delete-header-text" style={{padding: 10}}>Removing from {albums?.[albumId].album_name}</h2>
-                <p style={{color: "white"}}>{song.song_name} will no longer be in {albums?.[albumId].album_name}.</p>
+                <h2 className="delete-header-text" style={{padding: 10}}>Removing from &quot;{albums?.[albumId].album_name}&quot;</h2>
+                <p style={{color: "white"}}>&quot;{song.song_name}&quot; will no longer be in {albums?.[albumId].album_name}.</p>
                 <div className="delete-buttons-holder">
                     <button className='delete-modal-button' onClick={handleRemove(albumId)}>Remove</button>
                     <button className='cancel-modal-button' onClick={closeModal}>Cancel</button>
