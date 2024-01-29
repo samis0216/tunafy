@@ -42,7 +42,7 @@ export default function AlbumDropdown({albumId}) {
                 </span>
             )}
             {showMenu && (
-            <span className="playlist-dropdown" ref={ulRef}>
+            <span className="playlist-dropdown" style={{left: 402}} ref={ulRef}>
                 {user && (
                 <>
                 <div className="playlist-delete-drop">
