@@ -8,9 +8,11 @@ import SongTile from "./SongTile";
 import './AllSongs.css'
 import songCover from './14.png'
 import AllSongsDropdown from "./AllSongsDropdown";
+import { useNavigate } from "react-router-dom";
 
 export default function AllSongs() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext);
     useEffect(() => {
         dispatch(loadSongsThunk())
@@ -19,6 +21,7 @@ export default function AllSongs() {
     }, [dispatch])
 
     const user = useSelector(state => state.session.user)
+    if(!user) navigate('/')
     const songs = useSelector(state => state.songs)
     const albums = useSelector(state => state.albums)
     const users = useSelector(state=> state.users)

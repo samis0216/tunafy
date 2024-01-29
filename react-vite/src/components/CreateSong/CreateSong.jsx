@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
 import { addSongThunk } from "../../redux/songs"
@@ -13,22 +13,45 @@ export default function CreateSong() {
     const [song_file, setSongFile] = useState('')
     const [awsLoading, setAwsLoading] = useState(false)
     const user = useSelector(state => state.session.user)
+    const [errors, setErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
+
+    if(!user) navigate('/')
+
+    useEffect(() => {
+        const newErrors = {};
+        if (!songName.length) {
+            newErrors.songName = 'Name is required'
+        }
+        if (song_cover === '' || (!song_cover?.name.endsWith('.jpeg') && !song_cover?.name.endsWith('.jpg') && !song_cover?.name.endsWith('.png') && !song_cover?.name.endsWith('.pdf') && !song_cover?.name.endsWith('.gif'))) {
+            newErrors.song_cover_url = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format'
+        }
+        if (song_file === '' || !song_file.name.endsWith('.mp3')) {
+            newErrors.song_file = 'Song is required and must be in .mp3 format'
+        }
+        setErrors(newErrors);
+    }, [songName, song_cover, song_file])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const artistId = user.id
-        console.log(artistId)
-        const formData = new FormData();
-        formData.append("song_name", songName)
-        formData.append("artist_id", artistId)
-        formData.append("song_cover_url", song_cover);
-        formData.append("song_file_url", song_file);
-        formData.append('duration', 260)
-        // aws uploads can be a bit slow—displaying
-        // some sort of loading message is a good idea
-        setAwsLoading(true);
-        const newSong = await dispatch(addSongThunk(formData));
-        navigate(`/songs/${newSong.id}`)
+
+        setSubmitted(true)
+
+        if (!Object.values(errors).length) {
+            const artistId = user.id
+            console.log(artistId)
+            const formData = new FormData();
+            formData.append("song_name", songName)
+            formData.append("artist_id", artistId)
+            formData.append("song_cover_url", song_cover);
+            formData.append("song_file_url", song_file);
+            formData.append('duration', 260)
+            // aws uploads can be a bit slow—displaying
+            // some sort of loading message is a good idea
+            setAwsLoading(true);
+            const newSong = await dispatch(addSongThunk(formData));
+            navigate(`/songs/${newSong.id}`)
+        }
     }
 
     return (
@@ -42,6 +65,7 @@ export default function CreateSong() {
                 >
                     <div className="entry-container">
                         <p>Song Name</p>
+                        {submitted && errors.songName && <p style={{color: 'red'}}>{errors.songName}</p>}
                         <input
                             type="text"
                             value={songName}
@@ -51,6 +75,7 @@ export default function CreateSong() {
                     </div>
                     <div className="entry-container">
                         <p>Upload Cover Photo</p>
+                        {submitted && errors.song_cover_url && <p style={{color: 'red'}}>{errors.song_cover_url}</p>}
                         <input
                             type="file"
                             accept="image/*"
@@ -64,6 +89,7 @@ export default function CreateSong() {
                     </div>
                     <div className="entry-container">
                         <p>Upload Song File</p>
+                        {submitted && errors?.song_file && <p style={{color: 'red'}}>{errors.song_file}</p>}
                         <input
                             type="file"
                             accept="audio/*"
