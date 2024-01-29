@@ -35,6 +35,8 @@ export default function PlaylistDetails() {
     const songKeys = Object.values(playlistSongs)
     const songers = Object.values(playlistSongs)
     const totDur = Object.values(songers).reduce((total, obj) => obj.duration + total, 0)
+    let songCounter = 1;
+
     return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
@@ -72,14 +74,14 @@ export default function PlaylistDetails() {
                     {songKeys?.map(song => (
                         <div key={song?.id} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(song.id - 1)}}>
                             <div className="song-info-div" >
-                                <p className="song-id">{song?.id}</p>
+                                <p className="song-id">{songCounter++}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
                                 <div className="song-name-artist">
                                     <p className='song-name' onClick={() => navigate(`/songs/${song?.id}`)}>{song?.song_name}</p>
                                     <p>{user[song?.artist_id]?.username}</p>
                                 </div>
                             </div>
-                            <p className="song-album-name" onClick={() => navigate(`/albums/${song?.id}`)}>{album[song?.album_id]?.album_name}</p>
+                            <p className="song-album-name" onClick={() => navigate(`/albums/${album[song?.album_id]?.id}`)}>{album[song?.album_id]?.album_name}</p>
                             <p>{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                         </div>
                     ))}

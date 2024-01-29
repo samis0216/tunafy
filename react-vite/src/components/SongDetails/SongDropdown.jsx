@@ -6,6 +6,7 @@ import AddtoPlaylistModal from "../AddtoPlaylistModal/AddtoPlaylistModal"
 // import { Link } from "react-router-dom";
 import "./SongDropdown.css"
 import { useNavigate } from "react-router-dom";
+import AddToAlbum from "../SongModals/AddToAlbum";
 
 function SongDropdown({ song }) {
     const navigate = useNavigate()
@@ -56,7 +57,7 @@ function SongDropdown({ song }) {
                 </div>
                 <div className="playlist-delete-drop">
                     <i style={{ color: '#b3b3b3' }} className="fa-solid fa-square-plus bar-icon"></i>
-                    <span className="album-dropdown-item" onClick={() => navigate(`/albums`)}>Add to Album</span>
+                    <OpenModalMenuItem itemText='Add to Album' onItemClick={closeMenu} modalComponent={<AddToAlbum song={song}/>}/>
                 </div>
             {isOwner && (
                 <>
