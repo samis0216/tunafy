@@ -247,7 +247,7 @@ def seed_songs():
   )
   song28 = Song(
     song_name = "Eve, Psyche & The Bluebeard's Wife",
-    artist_id = 5,
+    artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
     song_file_url = 'http://tunafy-music.s3.amazonaws.com/70972b7f5cfa4d139f95f96bf5303117.mp3',
@@ -256,7 +256,7 @@ def seed_songs():
   )
   song29 = Song(
     song_name = "UNFORGIVEN",
-    artist_id = 5,
+    artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
     song_file_url = "http://tunafy-music.s3.amazonaws.com/d8eaefd77899467c9ae7d96ab2cb30f3.mp3",
@@ -265,7 +265,7 @@ def seed_songs():
   )
   song30 = Song(
     song_name = "FEARLESS",
-    artist_id = 5,
+    artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
     song_file_url = 'http://tunafy-music.s3.amazonaws.com/70972b7f5cfa4d139f95f96bf5303117.mp3',
@@ -274,7 +274,7 @@ def seed_songs():
   )
   song31 = Song(
     song_name = "Flash Forward",
-    artist_id = 5,
+    artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
     song_file_url = "http://tunafy-music.s3.amazonaws.com/bc1282f11b1e40318f9274abea350bc9.mp3",
@@ -283,7 +283,7 @@ def seed_songs():
   )
   song32 = Song(
     song_name = "Blue Flame",
-    artist_id = 5,
+    artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
     song_file_url = "http://tunafy-music.s3.amazonaws.com/82c7256df0664d0498444903cab64e3c.mp3",
