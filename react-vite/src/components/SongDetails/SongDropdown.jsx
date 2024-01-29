@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteSongModal from "../SongModals/DeleteSongModal";
+import AddtoPlaylistModal from "../AddtoPlaylistModal/AddtoPlaylistModal"
 // import { Link } from "react-router-dom";
 import "./SongDropdown.css"
 import { useNavigate } from "react-router-dom";
@@ -46,8 +47,15 @@ function SongDropdown({ song }) {
                 {user && (
                 <>
                 <div className="playlist-delete-drop">
+
                     <i style={{ color: '#b3b3b3', paddingRight: 0 }} className="fa-solid fa-square-plus bar-icon"></i>
-                    <span className="album-dropdown-item" onClick={() => navigate(`/playlists`)}>Add to Playlist</span>
+                    {/* <i style={{ color: '#b3b3b3' }} className="fa-solid fa-square-plus bar-icon"></i> */}
+                    <span className="album-dropdown-item">
+                        <OpenModalMenuItem
+                            itemText="Add to Playlist"
+                            onItemClick={closeMenu}
+                            modalComponent={<AddtoPlaylistModal song={song} />}/>
+                    </span>
                 </div>
                 {isOwner && (
                 <div className="playlist-delete-drop">

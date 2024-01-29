@@ -13,7 +13,7 @@ const AllAlbums = () => {
 
     const validKeys = Object.keys(albumObj).filter(key => key !== 'undefined');
 
-    
+
 
     useEffect(() => {
         dispatch(loadAlbumsThunk());
