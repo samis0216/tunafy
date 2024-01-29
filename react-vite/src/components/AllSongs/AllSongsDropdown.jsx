@@ -34,7 +34,7 @@ export default function AllSongsDropdown() {
                 <i style={{ fontSize: 28 }} className="fa-solid fa-ellipsis playlist-icon"></i>
             </span>
             {showMenu && (
-            <span className="playlist-dropdown" ref={ulRef}>
+            <span className="playlist-dropdown" style={{left: 402}} ref={ulRef}>
                 {user && (
                 <>
                 <div className="playlist-delete-drop">
