@@ -55,7 +55,7 @@ export default function PlaylistDetails() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button" onClick={() => setSongList(songers)}>
+                    <div className="playlist-play-button" onClick={() => {setSongList(songers); setCurrentSong(0)}}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
@@ -74,7 +74,7 @@ export default function PlaylistDetails() {
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (
-                        <div key={song?.id} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(song.id - 1)}}>
+                        <div key={song?.id} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong()}}>
                             <div className="song-info-div" >
                                 <p className="song-id">{songCounter++}</p>
                                 <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
