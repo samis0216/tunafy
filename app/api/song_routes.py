@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Song, SongLike, db
+from app.models import Song, SongLike, db, PlaylistSong
 from app.forms.song_form import SongForm
 from .aws_songs import upload_song_to_s3, get_unique_filename_songs, remove_song_from_s3
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
@@ -52,7 +52,8 @@ def deleteSong(id):
     remove_song_from_s3(song.to_dict()["song_file_url"])
     db.session.delete(song)
     db.session.commit()
-    return 'Success!'
+    songs = [song.to_dict() for song in Song.query.all()]
+    return songs
 
 @song_routes.route("/<int:id>/update", methods=['PUT'])
 def editSong(id):
