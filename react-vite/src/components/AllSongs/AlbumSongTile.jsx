@@ -15,6 +15,7 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
     const user = useSelector(state => state.session.user)
     const [songList, setSongList] = useContext(MusicContext)
     const [currentSong, setCurrentSong] = useContext(IndexContext);
+    if(songList) currentSong
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
@@ -32,7 +33,7 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
                         </div>
                     </div>
                     <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{album ? album.album_name : song.song_name}</p>
-                    
+
                     <div className="right-side-song">
                     {isOwner && (
                         <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span>

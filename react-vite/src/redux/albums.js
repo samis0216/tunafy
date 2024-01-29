@@ -36,7 +36,7 @@ const addAlbum = (album) => {
     }
 }
 
-const addSongtoAlbum = (song) => {
+const addSongtoAlbum = (songs) => {
     return {
         type: ADD_SONG_TO_ALBUM,
         songs

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import './AddtoPlaylistModal.css'
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { loadUserPlaylistsThunk } from "../../redux/playlists";
 import { addSongToPlaylistThunk } from "../../redux/playlists";
 import { loadPlaylistSongsThunk } from "../../redux/songs"
@@ -10,7 +10,7 @@ import { loadPlaylistSongsThunk } from "../../redux/songs"
 export default function AddtoPlaylistModal({ song }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [currentPlaylist, setCurrentPlaylist] = useState("")
+  // const [currentPlaylist, setCurrentPlaylist] = useState("")
   const {closeModal} = useModal();
   const user = useSelector(store => store.session.user)
   const playlists = useSelector(store => store.playlists)
