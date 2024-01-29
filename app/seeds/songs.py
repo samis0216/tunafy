@@ -7,7 +7,7 @@ def seed_songs():
     artist_id = 1,
     album_id = 1,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/7/72/Stoneyalbum.jpg',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/437f4e7f2e9145d2a6b9ac17b1d75f3d.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Post+Malone+-+White+Iverson.mp3',
     plays = 0,
     duration = 180
   )
@@ -16,7 +16,7 @@ def seed_songs():
     artist_id = 2,
     album_id = 2,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/1/1b/Joji_-_Nectar.png',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/423e0bc22d9e488ab3f990ca58c4552d.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Joji+-+MODUS.mp3',
     plays = 0,
     duration = 180
   )
@@ -250,7 +250,7 @@ def seed_songs():
     artist_id = 4,
     album_id = 6,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/9/9b/Le_Sserafim_-_Unforgiven.png',
-    song_file_url = 'http://tunafy-music.s3.amazonaws.com/70972b7f5cfa4d139f95f96bf5303117.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/LE+SSERAFIM+-+Eve%2C+Psyche+%26+The+Bluebeard%E2%80%99s+wife.mp3',
     plays = 11626390,
     duration = 185
   )
@@ -295,7 +295,7 @@ def seed_songs():
     artist_id = 5,
     album_id = 7,
     song_cover_url = 'https://e.snmc.io/i/600/s/3f700cfd13c410cf4d54931180ccc788/10650803/knock2-room202-ep-Cover-Art.jpg',
-    song_file_url = 'http://tunafy-music.s3.amazonaws.com/600f2961f0844cae9febcd61dc4d41f0.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Knock2+-+REWiND.mp3',
     plays = 11626390,
     duration = 184
   )
