@@ -24,6 +24,7 @@ export default function PlaylistDetails() {
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
     const [currentSong, setCurrentSong] = useContext(IndexContext);
+    if (songList) currentSong
 
 
     useEffect(() => {

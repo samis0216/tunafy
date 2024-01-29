@@ -21,14 +21,15 @@ export default function Collection() {
     const keys = Object.keys(likedSongs)
     console.log(srv)
 
-    if(!user) return null
-
-    // if(likedOwnerId !== user.id) navigate(`/${likedOwnerId}/collection/tracks`)
     useEffect(() => {
         dispatch(loadLikedSongsThunk(user.id))
         dispatch(loadUsersThunk())
         dispatch(loadAlbumsThunk())
     }, [dispatch])
+
+    if(!user) return null
+
+    // if(likedOwnerId !== user.id) navigate(`/${likedOwnerId}/collection/tracks`)
 
     return (
         <section className="playlist-details-section">

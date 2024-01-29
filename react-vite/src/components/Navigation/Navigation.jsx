@@ -8,7 +8,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { MusicContext } from "../../context/MusicContext";
 import { IndexContext } from "../../context/IndexContext";
 

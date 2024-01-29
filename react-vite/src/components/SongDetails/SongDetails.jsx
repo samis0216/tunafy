@@ -19,7 +19,7 @@ export default function SongDetails() {
     const userId = useSelector(state => state.session.user)
     const liked = useSelector(state => state.collection[songId])
     const [songLiked, setSongLiked] = useState(liked)
-    console.log(liked)
+    console.log(liked, songList)
 
     const minutes = Math.floor(song?.duration / 60)
     let seconds = song?.duration % 60

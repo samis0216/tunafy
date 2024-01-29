@@ -194,6 +194,7 @@ const playlistReducer = (state = initialState, action) => {
                 newState[counter] = song
                 counter++
             })
+            return newState
         }
         case EDIT_PLAYLIST: {
             const newState = { ...state, [action.playlist.id]: action.playlist}

@@ -20,6 +20,8 @@ export default function AllSongs() {
         dispatch(loadUsersThunk())
     }, [dispatch])
 
+    if (!songList) songList
+
     const user = useSelector(state => state.session.user)
     if(!user) navigate('/')
     const songs = useSelector(state => state.songs)

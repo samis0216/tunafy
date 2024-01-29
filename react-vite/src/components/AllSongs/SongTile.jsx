@@ -2,23 +2,19 @@ import './SongTile.css'
 import { useNavigate } from 'react-router-dom'
 import { MusicContext } from "../../context/MusicContext";
 import { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { addLikedSongsThunk } from '../../redux/collection';
+// import { useDispatch } from 'react-redux';
 import { IndexContext } from '../../context/IndexContext';
 
-export default function SongTile({ songs, song, albums, artist, count, user }) {
+export default function SongTile({ songs, song, albums, artist, count }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
     const [currentSong, setCurrentSong] = useContext(IndexContext)
+    if(songList) currentSong
     // console.log(Object.values(albums))
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
-
-    const handleLike = () => {
-        dispatch(addLikedSongsThunk(song.id, user.id))
-    }
 
     return (
         <>
