@@ -95,4 +95,3 @@ const LoadHomePage = () => {
 };
 
 export default LoadHomePage;
-

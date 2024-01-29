@@ -1,6 +1,7 @@
 // ACTION TYPES
 const LOAD_PLAYLISTS = 'playlist/loadPlaylists';
 const LOAD_ONE_PLAYLIST = 'playlist/loadOnePlaylist';
+const LOAD_USER_PLAYLISTS ='playlist/loadUserPlaylists';
 const ADD_PLAYLIST = 'playlist/addPlaylist';
 const EDIT_PLAYLIST = 'playlist/editPlaylist';
 const DELETE_PLAYLIST = 'playlist/deletePlaylist';
@@ -17,6 +18,13 @@ const loadOnePlaylist = (playlist) => {
     return {
         type: LOAD_ONE_PLAYLIST,
         playlist
+    }
+}
+
+const loadUserPlaylists = (playlists) => {
+    return {
+        type: LOAD_USER_PLAYLISTS,
+        playlists
     }
 }
 
@@ -59,6 +67,16 @@ export const loadOnePlaylistThunk = (playlistId) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(loadOnePlaylist(data))
+        return data
+    }
+}
+
+export const loadUserPlaylistsThunk = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${userId}/manage`)
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadUserPlaylists(data))
         return data
     }
 }
@@ -113,6 +131,13 @@ const playlistReducer = (state = initialState, action) => {
         case LOAD_ONE_PLAYLIST: {
             const newState = { ...state };
             newState[action.playlist.id] = action.playlist
+            return newState;
+        }
+        case LOAD_USER_PLAYLISTS: {
+            const newState = { ...state };
+            action.playlists.playlists.forEach(playlist => {
+                newState[playlist.id] = playlist
+            });
             return newState;
         }
         case ADD_PLAYLIST: {

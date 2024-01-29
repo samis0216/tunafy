@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Playlist, db, PlaylistSong, Song
 from app.forms.playlist_form import PlaylistForm
+from app.forms.playlist_song_form import PlaylistSongForm
 from .aws_images import get_unique_filename_img, upload_img_to_s3, remove_img_from_s3
 
 
@@ -23,7 +24,6 @@ def playlistSub():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        print(data)
         form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
                         creator_id=data['creator_id'],
@@ -52,3 +52,24 @@ def playlistDel(id):
     db.session.delete(playlist)
     db.session.commit()
     return "Successfully Deleted"
+
+@playlist_routes.route('/<int:id>/manage')
+def userPlaylists(id):
+    playlists = Playlist.query.filter_by(creator_id=id).all()
+    return {'playlists': [play.to_dict() for play in playlists]}
+
+@playlist_routes.route('/<int:id>/addsong', methods=['POST'])
+def addToPlaylist():
+    playlists = Playlist.query.filter(creator_id=id).all()
+    playlist_list = [(i['playlist_name']) for i in playlists]
+    form = PlaylistSongForm()
+    form.playlist_id.choices = playlist_list
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data=form.data
+        newPlaylistSong = PlaylistSong(playlist_id=data['playlist_id'],
+                                       song_id=data['song_id'])
+        db.session.add(newPlaylistSong)
+        db.session.commit()
+        return redirect('/api/playlists')
+    return 'Get shit on'
