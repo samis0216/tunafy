@@ -17,16 +17,16 @@ const DeleteSongModal = ({song}) => {
     }
 
     return (
-        <div className="delete-modal">
-            <div className="modal-contents">
-                <h2>Are you sure?</h2>
-                <p style={{color: "white",  paddingTop: 5}}>Deleting &quot;{`${song.song_name}`}&quot; cannot be reversed.</p>
+        <div className="delete-song-modal">
+            <div className="delete-info-modal">
+                <h2 className="delete-header-text">Are you sure?</h2>
+                <p className="delete-text">Deleting &quot;{`${song.song_name}`}&quot; cannot be reversed.</p>
                 <div className="delete-buttons-holder">
+                    <button className='cancel-modal-button' type="button" onClick={closeModal}>Cancel</button>
                     <button className="delete-modal-button" onClick={()=> {
                         closeModal()
                         handleDelete(song.id)}
                     }>Delete</button>
-                    <button className='delete-modal-button' style={{backgroundColor: "gray"}}type="button" onClick={closeModal}>Cancel</button>
                 </div>
             </div>
         </div>

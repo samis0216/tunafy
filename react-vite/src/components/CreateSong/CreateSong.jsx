@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './CreateSong.css'
 import { useDispatch, useSelector } from "react-redux"
 import { addSongThunk } from "../../redux/songs"
@@ -13,67 +13,96 @@ export default function CreateSong() {
     const [song_file, setSongFile] = useState('')
     const [awsLoading, setAwsLoading] = useState(false)
     const user = useSelector(state => state.session.user)
+    const [errors, setErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
+
+    if(!user) navigate('/')
+
+    useEffect(() => {
+        const newErrors = {};
+        if (!songName.length) {
+            newErrors.songName = 'Name is required'
+        }
+        if (song_cover === '' || (!song_cover?.name.endsWith('.jpeg') && !song_cover?.name.endsWith('.jpg') && !song_cover?.name.endsWith('.png') && !song_cover?.name.endsWith('.pdf') && !song_cover?.name.endsWith('.gif'))) {
+            newErrors.song_cover_url = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format'
+        }
+        if (song_file === '' || !song_file.name.endsWith('.mp3')) {
+            newErrors.song_file = 'Song is required and must be in .mp3 format'
+        }
+        setErrors(newErrors);
+    }, [songName, song_cover, song_file])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const artistId = user.id
-        console.log(artistId)
-        const formData = new FormData();
-        formData.append("song_name", songName)
-        formData.append("artist_id", artistId)
-        formData.append("song_cover_url", song_cover);
-        formData.append("song_file_url", song_file);
-        formData.append('duration', 260)
-        // aws uploads can be a bit slow—displaying
-        // some sort of loading message is a good idea
-        setAwsLoading(true);
-        await dispatch(addSongThunk(formData));
-        navigate('/songs')
+
+        setSubmitted(true)
+
+        if (!Object.values(errors).length) {
+            const artistId = user.id
+            console.log(artistId)
+            const formData = new FormData();
+            formData.append("song_name", songName)
+            formData.append("artist_id", artistId)
+            formData.append("song_cover_url", song_cover);
+            formData.append("song_file_url", song_file);
+            formData.append('duration', 260)
+            // aws uploads can be a bit slow—displaying
+            // some sort of loading message is a good idea
+            setAwsLoading(true);
+            const newSong = await dispatch(addSongThunk(formData));
+            navigate(`/songs/${newSong.id}`)
+        }
     }
 
     return (
-        <div className="main-body" id="container">
-            <h1>Create a song</h1>
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-                className="form-body"
-            >
-                <div className="entry-container">
-                    <h4>Song Name</h4>
-                    <input
-                        type="text"
-                        placeholder="Song Name"
-                        value={songName}
-                        onChange={(e) => setSongName(e.target.value)}
-                        className="song-inputs"
-                    />
-                </div>
-                <div className="entry-container">
-                    <h4>Cover Photo</h4>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                            setSongCover(e.target.files[0])
-                            console.log(e.target.files[0])
+        <div className="song-main">
+            <div className="create-song-box">
+                <h1>Create a song</h1>
+                <form
+                    onSubmit={handleSubmit}
+                    encType="multipart/form-data"
+                    className="form-body"
+                >
+                    <div className="entry-container">
+                        <p>Song Name</p>
+                        {submitted && errors.songName && <p style={{color: 'red'}}>{errors.songName}</p>}
+                        <input
+                            type="text"
+                            value={songName}
+                            onChange={(e) => setSongName(e.target.value)}
+                            className="song-inputs"
+                        />
+                    </div>
+                    <div className="entry-container">
+                        <p>Upload Cover Photo</p>
+                        {submitted && errors.song_cover_url && <p style={{color: 'red'}}>{errors.song_cover_url}</p>}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                setSongCover(e.target.files[0])
+                                console.log(e.target.files[0])
+                                }
                             }
-                        }
-                    />
-                </div>
-                <div className="entry-container">
-                    <h4>Song File</h4>
-                    <input
-                        type="file"
-                        accept="audio/*"
-                        onChange={(e) => setSongFile(e.target.files[0])}
-                    />
-                </div>
-                <div>
-                    <button type="submit" id="submit_butt">Create song</button>
-                </div>
-                {(awsLoading) && <p style={{alignSelf: "center"}}>Loading...</p>}
-            </form>
+                            className="song-inputs"
+                        />
+                    </div>
+                    <div className="entry-container">
+                        <p>Upload Song File</p>
+                        {submitted && errors?.song_file && <p style={{color: 'red'}}>{errors.song_file}</p>}
+                        <input
+                            type="file"
+                            accept="audio/*"
+                            className="song-inputs"
+                            onChange={(e) => setSongFile(e.target.files[0])}
+                        />
+                    </div>
+                    <div className="update-button">
+                        <button type="submit" id="submit_butt">Create Song</button>
+                    </div>
+                    {(awsLoading) && <p className="loading-text">Loading...</p>}
+                </form>
+            </div>
         </div>
     )
 }

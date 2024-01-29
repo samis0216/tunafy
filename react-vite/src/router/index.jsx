@@ -14,6 +14,7 @@ import PlaylistDetails from '../components/PlaylistDetails/PlaylistDetails';
 import UpdateAlbum from '../components/UpdateAlbum/UpdateAlbum';
 import UpdateSong from '../components/UpdateSong/UpdateSong';
 import SongDetails from '../components/SongDetails/SongDetails';
+import LikedSongs from'../components/Collection/LikedSongs';
 
 export const router = createBrowserRouter([
   {
@@ -75,10 +76,10 @@ export const router = createBrowserRouter([
         path: "playlists/:playlistId",
         element: <PlaylistDetails />
       },
-      // {
-      //   path: "collection/tracks",
-      //   element: <LikedSongs />
-      // }
+      {
+        path: "/collection/tracks",
+        element: <LikedSongs />
+      }
     ],
   },
 ]);

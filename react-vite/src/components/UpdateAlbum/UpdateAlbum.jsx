@@ -43,39 +43,43 @@ export default function UpdateAlbum() {
 
   return (
     <div className="album-main">
-      <h1>Update &quot;{album?.album_name}&quot;</h1>
-      <form
-      action={`/api/albums/${albumId}`}
-      onSubmit={handleSubmit}
-      className="album-form"
-      encType="multipart/form-data"
-      >
-        <div className="album-form-box">
-          <p>Album Name</p>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            />
-        </div>
+      <div className="update-album-box">
+        <h1>Update &quot;{album?.album_name}&quot;</h1>
+        <form
+        action={`/api/albums/${albumId}`}
+        onSubmit={handleSubmit}
+        className="album-form"
+        encType="multipart/form-data"
+        >
+          <div className="album-form-box">
+            <p>Album Name</p>
+            <input
+              className="update-album-inputs"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              />
+          </div>
 
-        <div className="album-form-box">
-          <p>Upload Cover Art</p>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            />
-        </div>
+          <div className="album-form-box">
+            <p>Upload Cover Photo</p>
+            <input
+              className="update-album-inputs"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              />
+          </div>
 
-        <div className="update-button">
-          <button
-            className="submit_butt"
-            type="submit"
-          > Update Album </button>
-        </div>
-        {(imageLoading) && <p style={{"color": "white", alignSelf: "center"}}>Loading...</p>}
-      </form>
+          <div className="update-button">
+            <button
+              className="submit_butt"
+              type="submit"
+            > Update Album </button>
+          </div>
+          {(imageLoading) && <p className="loading-text">Loading...</p>}
+        </form>
+      </div>
     </div>
   )
 

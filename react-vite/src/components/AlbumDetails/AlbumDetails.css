@@ -1,6 +1,7 @@
 .album-details-section {
   margin-left: 285px;
   margin-top: 60px;
+  margin-bottom: 100px;
   color: white;
 }
 
@@ -14,6 +15,7 @@
   height: 230px;
   width: 230px;
   border-radius: 4px;
+  object-fit: cover;
 }
 
 .album-detail-info {
@@ -27,6 +29,9 @@
 .album-detail-name {
   font-size: 80px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 890px;
 }
 
 .album-stuff {
@@ -93,7 +98,7 @@
 }
 
 .hashtag {
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .duration-icon {

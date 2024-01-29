@@ -23,14 +23,14 @@ function SignupFormPage() {
     if (String(password).length < 6) {
       return setErrors({
         password:
-          "Password must be at least 6 characters",
+          "Password must be at least 6 characters. ",
       })
     }
 
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
-          "Confirm Password field must be the same as the Password field",
+          "Confirm Password field must be the same as the Password field. ",
       });
     }
 
@@ -67,6 +67,7 @@ function SignupFormPage() {
               Email Address
               <input
                 className="signup-inputs"
+                placeholder='Email Address'
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -79,6 +80,7 @@ function SignupFormPage() {
               <input
                 type="text"
                 className="signup-inputs"
+                placeholder='Username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -90,6 +92,7 @@ function SignupFormPage() {
               <input
                 type="password"
                 className="signup-inputs"
+                placeholder='Password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -100,6 +103,7 @@ function SignupFormPage() {
               Confirm Password
               <input
                 type="password"
+                placeholder='Confirm Password'
                 className="signup-inputs"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}

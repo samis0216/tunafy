@@ -7,6 +7,9 @@ import './PlaylistDropdown.css'
 export default function PlaylistDropdown({playlistId}) {
     const [showMenu, setShowMenu] = useState(false);
     const user = useSelector((store) => store.session.user);
+    const playlistObj = useSelector(state => state.playlists);
+    const currentPlaylist = playlistObj[playlistId];
+    
     const ulRef = useRef();
 
     const toggleMenu = (e) => {
@@ -32,9 +35,11 @@ export default function PlaylistDropdown({playlistId}) {
 
     return (
         <>
-            <span onClick={toggleMenu}>
-                <i style={{ fontSize: 28 }} className="fa-solid fa-ellipsis playlist-icon"></i>
-            </span>
+            {currentPlaylist && user.id === currentPlaylist.creator_id && (
+                <span onClick={toggleMenu}>
+                    <i style={{ fontSize: 28 }} className="fa-solid fa-ellipsis playlist-icon"></i>
+                </span>
+            )}
             {showMenu && (
             <span className="playlist-dropdown" ref={ulRef}>
                 {user && (

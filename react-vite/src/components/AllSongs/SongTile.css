@@ -73,7 +73,7 @@
 }
 
 .song-id {
-    min-width: 20px;
+    min-width: 30px;
 }
 
 .song-cover-img {
@@ -105,4 +105,14 @@
 
 .song-album-name:hover {
     text-decoration: underline;
+}
+
+.remove-feat {
+    cursor: pointer;
+    padding-right: 30px;
+    color: #538aad;
+}
+
+.remove-feat:hover {
+    color: white;
 }

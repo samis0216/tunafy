@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Playlist, db, PlaylistSong, Song
 from app.forms.playlist_form import PlaylistForm
+from app.forms.playlist_song_form import PlaylistSongForm
 from .aws_images import get_unique_filename_img, upload_img_to_s3, remove_img_from_s3
 
 
@@ -25,7 +26,7 @@ def playlistSub():
         data = form.data
         form.playlist_cover_url.data.filename=get_unique_filename_img(form.playlist_cover_url.data.filename)
         newPlaylist = Playlist(playlist_name=data['playlist_name'],
-                        creator_id=1,
+                        creator_id=data['creator_id'],
                         playlist_cover_url=upload_img_to_s3(form.playlist_cover_url.data).get('url'),
                         description=data['description'],
                         private=data['private'])
@@ -50,3 +51,26 @@ def playlistDel(id):
     remove_img_from_s3(playlist.playlist_cover_url)
     db.session.delete(playlist)
     db.session.commit()
+    return "Successfully Deleted"
+
+@playlist_routes.route('/<int:id>/manage')
+def userPlaylists(id):
+    playlists = Playlist.query.filter_by(creator_id=id).all()
+    return {'playlists': [play.to_dict() for play in playlists]}
+
+@playlist_routes.route('/<int:id>/add', methods=['PUT'])
+def addToPlaylist(id):
+    songId = int(request.data.decode())
+    newPlaylistSong = PlaylistSong(playlist_id=id,
+                                       song_id=songId)
+    db.session.add(newPlaylistSong)
+    db.session.commit()
+    return redirect('/api/playlists')
+
+@playlist_routes.route('/<int:id>/remove', methods=['DELETE'])
+def removeSong(id):
+    songId = int(request.data.decode())
+    playlist_song = PlaylistSong.query.filter_by(playlist_id=id, song_id=songId).all()[0]
+    db.session.delete(playlist_song)
+    db.session.commit()
+    return playlist_song.to_dict

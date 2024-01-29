@@ -11,16 +11,16 @@ export default function DeletePlaylistModal({playlistId}) {
     const {closeModal} = useModal();
 
     const deletePlaylist = (e) => {
-      e.stopPropagation()
-      dispatch(deletePlaylistThunk(playlistId)).then(closeModal())
-      navigate('/playlists')
-    }
+      e.preventDefault();
+      dispatch(deletePlaylistThunk(playlistId)).then(closeModal());
+      navigate('/playlists');
+  };
 
     return (
       <div className="delete-playlist-modal">
         <div className="delete-info-modal">
-            <h2 className="delete-header-text">Delete from Your Library?</h2>
-            <p className="delete-text">{`This will delete ${playlist?.playlist_name} from Your Library.`}</p>
+            <h2 className="delete-header-text">Are you sure?</h2>
+            <p className="delete-text">Deleting &quot;{`${playlist?.playlist_name}`}&quot; cannot be reversed.</p>
             <div className="playlist-delete-buttons">
                 <button className='playlist-cancel-button' onClick={closeModal}>
                 Cancel

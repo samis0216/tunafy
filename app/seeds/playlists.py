@@ -29,11 +29,51 @@ def seed_playlists():
     playlist_cover_url = 'https://i.scdn.co/image/ab67706f00000002bd0e19e810bb4b55ab164a95',
     private = True
   )
+  play5 = Playlist(
+    playlist_name = 'Discover Weekly',
+    creator_id = 1,
+    playlist_cover_url = 'https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/3YiKOcTBbEKL-RUk1qnTyGC3GfgyLaJ3dQvqr3YZsV6gY5RCvA4pm6r0CLozXF3gtT5N_sthyvml_wqmwYq0k51YyYBzDqki1V20sY4CZFw=/NjU6ODQ6MzJUMjAtMjAtNA==',
+    description = 'Your weekly mixtape of fresh music. Enjoy new music and deep cuts picked for you.',
+    private = False
+  )
+  play6 = Playlist(
+    playlist_name = 'Good Vibes',
+    creator_id = 2,
+    playlist_cover_url = 'https://i.scdn.co/image/ab67706f00000002ed91f72d69d10c9805cf25b3',
+    description = 'Just good vibes all day long',
+    private = False
+  )
+  play7 = Playlist(
+    playlist_name = 'In My Feels',
+    creator_id = 3,
+    playlist_cover_url = 'https://i.pinimg.com/236x/7e/c3/e0/7ec3e08010a3b1edbbb4531ef04d2d95.jpg',
+    description = 'Just got my heart broken and I wanna feel something again',
+    private = False
+  )
+  play8 = Playlist(
+    playlist_name = 'Songs for Coding',
+    creator_id = 4,
+    playlist_cover_url = 'https://cdn.discordapp.com/attachments/433472365498728468/1201361919915860058/IMG_3809.webp?ex=65c98a79&is=65b71579&hm=3c9fb000b169854fd7884d85bf12a057457707db4f2b65f619c6c8339eaa18de&',
+    description = 'Time to code!',
+    private = False
+  )
+  play9 = Playlist(
+    playlist_name = 'Party Time',
+    creator_id = 5,
+    playlist_cover_url = 'https://external-preview.redd.it/party-best-party-rock-anthems-v0-Nv7a6jhMIoIRl2KtUHq59Bo0PGCPKGoKkmsqNY-Zz6k.jpg?auto=webp&s=8b81dad76101ff03c02c513a88310705373961d2',
+    description = 'Lets get white girl wasted',
+    private = False
+  )
 
   db.session.add(play1)
   db.session.add(play2)
   db.session.add(play3)
   db.session.add(play4)
+  db.session.add(play5)
+  db.session.add(play6)
+  db.session.add(play7)
+  db.session.add(play8)
+  db.session.add(play9)
   db.session.commit()
 
 def undo_playlists():

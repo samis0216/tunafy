@@ -23,7 +23,7 @@ def albumSub():
         data = form.data
         form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
         newAlbum = Album(album_name=data['album_name'],
-                        artist_id=1,
+                        artist_id=data['artist_id'],
                         album_cover_url=upload_img_to_s3(form.album_cover_url.data).get('url'))
         db.session.add(newAlbum)
         db.session.commit()
@@ -59,8 +59,31 @@ def albumSongs(id):
 @album_routes.route('/<int:id>', methods=["DELETE"])
 def albumDel(id):
     album = Album.query.get(id)
-    print('HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
     remove_img_from_s3(album.album_cover_url)
     db.session.delete(album)
     db.session.commit()
     return "Successfully Deleted"
+
+@album_routes.route('/current/<int:id>')
+def userAlbums(id):
+    albums = Album.query.filter(Album.artist_id == id).all()
+    userAlbums = [album.to_dict() for album in albums]
+    return userAlbums
+
+@album_routes.route('/<int:id>/add', methods=['PUT'])
+def addSong(id):
+    songId = int(request.data.decode())
+    song = Song.query.get(songId)
+    song.album_id = id
+    db.session.commit()
+    albumSongs = [song.to_dict() for song in Song.query.filter(Song.album_id == id)]
+    return albumSongs
+
+@album_routes.route('/<int:id>/remove', methods=['PUT'])
+def removeSong(id):
+    songId = int(request.data.decode())
+    song = Song.query.get(songId)
+    song.album_id = None
+    db.session.commit()
+    album = Album.query.get(id).to_dict
+    return album

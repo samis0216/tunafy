@@ -52,10 +52,10 @@ function LoginFormPage() {
         <div id="login-box">
           <h1 id="login-header">Log in to Tunafy</h1>
           {errors.length > 0 &&
-            errors.map((message) => <p  className='error-message'key={message}>{message}</p>)}
+            errors.map((message) => <p className='error-message'key={message}>{message}</p>)}
           <form className="login-form" onSubmit={handleSubmit}>
             {errors.email && <p className='error-message'>{errors.email}</p>}
-            <label className="login-email">
+            <label className="login-labels">
               Email
               <input
                 className="login-inputs"
@@ -67,7 +67,7 @@ function LoginFormPage() {
                 />
             </label>
             {errors.password && <p className='error-message'>{errors.password}</p>}
-            <label className="login-password">
+            <label className="login-labels">
               Password
               <input
                 className="login-inputs"
@@ -78,7 +78,9 @@ function LoginFormPage() {
                 required
               />
             </label>
-            <button id="login-submit" type="submit">Log In</button>
+            <div className='user-login-button'>
+              <button id="login-submit" type="submit">Log In</button>
+            </div>
           </form>
           <span className='demo-user-login' onClick={demoUserLogin}>Demo User</span>
         </div>

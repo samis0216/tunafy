@@ -144,8 +144,10 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
             const newState = { ...state };
+            let counter = 1
             action.songs.songs.forEach(song => {
-                newState[song.id] = song
+                newState[counter] = song
+                counter++
             })
             return newState;
         }
@@ -164,8 +166,10 @@ const songReducer = (state = initialState, action) => {
         }
         case LOAD_ALBUM_SONGS: {
             const newState = {  };
+            let counter = 1
             action.songs.songs.forEach(song => {
-                newState[song.id] = song
+                newState[counter] = song
+                counter++
             })
             return newState;
         }

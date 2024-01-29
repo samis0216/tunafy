@@ -1,8 +1,11 @@
 const LOAD_ALBUMS = 'album/loadAlbums';
 const LOAD_ONE_ALBUM = 'album/loadOneAlbum';
+const LOAD_USER_ALBUMS = 'album/loadUserAlbums'
 const ADD_ALBUM = 'album/addAlbum';
+const ADD_SONG_TO_ALBUM = 'album/addSongToAlbum'
 const EDIT_ALBUM = 'album/editAlbum';
 const DELETE_ALBUM = 'album/deleteAlbum';
+const DELETE_FROM_ALBUM = 'album/deleteFromAlbum'
 
 // ACTION CREATORS
 const loadAlbums = (albums) => {
@@ -19,10 +22,24 @@ const loadOneAlbum = (album) => {
     }
 }
 
+const loadUserAlbums = (albums) => {
+    return {
+        type: LOAD_USER_ALBUMS,
+        albums
+    }
+}
+
 const addAlbum = (album) => {
     return {
         type: ADD_ALBUM,
         album
+    }
+}
+
+const addSongtoAlbum = (songs) => {
+    return {
+        type: ADD_SONG_TO_ALBUM,
+        songs
     }
 }
 
@@ -37,6 +54,13 @@ const deleteAlbum = (albumId) => {
     return {
         type: DELETE_ALBUM,
         albumId
+    }
+}
+
+const deleteFromAlbum = (album) => {
+    return {
+        type: DELETE_FROM_ALBUM,
+        album
     }
 }
 
@@ -63,6 +87,16 @@ export const loadOneAlbumThunk = (albumId) => async (dispatch) => {
     }
 }
 
+export const loadUserAlbumsThunk = (userId) => async(dispatch) => {
+    const res = await fetch(`/api/albums/current/${userId}`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(loadUserAlbums(data))
+        return data
+    }
+}
+
 export const addAlbumThunk = (album) => async(dispatch) => {
     const res = await fetch('/api/albums/new', {
         method: "POST",
@@ -75,6 +109,19 @@ export const addAlbumThunk = (album) => async(dispatch) => {
         return data
     }
 
+}
+
+export const addSongToAlbumThunk = (songId, albumId) => async(dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/add`, {
+        method: 'PUT',
+        body: songId
+    })
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(addSongtoAlbum(data))
+        return data
+    }
 }
 
 export const editAlbumThunk = (album, albumId) => async(dispatch) => {
@@ -98,7 +145,18 @@ export const deleteAlbumsThunk = (albumId) => async(dispatch) => {
     if (res.ok) {
         dispatch(deleteAlbum(albumId))
     }
+}
 
+export const deleteFromAlbumThunk = (songId, albumId) => async(dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/remove`, {
+        method: 'PUT',
+        body: songId
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(deleteFromAlbum(data))
+        return data
+    }
 }
 
 const initialState = {}
@@ -117,9 +175,25 @@ const albumReducer = (state = initialState, action) => {
             newState[action.album.id] = action.album
             return newState;
         }
+        case LOAD_USER_ALBUMS: {
+            const newState = {}
+            action.albums.forEach((album)=> {
+                newState[album.id] = album
+            })
+            return newState
+        }
         case ADD_ALBUM: {
             const newState = { ...state, [action.album.id]: action.album }
             return newState;
+        }
+        case ADD_SONG_TO_ALBUM: {
+            const newState = {}
+            let counter = 1
+            action.songs.forEach((song) => {
+                newState[counter] = song
+                counter++
+            })
+            return newState
         }
         case EDIT_ALBUM: {
             const newState = { ...state, [action.album.id]: action.album }
@@ -129,6 +203,11 @@ const albumReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.albumId]
             return newState;
+        }
+        case DELETE_FROM_ALBUM: {
+            const newState = {}
+            newState[action.album.id] = action.album
+            return newState
         }
         default:
             return state

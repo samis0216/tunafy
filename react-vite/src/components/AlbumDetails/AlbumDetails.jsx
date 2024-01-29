@@ -1,10 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { loadOneAlbumThunk } from "../../redux/albums"
 import { loadAlbumSongsThunk } from "../../redux/songs"
 import { loadUsersThunk } from "../../redux/users"
-import SongTile from "../AllSongs/SongTile"
+import { MusicContext } from "../../context/MusicContext";
+import AlbumSongTile from "../AllSongs/AlbumSongTile"
 import './AlbumDetails.css'
 import AlbumDropdown from "../AllAlbums/AlbumDropdown"
 
@@ -13,6 +14,9 @@ export default function AlbumDetails() {
   const {albumId} = useParams()
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
+  console.log(album)
+  const [songList, setSongList] = useContext(MusicContext);
+  console.log(songList)
 
   useEffect(() => {
     dispatch(loadOneAlbumThunk(albumId))
@@ -24,11 +28,11 @@ export default function AlbumDetails() {
   const users = useSelector((store) => store.users)
   const user = users[album?.artist_id]
   const keys = Object.keys(songs)
-  // console.log(user)
+  const totDur = Object.values(songs).reduce((total, obj) => obj.duration + total, 0)
   if (!album) {
     return null
   }
-
+  const songers = Object.values(songs)
   return (
     <section className="album-details-section">
       <div className="album-detail-header">
@@ -38,16 +42,16 @@ export default function AlbumDetails() {
           <h1 className="album-detail-name">{album.album_name}</h1>
           <div className="album-stuff">
             <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-            <p style={{ paddingLeft: 5, fontSize: 14 }}>{user?.username}  •  {Object.keys(songs).length}  •  duration</p>
+            <p style={{ paddingLeft: 5, fontSize: 14 }}>{user?.username}  •  {Object.keys(songs).length} {`${Object.keys(songs).length > 1 ? "songs" : "song"}`}  •  {`${Math.floor(totDur / 60)} min ${totDur % 60 == 0 ? "" : totDur % 60 + " seconds"}`}</p>
           </div>
         </div>
       </div>
       <div className="album-song-list">
         <div className="song-list-symbols">
-          <div className="album-play-button">
+          <div className="album-play-button" onClick={() => setSongList(songers)}>
               <i className="fa-solid fa-play fa-2xl play-icon"></i>
           </div>
-          <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i>
+          {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
           <AlbumDropdown albumId={albumId} />
         </div>
         <div className="song-list-info-header">
@@ -55,13 +59,16 @@ export default function AlbumDetails() {
                 <p className="hashtag">#</p>
                 <p>Title</p>
             </div>
-            <p>Album</p>
-            <i className="fa-regular fa-clock duration-icon"></i>
+            <p style={{ paddingRight: 280 }}>Album</p>
+            <div className="heart-duration">
+              {/* <i className="fa-regular fa-heart"></i> */}
+              <i className="fa-regular fa-clock duration-icon"></i>
+            </div>
         </div>
         <div className="song-info">
           {
             keys.map((id) => (
-              <SongTile key={id} song={songs[id]} albums={album} artist={users[songs[id]['artist_id']]}/>
+              <AlbumSongTile key={id} songs={songs} count={id} song={songs[id]} album={album} artist={users[songs[id]['artist_id']]}/>
             ))
           }
         </div>

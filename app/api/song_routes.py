@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Song, SongLike, db
+from app.models import Song, SongLike, db, PlaylistSong
 from app.forms.song_form import SongForm
 from .aws_songs import upload_song_to_s3, get_unique_filename_songs, remove_song_from_s3
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
@@ -17,11 +17,6 @@ def songs():
 def likedSongs(id):
     all_songs = SongLike.query.filter(SongLike.user_id == id).all()
     return {'songs': [song.to_dict() for song in all_songs]}
-
-@song_routes.route('/new')
-def index():
-    form = SongForm()
-    return render_template('song_form.html', form=form)
 
 @song_routes.route('/new', methods=['GET', 'POST'])
 def song_form():
@@ -41,8 +36,8 @@ def song_form():
                         duration=newDuration)
         db.session.add(new_song)
         db.session.commit()
-        return redirect('/api/songs')
-    return 'Bad Data'
+        return new_song.to_dict()
+    return form.errors
 
 @song_routes.route("/<int:id>")
 def oneSong(id):
@@ -57,7 +52,8 @@ def deleteSong(id):
     remove_song_from_s3(song.to_dict()["song_file_url"])
     db.session.delete(song)
     db.session.commit()
-    return 'Success!'
+    songs = [song.to_dict() for song in Song.query.all()]
+    return songs
 
 @song_routes.route("/<int:id>/update", methods=['PUT'])
 def editSong(id):

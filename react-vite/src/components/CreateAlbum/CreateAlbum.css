@@ -1,58 +1,95 @@
 .album-main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: white;
-  gap: 10px;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+
+.update-album-box {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: 80%;
+  align-items: center;
+  padding: 50px 60px;
+  gap: 10px;
   background-color: black;
-  margin: 0 33%;
-  padding: 40px 0 20px 0;
-  margin-top: 60px;
+  border-radius: 10px;
+}
+
+.update-album-box h1 {
+  padding-bottom: 10px;
 }
 
 .album-form {
   display: flex;
   flex-direction: column;
-  color: white;
-  justify-content: space-around;
-  padding: 25px 100px 50px 100px;
-  gap: 30px;
+  align-items: center;
 }
-
 
 .album-form-box {
   color: white;
-  padding: 10px;
+  padding: 10px 0px;
   display: flex;
   flex-direction: column;
+  width: 450px;
 }
 
 .album-form-box > p{
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.update-album-inputs {
+  margin-top: 5px;
+  padding: 8px 3px;
+  border: 1px #b3b3b3 solid;
+  background-color: rgb(19, 17, 17);
+  color: white;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.update-album-inputs:hover {
+  border: 1px solid white;
 }
 
 input[type='file']:hover{
   cursor: pointer;
 }
 
-.album-form-button:hover {
-  cursor: pointer;
-}
 .update-button {
-  padding: 10px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.submit_butt {
-  color: black;
-  font-weight: bold;
-  border: #548AAE 2px solid;
-  background-color: #548AAE;
-  width: 250px;
-  height: 40px;
-  border-radius: 30px;
+
+.album-form-button:hover {
   cursor: pointer;
+}
+
+
+.submit_butt {
+  padding: 15px 155px;
+  border-radius: 25px;
+  background-color: #538aad;
+  color: black;
+  font-weight: bolder;
+  font-size: 15px;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  width: 450px;
+}
+
+.submit_butt:hover {
+  font-size: 16px;
+  transform: scale(1.02);
+}
+
+.loading-text {
+  color: white;
+  padding-top: 30px;
 }

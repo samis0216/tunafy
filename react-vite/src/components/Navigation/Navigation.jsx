@@ -1,24 +1,52 @@
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
+import githubLogo from './github-logo.png'
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ProfileButton from "./ProfileButton";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import LoginModal from "../LoginModal/LoginModal";
 import { useModal } from "../../context/Modal";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MusicContext } from "../../context/MusicContext";
+import { IndexContext } from "../../context/IndexContext";
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation()
-  const [srv, setSrv] = useContext(MusicContext)
+  const [songList, setSongList] = useContext(MusicContext)
+  const [currentSong, setCurrentSong] = useContext(IndexContext)
+
   const sessionUser = useSelector((state) => state.session.user)
   const { setModalContent } = useModal()
 
-  const False = false
-  if(False) setSrv()
+  useEffect(() => {
+
+  }, [songList])
+
+  const helperFunctionNext = (i) => {
+    console.log(i)
+    console.log(songList)
+    console.log(songList.length)
+    if (i + 1 > songList.length - 1) {
+      setSongList([])
+      return 0
+    } else {
+      return i + 1
+    }
+  }
+
+  const helperFunctionPrev = (i) => {
+    console.log(i)
+    console.log(songList)
+    console.log(songList.length)
+    if (i - 1 < 0) {
+      return 0
+    } else {
+      return i - 1
+    }
+  }
 
   const openModal = () => {
     setModalContent(<LoginModal />);
@@ -31,10 +59,16 @@ function Navigation() {
     }
   }
 
+
+
   const Player = () => (
     <AudioPlayer
       autoPlay={true}
-      src={srv}
+      showSkipControls={true}
+      onClickNext={() => setCurrentSong(i => i = helperFunctionNext(i))}
+      onClickPrevious={() => setCurrentSong(i => i = helperFunctionPrev(i))}
+      onEnded={() => setCurrentSong(i => i + 1)}
+      src={!songList.length || !songList[currentSong] ? [] : songList[currentSong].song_file_url}
       volume={0.1}
       // onPlay={e => console.log("onPlay")}
       // other props here
@@ -52,16 +86,16 @@ function Navigation() {
             <h3>Tunafy</h3>
           </NavLink>
         </div>
-        <div className="nav">
+        {/* <div className="nav">
           <ul className="left-bar-ul">
             <li>
-              <NavLink to="/">
+              <NavLink href="/">
                 <span className="fa-solid fa-home bar-icon"></span>
                 <span>Home</span>
-              </NavLink >
+              </NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
@@ -77,9 +111,9 @@ function Navigation() {
               </div>
             </li>
             <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
-                <span className="fa-solid fa-square-plus bar-icon"></span>
-                <span>Create Playlist</span>
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
+                <span className="fa-solid fa-heart bar-icon"></span>
+                <span>Liked Songs</span>
               </div>
             </li>
             <li>
@@ -95,12 +129,17 @@ function Navigation() {
               </div>
             </li>
             <li>
-              <NavLink to="/" onClick={notLoggedIn}>
-                <span className="fa-solid fa-heart bar-icon"></span>
-                <span>Liked Songs</span>
-              </NavLink >
+              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
+                <span className="fa-solid fa-square-plus bar-icon"></span>
+                <span>Create Playlist</span>
+              </div>
             </li>
           </ul>
+          <div className="github">
+            <NavLink to='https://github.com/samis0216/tunafy'>
+              <img className="git-logo" src={githubLogo} alt="github-logo" />
+            </NavLink>
+          </div>
         </div>
       </div>
       <div className="top-bar">
@@ -127,8 +166,8 @@ function Navigation() {
       {!sessionUser && (
         <div className="preview">
           <div className="text">
-            <h6>Preview of Spotify</h6>
-            <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+            <h6>Preview of Tunafy</h6>
+            <p>Sign up to get unlimited songs. No credit card needed.</p>
           </div>
           <div className="button">
             <button type="button" onClick={() => navigate("/signup")}>Sign Up Free</button>

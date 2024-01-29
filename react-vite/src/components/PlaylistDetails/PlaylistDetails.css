@@ -1,6 +1,7 @@
 .playlist-details-section {
     margin-left: 285px;
     margin-top: 60px;
+    margin-bottom: 100px;
     color: white;
 }
 
@@ -14,6 +15,7 @@
     height: 230px;
     width: 230px;
     border-radius: 4px;
+    object-fit: cover;
 }
 
 .playlist-detail-info {
@@ -27,6 +29,9 @@
 .playlist-detail-name {
     font-size: 80px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 890px;
 }
 
 .playlist-user-songs {
@@ -62,7 +67,9 @@
     padding-left: 2px;
 }
 
-.play-icon:active, .play-icon:hover, .play-icon:focus {
+.play-icon:active,
+.play-icon:hover,
+.play-icon:focus {
     font-size: 27px;
 }
 
@@ -90,10 +97,17 @@
 .hashtag-title {
     display: flex;
     flex-direction: row;
+    min-width: 550px;
 }
 
 .hashtag {
-    padding-right: 10px;
+    padding-right: 20px;
+}
+
+.heart-duration {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
 }
 
 .duration-icon {
@@ -122,18 +136,19 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 550px;
+    max-width: 550px;
 }
 
 .song-id {
-    min-width: 20px;
+    min-width: 30px;
 }
 
 .song-cover-img {
     height: 40px;
     width: 40px;
     border-radius: 2px;
+    object-fit: cover;
 }
 
 .song-name-artist {
@@ -152,11 +167,34 @@
 }
 
 .song-album-name {
-    min-width: 100px;
+    min-width: 300px;
+    max-width: 300px;
     white-space: nowrap;
     cursor: pointer;
 }
 
 .song-album-name:hover {
     text-decoration: underline;
+}
+
+.right-side-song {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.liked-heart {
+    color: #538aad;
+    cursor: pointer;
+    min-width: 40px;
+    max-width: 40px;
+}
+
+.liked-heart:hover {
+    color: white;
+}
+
+.song-time {
+    min-width: 25px;
+    max-width: 25px;
 }
