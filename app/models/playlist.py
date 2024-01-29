@@ -13,7 +13,7 @@ class Playlist(db.Model):
     description = db.Column(db.String(255), nullable=True)
     private = db.Column(db.Boolean, default=False, nullable=False)
 
-    playlist_song = db.relationship('PlaylistSong', back_populates='playlist')
+    playlist_song = db.relationship('PlaylistSong', back_populates='playlist', cascade='all, delete')
 
     def to_dict(self):
        return {
