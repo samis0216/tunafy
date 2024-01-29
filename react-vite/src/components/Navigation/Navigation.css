@@ -66,6 +66,14 @@ body {
   padding-right: 10px;
 }
 
+.git-logo {
+  background-color: white;
+  width: 25px;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 100px;
+}
+
 .top-bar {
   position: fixed;
   top: 0;

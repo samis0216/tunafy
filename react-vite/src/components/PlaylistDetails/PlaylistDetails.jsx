@@ -45,7 +45,7 @@ export default function PlaylistDetails() {
                     <p style={{ fontSize: 14, color: '#b3b3b3', whiteSpace: 'nowrap' }}>{playlist?.description}</p>
                     <div className="playlist-user-songs">
                         <i style={{ fontSize: 24 }} className="fa-solid fa-circle-user" />
-                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{`${user[playlist?.creator_id]?.username}  •  # likes  •  ${Object.keys(playlistSongs).length} songs • ${Math.floor(totDur / 60)} min ${totDur % 60 == 0 ? "" : totDur % 60 + " seconds"}`}</p>
+                        <p style={{ paddingLeft: 5, fontSize: 14 }}>{user[playlist?.creator_id]?.username}  •  {Object.keys(playlistSongs).length} {`${Object.keys(playlistSongs).length > 1 ? "songs" : "song"}`} • {Math.floor(totDur / 60)} min {totDur % 60 == 0 ? "" : totDur % 60 + " seconds"}</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ export default function PlaylistDetails() {
                     <div className="playlist-play-button" onClick={() => setSongList(songers)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i>
+                    {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                     <PlaylistDropdown playlistId={playlistId} />
                 </div>
                 <div className="song-list-info-header">
@@ -62,8 +62,11 @@ export default function PlaylistDetails() {
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p>Album</p>
+                    <p style={{ paddingRight: 254 }}>Album</p>
+                    <div className="heart-duration">
+                    {/* <i className="fa-regular fa-heart"></i> */}
                     <i className="fa-regular fa-clock duration-icon"></i>
+                    </div>
                 </div>
                 <div className="song-info">
                     {songKeys?.map(song => (

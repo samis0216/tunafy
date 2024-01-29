@@ -1,6 +1,7 @@
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import tunafyLogo from "./tunafy1.png";
+import githubLogo from './github-logo.png'
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ProfileButton from "./ProfileButton";
 import AudioPlayer from 'react-h5-audio-player';
@@ -85,7 +86,7 @@ function Navigation() {
             <h3>Tunafy</h3>
           </NavLink>
         </div>
-        <div className="nav">
+        {/* <div className="nav">
           <ul className="left-bar-ul">
             <li>
               <NavLink href="/">
@@ -94,7 +95,7 @@ function Navigation() {
               </NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="nav">
           <ul className="left-bar-ul">
             <li>
@@ -134,6 +135,11 @@ function Navigation() {
               </div>
             </li>
           </ul>
+          <div className="github">
+            <NavLink to='https://github.com/samis0216/tunafy'>
+              <img className="git-logo" src={githubLogo} alt="github-logo" />
+            </NavLink>
+          </div>
         </div>
       </div>
       <div className="top-bar">
@@ -161,7 +167,7 @@ function Navigation() {
         <div className="preview">
           <div className="text">
             <h6>Preview of Tunafy</h6>
-            <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+            <p>Sign up to get unlimited songs. No credit card needed.</p>
           </div>
           <div className="button">
             <button type="button" onClick={() => navigate("/signup")}>Sign Up Free</button>
