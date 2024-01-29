@@ -49,12 +49,14 @@ function SongDropdown({ song }) {
                     <i style={{ color: '#b3b3b3', paddingRight: 0 }} className="fa-solid fa-square-plus bar-icon"></i>
                     <span className="album-dropdown-item" onClick={() => navigate(`/playlists`)}>Add to Playlist</span>
                 </div>
+                {isOwner && (
                 <div className="playlist-delete-drop">
                     <i style={{ color: '#b3b3b3', paddingRight: 0 }} className="fa-solid fa-square-plus bar-icon"></i>
                     <span className="album-dropdown-item">
                         <OpenModalMenuItem itemText='Add to Album' onItemClick={closeMenu} modalComponent={<AddToAlbum song={song}/>}/>
                     </span>
                 </div>
+                )}
             {isOwner && (
                 <>
                 <div className="playlist-delete-drop">
