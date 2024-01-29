@@ -40,7 +40,7 @@ export default function AllSongs() {
             </div>
             <div className="all-songs-list">
                 <div className="song-list-symbols">
-                    <div className="song-play-button" onClick={() => setSongList(songers)}>
+                    <div className="song-play-button" onClick={() => setSongList(Object.values(songs))}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
