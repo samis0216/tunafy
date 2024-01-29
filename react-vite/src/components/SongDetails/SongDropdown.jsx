@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteSongModal from "../SongModals/DeleteSongModal";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./SongDropdown.css"
 import { useNavigate } from "react-router-dom";
 
-function SongDropdown({ song, album }) {
+function SongDropdown({ song }) {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false);
     const user = useSelector((store) => store.session.user);
@@ -33,6 +33,8 @@ function SongDropdown({ song, album }) {
 
     const closeMenu = () => setShowMenu(false);
 
+    const isOwner = song.artist_id == user.id;
+
     return (
         <>
             <span onClick={toggleMenu}>
@@ -50,6 +52,8 @@ function SongDropdown({ song, album }) {
                     <i style={{ color: '#b3b3b3' }} className="fa-solid fa-square-plus bar-icon"></i>
                     <span className="album-dropdown-item" onClick={() => navigate(`/albums`)}>Add to Album</span>
                 </div>
+            {isOwner && (
+                <>
                 <div className="playlist-delete-drop">
                     <i className="fa-solid fa-pen"></i>
                     <span className="album-dropdown-item" onClick={() => navigate(`/songs/${song.id}/update`)}>Update</span>
@@ -63,6 +67,8 @@ function SongDropdown({ song, album }) {
                             modalComponent={<DeleteSongModal song={song}/>}/>
                     </span>
                 </div>
+                </>
+            )}
                 </>
                 )}
             </span>
