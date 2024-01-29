@@ -58,18 +58,11 @@ def userPlaylists(id):
     playlists = Playlist.query.filter_by(creator_id=id).all()
     return {'playlists': [play.to_dict() for play in playlists]}
 
-@playlist_routes.route('/<int:id>/addsong', methods=['POST'])
-def addToPlaylist():
-    playlists = Playlist.query.filter(creator_id=id).all()
-    playlist_list = [(i['playlist_name']) for i in playlists]
-    form = PlaylistSongForm()
-    form.playlist_id.choices = playlist_list
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        data=form.data
-        newPlaylistSong = PlaylistSong(playlist_id=data['playlist_id'],
-                                       song_id=data['song_id'])
-        db.session.add(newPlaylistSong)
-        db.session.commit()
-        return redirect('/api/playlists')
-    return 'Get shit on'
+@playlist_routes.route('/<int:id>/add', methods=['PUT'])
+def addToPlaylist(id):
+    songId = int(request.data.decode())
+    newPlaylistSong = PlaylistSong(playlist_id=id,
+                                       song_id=songId)
+    db.session.add(newPlaylistSong)
+    db.session.commit()
+    return redirect('/api/playlists')

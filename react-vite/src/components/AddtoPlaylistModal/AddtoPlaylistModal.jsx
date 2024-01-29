@@ -4,8 +4,10 @@ import './AddtoPlaylistModal.css'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loadUserPlaylistsThunk } from "../../redux/playlists";
+import { addSongToPlaylistThunk } from "../../redux/playlists";
+import { loadPlaylistSongsThunk } from "../../redux/songs"
 
-export default function AddtoPlaylistModal() {
+export default function AddtoPlaylistModal({ song }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentPlaylist, setCurrentPlaylist] = useState("")
@@ -19,37 +21,30 @@ export default function AddtoPlaylistModal() {
     dispatch(loadUserPlaylistsThunk(user.id))
   }, [dispatch])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
 
+  const handleSubmit = (playlistId) => {
+    dispatch(addSongToPlaylistThunk(song.id, playlistId))
+    dispatch(loadPlaylistSongsThunk())
+    closeModal()
+    navigate(`/playlists/${playlistId}`)
   }
 
   if (!playlists) return null
   return (
-    <div className="add-to-playlist-modal">
-        <div className="playlist-info-modal">
-            <h2 className="add-header-text">To which playlist?</h2>
-            <form
-              onSubmit={handleSubmit}
-              action={`/api/playlists/${currentPlaylist}/addsong`}
-            >
-              <label>
-                Playlist
-                <select
-                  onChange={(e) => setCurrentPlaylist(e.target.value)}
-                >
-                  <option defaultValue={true}>Select a Playlist</option>
-                  {choices.map((key) => {
-                    return (
-                      <option value={`${key?.id}`}>{`${key?.playlist_name}`}</option>
-                    )
-                  })}
-                </select>
-              </label>
-              <button type="submit">Add Song</button>
-            </form>
+    <div className="delete-song-modal">
+            <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <h2 className="delete-header-text" style={{padding: 10}}>Your Playlists</h2>
+                <div style={{display: 'flex', gap: 10}}>
+
+                {choices.map(playlist => (
+                    <div className="item" key={playlist.id} onClick={() => handleSubmit(playlist.id)}>
+                        <img src={playlist.playlist_cover_url} alt='album-cover' />
+                        <h4>{playlist.playlist_name}</h4>
+                    </div>
+                ))}
+                </div>
+            </div>
         </div>
-      </div>
   )
 }

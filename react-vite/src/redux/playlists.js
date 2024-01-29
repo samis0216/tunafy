@@ -3,6 +3,7 @@ const LOAD_PLAYLISTS = 'playlist/loadPlaylists';
 const LOAD_ONE_PLAYLIST = 'playlist/loadOnePlaylist';
 const LOAD_USER_PLAYLISTS ='playlist/loadUserPlaylists';
 const ADD_PLAYLIST = 'playlist/addPlaylist';
+const ADD_SONG_TO_PLAYLIST = 'playlist/addSongToPlaylist';
 const EDIT_PLAYLIST = 'playlist/editPlaylist';
 const DELETE_PLAYLIST = 'playlist/deletePlaylist';
 
@@ -32,6 +33,13 @@ const addPlaylist = (playlist) => {
     return {
         type: ADD_PLAYLIST,
         playlist
+    }
+}
+
+const addSongToPlaylist = (song) => {
+    return {
+        type: ADD_SONG_TO_PLAYLIST,
+        song
     }
 }
 
@@ -94,6 +102,20 @@ export const addPlaylistThunk = (playlist) => async(dispatch) => {
     }
 }
 
+export const addSongToPlaylistThunk = (songId, playlistId) => async (dispatch) => {
+    const res = await fetch(`/api/playlists/${playlistId}/add`, {
+        method: "PUT",
+        body: songId
+    })
+
+    if (res.ok) {
+        const data = await res.json()
+        console.log(data)
+        dispatch(addSongToPlaylist(data))
+        return data
+    }
+}
+
 export const editPlaylistThunk = (playlist, playlistId) => async(dispatch) => {
     const res = await fetch(`/api/playlists/${playlistId}`, {
         method: "PUT",
@@ -134,7 +156,7 @@ const playlistReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_USER_PLAYLISTS: {
-            const newState = { ...state };
+            const newState = {  };
             action.playlists.playlists.forEach(playlist => {
                 newState[playlist.id] = playlist
             });
@@ -143,6 +165,15 @@ const playlistReducer = (state = initialState, action) => {
         case ADD_PLAYLIST: {
             const newState = { ...state, [action.playlist.id]: action.playlist}
             return newState;
+        }
+        case ADD_SONG_TO_PLAYLIST: {
+            console.log(action)
+            const newState = { }
+            let counter = 1
+            action.song.forEach((song) => {
+                newState[counter] = song
+                counter++
+            })
         }
         case EDIT_PLAYLIST: {
             const newState = { ...state, [action.playlist.id]: action.playlist}

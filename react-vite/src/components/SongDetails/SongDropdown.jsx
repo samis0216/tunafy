@@ -52,7 +52,7 @@ function SongDropdown({ song }) {
                         <OpenModalMenuItem
                             itemText="Add to Playlist"
                             onItemClick={closeMenu}
-                            modalComponent={<AddtoPlaylistModal />}/>
+                            modalComponent={<AddtoPlaylistModal song={song} />}/>
                     </span>
                 </div>
                 <div className="playlist-delete-drop">
