@@ -9,7 +9,7 @@ export default function PlaylistDropdown({playlistId}) {
     const user = useSelector((store) => store.session.user);
     const playlistObj = useSelector(state => state.playlists);
     const currentPlaylist = playlistObj[playlistId];
-    
+
     const ulRef = useRef();
 
     const toggleMenu = (e) => {
@@ -41,7 +41,7 @@ export default function PlaylistDropdown({playlistId}) {
                 </span>
             )}
             {showMenu && (
-            <span className="playlist-dropdown" ref={ulRef}>
+            <span className="playlist-dropdown" style={{left: 402}} ref={ulRef}>
                 {user && (
                 <div className="playlist-delete-drop">
                     <i className="fa-solid fa-circle-minus"></i>
