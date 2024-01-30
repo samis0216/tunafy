@@ -83,7 +83,6 @@ export default function SongDetails() {
                             handleLike()}}></i>}
                     <SongDropdown song={song} />
                 </div>
-
             </div>
         </section>
     )
