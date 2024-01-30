@@ -52,7 +52,7 @@ def deleteSong(id):
     remove_song_from_s3(song.to_dict()["song_file_url"])
     db.session.delete(song)
     db.session.commit()
-    songs = [song.to_dict() for song in Song.query.all()]
+    songs = [song.to_dict() for song in Song.query.filter(Song.id != id).all()]
     return songs
 
 @song_routes.route("/<int:id>/update", methods=['PUT'])

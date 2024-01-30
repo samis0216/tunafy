@@ -12,13 +12,17 @@ export default function SongTile({ songs, song, albums, artist, count }) {
     if(songList) currentSong
     // console.log(Object.values(albums))
     // const dispatch = useDispatch()
+    // const ourSong = useSelector(state=> state.songs[count])
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
+    let cool = (Object.values(songs))
+    console.log(cool)
+
 
     return (
         <>
-            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(song.id - 1)}}>
+            <div onClick={() => {setSongList(cool); setCurrentSong(count-1)}}>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
                         <p className="song-id">{count}</p>

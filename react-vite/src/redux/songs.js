@@ -133,7 +133,9 @@ export const deleteSongThunk = (songId) => async(dispatch) => {
     })
 
     if (res.ok) {
+        const data = await res.json()
         dispatch(deleteSong(songId))
+        return data
     }
 
 }
@@ -143,7 +145,7 @@ const initialState = {}
 const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS: {
-            const newState = { ...state };
+            const newState = { };
             let counter = 1
             action.songs.songs.forEach(song => {
                 newState[counter] = song
@@ -152,7 +154,7 @@ const songReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_ONE_SONG: {
-            const newState = { ...state }
+            const newState = {}
             newState[action.song.id] = action.song
             return newState
         }
@@ -174,16 +176,18 @@ const songReducer = (state = initialState, action) => {
             return newState;
         }
         case ADD_SONG: {
-            const newState = { ...state, [action.song.id]: action.song }
+            const newState = { }
+            newState[action.song.id] = action.song
             return newState;
         }
         case EDIT_SONG: {
-            const newState = { ...state, [action.song.id]: action.song }
+            const newState = {}
+            newState[action.song.id] = action.song
             return newState;
         }
         case DELETE_SONG: {
-            const newState = { ...state };
-            delete newState[action.songId]
+            const newState = {...state}
+            newState.delete(action.songId)
             return newState;
         }
         default:
