@@ -187,7 +187,7 @@ const songReducer = (state = initialState, action) => {
         }
         case DELETE_SONG: {
             const newState = {...state}
-            newState.delete(action.songId)
+            delete newState[action.songId]
             return newState;
         }
         default:
