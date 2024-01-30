@@ -7,7 +7,7 @@ class Song(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id=db.Column(db.Integer, primary_key=True)
-    song_name=db.Column(db.String(30), nullable=False)
+    song_name=db.Column(db.String(225), nullable=False)
     artist_id=db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
     album_id=db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=True)
     song_cover_url=db.Column(db.String, nullable=False)
