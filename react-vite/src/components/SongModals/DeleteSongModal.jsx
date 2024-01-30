@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import "./DeleteSongModal.css"
 import { useDispatch } from "react-redux";
-import { deleteSongThunk } from "../../redux/songs";
+import { deleteSongThunk, loadSongsThunk } from "../../redux/songs";
+import AllSongs from "../AllSongs/AllSongs";
 
 
 const DeleteSongModal = ({song}) => {
@@ -13,7 +14,6 @@ const DeleteSongModal = ({song}) => {
     const handleDelete = (songId) => {
         dispatch(deleteSongThunk(songId))
         navigate('/songs')
-
     }
 
     return (
