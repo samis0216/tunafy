@@ -13,6 +13,7 @@ export default function UpdateAlbum() {
 
     const [image, setImage] = useState(null);
     const [name, setName] = useState(album?.album_name)
+    const [clicked, setClicked] = useState(false);
     const [imageLoading, setImageLoading] = useState(false);
 
 
@@ -31,7 +32,7 @@ export default function UpdateAlbum() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    console.log("USER ID:", user.id)
+
     formData.append("album_cover_url", image);
     formData.append("album_name", name);
     formData.append("artist_id", user.id);
@@ -62,13 +63,28 @@ export default function UpdateAlbum() {
           </div>
 
           <div className="album-form-box">
-            <p>Upload Cover Photo</p>
-            <input
-              className="update-album-inputs"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-              />
+            {!clicked ? (
+              <div className="edit-album-image-container">
+                <p>Album Cover Photo</p>
+                <div className="edit-album-image-div">
+                  <p
+                    className="edit-form-x"
+                    onClick={() => setClicked(!clicked)}
+                  >&#10060;</p>
+                  <img className="edit-album-image" src={`${album?.album_cover_url}`} />
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="edit-album-p">Upload Cover Photo</p>
+                <input
+                  className="update-album-inputs"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+              </>
+            )}
           </div>
 
           <div className="update-button">

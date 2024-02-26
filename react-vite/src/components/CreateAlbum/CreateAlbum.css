@@ -37,6 +37,37 @@
   width: 450px;
 }
 
+.edit-album-image-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.edit-album-image-container > p {
+  padding-bottom: 5px;
+}
+
+.edit-album-image-div {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+}
+
+.edit-form-x {
+  align-self: flex-end;
+  padding: 4px;
+  margin-top: 3px;
+}
+
+.edit-form-x:hover {
+  cursor: pointer;
+}
+
+.edit-album-image {
+  padding: 5px;
+}
+
 .album-form-box > p{
   padding-bottom: 5px;
 }

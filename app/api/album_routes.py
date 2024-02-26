@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Album, db, Song
 from app.forms.album_form import AlbumForm
+from app.forms.edit_album_form import EditAlbumForm
 from .aws_images import upload_img_to_s3, get_unique_filename_img, remove_img_from_s3
 
 album_routes = Blueprint('album', __name__)
@@ -37,16 +38,16 @@ def singleAlbum(id):
 
 @album_routes.route("/<int:albumId>/update", methods=["PUT"])
 def updateAlbum(albumId):
-    form = AlbumForm()
+    form = EditAlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("this is what your looking for", form.data)
         updatedAlbum = Album.query.get(albumId)
         data = form.data
-        form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
+        if data['album_cover_url'] is not None:
+            form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
+            updatedAlbum.album_cover_url = upload_img_to_s3(form.album_cover_url.data).get('url')
         updatedAlbum.album_name = data["album_name"]
-        updatedAlbum.album_cover_url = upload_img_to_s3(form.album_cover_url.data).get('url')
-        print("DATA: ", data)
-        print("UPDATED: ", updatedAlbum)
         db.session.commit()
         return redirect('/api/albums')
     return "Bad Data"
