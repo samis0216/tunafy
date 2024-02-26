@@ -85,5 +85,5 @@ def removeSong(id):
     song = Song.query.get(songId)
     song.album_id = None
     db.session.commit()
-    album = Album.query.get(id).to_dict
+    album = Album.query.get(id).to_dict()
     return album

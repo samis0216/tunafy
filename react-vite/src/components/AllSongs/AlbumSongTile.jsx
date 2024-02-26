@@ -20,6 +20,7 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     const isOwner = song.artist_id == user.id;
+
     return (
         <>
             <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(song.id - 4)}}>
@@ -36,7 +37,11 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
 
                     <div className="right-side-song">
                     {isOwner && (
-                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span>
+                        <span className='remove-feat'>
+                            <OpenModalMenuItem
+                            itemText='Remove'
+                            modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/>
+                            </span>
                         )}
                         <p className="song-time">{`${minutes}:${seconds}`}</p>
                     </div>

@@ -11,9 +11,10 @@ const RemoveSongPlaylist = ({ song, playlistId }) => {
   const { closeModal } = useModal();
   const playlists = useSelector(state => state.playlists)
 
-  const handleSubmit = (playlistId) => {
-    dispatch(deleteFromPlaylistThunk(song.id, playlistId))
-    dispatch(loadPlaylistSongsThunk(playlistId))
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await dispatch(deleteFromPlaylistThunk(song.id, playlistId))
+    await dispatch(loadPlaylistSongsThunk(playlistId))
     closeModal();
     navigate(`/playlists/${playlistId}`)
   }
@@ -22,9 +23,9 @@ const RemoveSongPlaylist = ({ song, playlistId }) => {
     <div className="delete-song-modal">
       <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <h2 className="delete-header-text" style={{padding: 10}}>Removing from {playlists?.[playlistId].playlist_name}</h2>
-          <p style={{color: "white"}}>{song.song_name} will no longer be in {playlists?.[playlistId].playlist_name}.</p>
+          <p>{song.song_name} will no longer be in {playlists?.[playlistId].playlist_name}.</p>
           <div className="delete-buttons-holder">
-              <button className='delete-modal-button' onClick={handleSubmit(playlistId)}>Remove</button>
+              <button className='delete-modal-button' onClick={(e) => handleSubmit(e)}>Remove</button>
               <button className='cancel-modal-button' onClick={closeModal}>Cancel</button>
           </div>
       </div>
