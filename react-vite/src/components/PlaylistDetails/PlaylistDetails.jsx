@@ -89,7 +89,7 @@ export default function PlaylistDetails() {
                             <p className="song-album-name" onClick={() => navigate(`/albums/${album[song?.album_id]?.id}`)}>{album[song?.album_id]?.album_name}</p>
                             <div className="right-side-song">
                             {isOwner && (
-                                <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/></span>)}
+                                <span className='remove-feat'><OpenModalMenuItem itemText='Remove' modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/></span>)}
                                 <p className="song-time">{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
                             </div>
                         </div>
