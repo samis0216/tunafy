@@ -19,7 +19,6 @@ export default function UpdateSong() {
     const [song_file, setSongFile] = useState(null)
     const [displayFile, setDisplayFile] = useState(null)
     const [awsLoading, setAwsLoading] = useState(false)
-    console.log('songsss', song)
 
     useEffect(()=> {
         dispatch(loadOneSongThunk(id))
