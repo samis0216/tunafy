@@ -14,6 +14,7 @@ export default function AllSongs() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext);
+
     useEffect(() => {
         dispatch(loadSongsThunk())
         dispatch(loadAlbumsThunk())
@@ -30,6 +31,7 @@ export default function AllSongs() {
     const keys = Object.keys(songs)
 
     const songers = Object.values(songs)
+
     return (
         <section className="page-container">
             <div className="songs-header">

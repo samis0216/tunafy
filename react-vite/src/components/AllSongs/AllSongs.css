@@ -102,6 +102,7 @@
 .hashtag-title {
   display: flex;
   flex-direction: row;
+  min-width: 580px;
 }
 
 .hashtag {

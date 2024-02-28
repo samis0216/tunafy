@@ -35,9 +35,9 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
                     <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{album ? album.album_name : song.song_name}</p>
 
                     <div className="right-side-song">
-                    {isOwner && (
-                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span>
-                        )}
+                    {isOwner ?
+                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span> :
+                        <p style={{ paddingRight: 30, visibility: 'hidden' }}>Remove</p>}
                         <p className="song-time">{`${minutes}:${seconds}`}</p>
                     </div>
                 </div>

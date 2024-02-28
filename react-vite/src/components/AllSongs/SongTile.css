@@ -58,6 +58,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 20px;
+    cursor: pointer;
 }
 
 .playlist-song-tile:hover {
@@ -68,8 +69,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 580px;
+    max-width: 580px;
 }
 
 .song-id {

@@ -6,6 +6,7 @@
     color: white;
     margin-top: 100px;
     border-radius: 10px;
+    margin-bottom: 100px;
 }
 
 .create-song-box {
@@ -87,4 +88,31 @@ input[type='file']:hover{
 .loading-text {
     color: white;
     padding-top: 30px;
+}
+
+.song-file-label {
+    display: flex;
+    flex-direction: row;
+    width: 450px;
+}
+
+#update-song-file-input {
+    visibility: hidden;
+}
+
+.song-file-input {
+    margin-top: 5px;
+    padding: 8px 3px;
+    border: 1px #b3b3b3 solid;
+    background-color: rgb(19, 17, 17);
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    min-width: 442px;
+    font-size: small;
+    overflow: scroll;
+}
+
+.song-file-input:hover {
+    border: 1px solid white;
   }
