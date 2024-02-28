@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { loadLikedSongsThunk } from "../../redux/collection"
 import { loadAlbumsThunk } from "../../redux/albums"
@@ -10,6 +10,7 @@ import likedSongsCover from './13.png'
 import UnlikeSongModal from "../SongModals/UnlikeSongModal"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { IndexContext } from "../../context/IndexContext"
+import playlistReducer from "../../redux/playlists"
 
 export default function Collection() {
     const dispatch = useDispatch()
@@ -20,8 +21,29 @@ export default function Collection() {
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
     const [currentSong, setCurrentSong] = useContext(IndexContext)
+    const [playing, setPlaying] = useState(false);
+    const [count, setCount] = useState(0);
     const keys = Object.keys(likedSongs)
     const songs = Object.values(likedSongs)
+
+    const handleClick = () => {
+        if (count == 0) {
+            setSongList(songs);
+            setCurrentSong(0);
+            setPlaying(true);
+        } else {
+            setPlaying(!playing);
+            const audi = document.getElementsByTagName('audio')[0]
+            if (playing) {
+                audi.pause()
+            }
+            if (!playing) {
+                audi.play()
+            }
+
+        }
+        setCount(count+1);
+    }
 
     useEffect(() => {
         dispatch(loadLikedSongsThunk(user.id))
@@ -49,8 +71,8 @@ export default function Collection() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button">
-                        <i className="fa-solid fa-play fa-2xl play-icon" onClick={()=> {setSongList(songs); setCurrentSong(0)}}></i>
+                    <div className="playlist-play-button" onClick={()=> {handleClick()}}>
+                        {!playing ? <i className="fa-solid fa-play fa-2xl play-icon"></i> : <i className="fa-solid fa-pause fa-2xl play-icon"></i> }
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                 </div>
@@ -67,7 +89,7 @@ export default function Collection() {
                 </div>
                 <div className="song-info">
                     {keys?.map(key => (
-                        <div key={key} className="playlist-song-tile" onClick={() => {setSongList(songs); setCurrentSong(key-1)}}>
+                        <div key={key} className="playlist-song-tile" onClick={() => {setSongList(songs); setCurrentSong(key-1); setPlaying(true); setCount(1)}}>
                             <div className="song-info-div">
                                 <p className="song-id">{key}</p>
                                 <img className='song-cover-img' src={likedSongs[key].song_cover_url} alt='song-cover' />
