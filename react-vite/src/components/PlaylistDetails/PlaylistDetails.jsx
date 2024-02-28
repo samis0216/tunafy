@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -25,8 +25,29 @@ export default function PlaylistDetails() {
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
     const [currentSong, setCurrentSong] = useContext(IndexContext);
+    const [playing, setPlaying] = useState(false);
+    const [count, setCount] = useState(0);
     if (songList) currentSong
 
+    const songers = Object.values(playlistSongs)
+    const handleClick = () => {
+        if (count == 0) {
+            setSongList(songers);
+            setCurrentSong(0);
+            setPlaying(true);
+        } else {
+            setPlaying(!playing);
+            const audi = document.getElementsByTagName('audio')[0]
+            if (playing) {
+                audi.pause()
+            }
+            if (!playing) {
+                audi.play()
+            }
+
+        }
+        setCount(count+1);
+    }
 
     useEffect(() => {
         dispatch(loadOnePlaylistThunk(playlistId))
@@ -37,7 +58,6 @@ export default function PlaylistDetails() {
 
     if (!playlist || !playlistSongs) return null
     const songKeys = Object.keys(playlistSongs)
-    const songers = Object.values(playlistSongs)
     const totDur = Object.values(songers).reduce((total, obj) => obj.duration + total, 0)
     let songCounter = 1;
     const isOwner = playlist.creator_id == userSession.id
@@ -58,8 +78,8 @@ export default function PlaylistDetails() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button" onClick={() => {setSongList(songers); setCurrentSong(0)}}>
-                        <i className="fa-solid fa-play fa-2xl play-icon"></i>
+                    <div className="playlist-play-button" onClick={() => handleClick()}>
+                    {!playing ? <i className="fa-solid fa-play fa-2xl play-icon"></i> : <i className="fa-solid fa-pause fa-2xl play-icon"></i> }
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                     <PlaylistDropdown playlistId={playlistId} />
@@ -77,7 +97,7 @@ export default function PlaylistDetails() {
                 </div>
                 <div className="song-info">
                     {songKeys?.map(playSongId => (
-                        <div key={playSongId} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(playSongId)}}>
+                        <div key={playSongId} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(playSongId); setPlaying(true); setCount(1)}}>
                             <div className="song-info-div" >
                                 <p className="song-id">{songCounter++}</p>
                                 <img className='song-cover-img' src={songers[playSongId]?.song_cover_url} alt='song-cover' />

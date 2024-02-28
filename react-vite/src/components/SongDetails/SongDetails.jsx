@@ -1,6 +1,6 @@
 import { loadOneSongThunk } from "../../redux/songs";
 import { loadUsersThunk } from "../../redux/users";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -17,8 +17,9 @@ export default function SongDetails() {
     const user = useSelector(state => state.users)
     const album = useSelector(state => state.albums[song?.album_id])
     const userId = useSelector(state => state.session.user)
-    const liked = useSelector(state => state.collection)
-    if (songList) songList
+    const liked = useSelector(state => state.collection[songId])
+    const [songLiked, setSongLiked] = useState(liked)
+    console.log(liked, songList)
 
     const minutes = Math.floor(song?.duration / 60)
     let seconds = song?.duration % 60
@@ -75,8 +76,10 @@ export default function SongDetails() {
                     <div className="playlist-play-button" onClick={() => setSongList(songer)}>
                         <i className="fa-solid fa-play fa-2xl play-icon"></i>
                     </div>
-                    {Object.prototype.hasOwnProperty.call(liked, songId) ? <i className="fa-solid fa-heart" style={{ fontSize: 38, color: '#63E6BE' }} onClick={()=> {
+                    {songLiked ? <i className="fa-solid fa-heart" style={{ fontSize: 38, color: '#63E6BE' }} onClick={()=> {
+                        setSongLiked(false)
                         handleDislike()}}></i> : <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon" onClick={() => {
+                            setSongLiked(true)
                             handleLike()}}></i>}
                     <SongDropdown song={song} />
                 </div>
