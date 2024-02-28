@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react"
+import { useEffect, useContext, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { loadOneAlbumThunk } from "../../redux/albums"
@@ -8,14 +8,16 @@ import { MusicContext } from "../../context/MusicContext";
 import AlbumSongTile from "../AllSongs/AlbumSongTile"
 import './AlbumDetails.css'
 import AlbumDropdown from "../AllAlbums/AlbumDropdown"
+import { IndexContext } from "../../context/IndexContext"
 
 export default function AlbumDetails() {
   const dispatch = useDispatch()
-  const {albumId} = useParams()
+  const { albumId } = useParams()
   const albumObj = useSelector((store) => store.albums)
   const album = albumObj[albumId]
   console.log(album)
   const [songList, setSongList] = useContext(MusicContext);
+  const [currentSong, setCurrentSong] = useContext(IndexContext)
   console.log(songList)
 
   useEffect(() => {
@@ -48,22 +50,27 @@ export default function AlbumDetails() {
       </div>
       <div className="album-song-list">
         <div className="song-list-symbols">
-          <div className="album-play-button" onClick={() => setSongList(songers)}>
-              <i className="fa-solid fa-play fa-2xl play-icon"></i>
+          <div className="album-play-button" onClick={() => { setSongList(songers); setCurrentSong(0)}}>
+            <i className="fa-solid fa-play fa-2xl play-icon"></i>
           </div>
+
+            {/* // : <div className="album-play-button" onClick={() => { setSongList(songers); ; setPlaying(false) }}>
+            //   <i className="fa-solid fa-pause fa-2xl play-icon"></i>
+            // </div> */}
+
           {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
           <AlbumDropdown albumId={albumId} />
         </div>
         <div className="song-list-info-header">
-            <div className="hashtag-title">
-                <p className="hashtag">#</p>
-                <p>Title</p>
-            </div>
-            <p style={{ paddingRight: 254 }}>Album</p>
-            <div className="heart-duration">
-              <p style={{ paddingRight: 2, visibility: 'hidden'}}>Remove</p>
-              <i className="fa-regular fa-clock duration-icon"></i>
-            </div>
+          <div className="hashtag-title">
+            <p className="hashtag">#</p>
+            <p>Title</p>
+          </div>
+          <p style={{ paddingRight: 254 }}>Album</p>
+          <div className="heart-duration">
+            <p style={{ paddingRight: 2, visibility: 'hidden' }}>Remove</p>
+            <i className="fa-regular fa-clock duration-icon"></i>
+          </div>
         </div>
         <div className="song-info">
           {

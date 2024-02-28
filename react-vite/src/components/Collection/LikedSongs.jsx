@@ -9,6 +9,7 @@ import { useNavigate} from "react-router-dom"
 import likedSongsCover from './13.png'
 import UnlikeSongModal from "../SongModals/UnlikeSongModal"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { IndexContext } from "../../context/IndexContext"
 
 export default function Collection() {
     const dispatch = useDispatch()
@@ -17,9 +18,10 @@ export default function Collection() {
     const user = useSelector(state => state.session.user)
     const users = useSelector(state => state.users)
     const album = useSelector(state => state.albums)
-    const [srv, setSrv] = useContext(MusicContext);
+    const [songList, setSongList] = useContext(MusicContext);
+    const [currentSong, setCurrentSong] = useContext(IndexContext)
     const keys = Object.keys(likedSongs)
-    console.log(srv)
+    const songs = Object.values(likedSongs)
 
     useEffect(() => {
         dispatch(loadLikedSongsThunk(user.id))
@@ -48,7 +50,7 @@ export default function Collection() {
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
                     <div className="playlist-play-button">
-                        <i className="fa-solid fa-play fa-2xl play-icon"></i>
+                        <i className="fa-solid fa-play fa-2xl play-icon" onClick={()=> {setSongList(songs); setCurrentSong(0)}}></i>
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                 </div>
@@ -65,7 +67,7 @@ export default function Collection() {
                 </div>
                 <div className="song-info">
                     {keys?.map(key => (
-                        <div key={key} className="playlist-song-tile" onClick={() => setSrv(`${likedSongs[key].song_file_url}`)}>
+                        <div key={key} className="playlist-song-tile" onClick={() => {setSongList(songs); setCurrentSong(key-1)}}>
                             <div className="song-info-div">
                                 <p className="song-id">{key}</p>
                                 <img className='song-cover-img' src={likedSongs[key].song_cover_url} alt='song-cover' />

@@ -20,10 +20,11 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     const isOwner = song.artist_id == user.id;
+    console.log(count-1)
 
     return (
         <>
-            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(song.id - 4)}}>
+            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(count-1)}}>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
                         <p className="song-id">{count}</p>

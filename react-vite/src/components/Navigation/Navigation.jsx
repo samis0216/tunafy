@@ -63,7 +63,7 @@ function Navigation() {
 
   const Player = () => (
     <AudioPlayer
-      autoPlay={true}
+      autoPlay={false}
       showSkipControls={true}
       onClickNext={() => setCurrentSong(i => i = helperFunctionNext(i))}
       onClickPrevious={() => setCurrentSong(i => i = helperFunctionPrev(i))}

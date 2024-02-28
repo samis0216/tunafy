@@ -159,10 +159,11 @@ const songReducer = (state = initialState, action) => {
             return newState
         }
         case LOAD_PLAYLIST_SONGS: {
-            const newState = {  };
-            newState.songs = {}
+            const newState = { };
+            let counter = 0
             action.songs.playlist_songs.forEach(song => {
-                newState.songs[song.id] = song
+                newState[counter] = song
+                counter++
             })
             return newState;
         }
