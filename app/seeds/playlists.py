@@ -53,7 +53,7 @@ def seed_playlists():
   play8 = Playlist(
     playlist_name = 'Songs for Coding',
     creator_id = 4,
-    playlist_cover_url = 'https://cdn.discordapp.com/attachments/433472365498728468/1201361919915860058/IMG_3809.webp?ex=65c98a79&is=65b71579&hm=3c9fb000b169854fd7884d85bf12a057457707db4f2b65f619c6c8339eaa18de&',
+    playlist_cover_url = 'https://pbs.twimg.com/media/FgfRWcSVsAEi6y2.jpg',
     description = 'Time to code!',
     private = False
   )
