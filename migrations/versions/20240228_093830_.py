@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 56b9bd64d8d6
+Revision ID: 59999f9b5185
 Revises: 
-Create Date: 2024-01-29 02:37:06.568898
+Create Date: 2024-02-28 09:38:30.876194
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '56b9bd64d8d6'
+revision = '59999f9b5185'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade():
     )
     op.create_table('albums',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('album_name', sa.String(length=30), nullable=False),
+    sa.Column('album_name', sa.String(length=45), nullable=False),
     sa.Column('artist_id', sa.Integer(), nullable=False),
     sa.Column('album_cover_url', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['artist_id'], ['users.id'], ),
@@ -47,7 +47,7 @@ def upgrade():
     )
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('song_name', sa.String(length=30), nullable=False),
+    sa.Column('song_name', sa.String(length=225), nullable=False),
     sa.Column('artist_id', sa.Integer(), nullable=True),
     sa.Column('album_id', sa.Integer(), nullable=True),
     sa.Column('song_cover_url', sa.String(), nullable=False),
