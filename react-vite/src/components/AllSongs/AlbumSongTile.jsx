@@ -36,7 +36,7 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
 
                     <div className="right-side-song">
                     {isOwner ?
-                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span> :
+                        <span className='remove-feat'><OpenModalMenuItem itemText='Remove' modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span> :
                         <p style={{ paddingRight: 30, visibility: 'hidden' }}>Remove</p>}
                         <p className="song-time">{`${minutes}:${seconds}`}</p>
                     </div>
