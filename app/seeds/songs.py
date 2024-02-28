@@ -142,7 +142,7 @@ def seed_songs():
     artist_id = 3,
     album_id = 5,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/0/08/I_Let_It_in_and_It_Took_Everything.jpg',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/d31d93b1bb1f4cc894245e8df7449714.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Loathe_-_Theme.mp3',
     plays = 2665372,
     duration = 83
   )
@@ -160,7 +160,7 @@ def seed_songs():
     artist_id = 3,
     album_id = 5,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/0/08/I_Let_It_in_and_It_Took_Everything.jpg',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/baa225521bb4497db93c2d426d3f44dd.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Loathe_-_Broken_Vision_Rhythm.mp3',
     plays = 3353764,
     duration = 155
   )
@@ -178,7 +178,7 @@ def seed_songs():
     artist_id = 3,
     album_id = 5,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/0/08/I_Let_It_in_and_It_Took_Everything.jpg',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/a6cb607fdff14e28b6126c865d6e8548.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Loathe_-_451_Days.mp3',
     plays = 2462491,
     duration = 207
   )
@@ -241,7 +241,7 @@ def seed_songs():
     artist_id = 3,
     album_id = 5,
     song_cover_url = 'https://upload.wikimedia.org/wikipedia/en/0/08/I_Let_It_in_and_It_Took_Everything.jpg',
-    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/572ff7bb13874005be08390b04186ba6.mp3',
+    song_file_url = 'https://tunafy-music.s3.us-west-1.amazonaws.com/Loathe_-_A_Sad_Cartoon.mp3',
     plays = 11626390,
     duration = 315
   )
