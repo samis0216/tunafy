@@ -10,7 +10,6 @@ export default function UpdateSong() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const id = useParams().songId
-    console.log(id)
 
     const song = useSelector(state => state.songs?.[id])
     const [songName, setSongName] = useState(song?.song_name)
@@ -21,6 +20,8 @@ export default function UpdateSong() {
     console.log(song)
     const [song_cover, setSongCover] = useState('')
     const [song_file, setSongFile] = useState('')
+    const [clicked, setClicked] = useState(false);
+    const [clicked2, setClicked2] = useState(false);
     const [awsLoading, setAwsLoading] = useState(false)
     const user = useSelector(state => state.session.user)
 
@@ -61,26 +62,65 @@ export default function UpdateSong() {
                         />
                     </div>
                     <div className="entry-container">
-                        <p>Upload Cover Photo</p>
+                        {!clicked ? (
+                            <div className="edit-song-image-container">
+                                <p>Song Cover Photo</p>
+                                <div className="edit-song-image-div">
+                                    <p
+                                    className="edit-form-x"
+                                    onClick={() => setClicked(!clicked)}
+                                    >&#10060;</p>
+                                    <img className="edit-song-image" src={`${song?.song_cover_url}`} />
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <p>Upload Cover Photo</p>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        setSongCover(e.target.files[0])
+                                        }
+                                    }
+                                    className="song-inputs"
+                                />
+                            </>
+                        )}
+                        {/* <p>Upload Cover Photo</p>
                         <input
                             type="file"
                             accept="image/*"
                             onChange={(e) => {
                                 setSongCover(e.target.files[0])
-                                console.log(e.target.files[0])
                                 }
                             }
                             className="song-inputs"
-                        />
+                        /> */}
                     </div>
                     <div className="entry-container">
-                        <p>Upload Song File</p>
-                        <input
-                            type="file"
-                            accept="audio/*"
-                            className="song-inputs"
-                            onChange={(e) => setSongFile(e.target.files[0])}
-                        />
+                    {!clicked2 ? (
+                            <div>
+                                <p>Song song</p>
+                                <div>
+                                    <p
+                                        className="edit-form-x2"
+                                        onClick={() => setClicked2(!clicked2)}
+                                    >&#10060;</p>
+                                    <h1>{`${song?.song_name}`}</h1>
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <p>Upload Song File</p>
+                                <input
+                                    type="file"
+                                    accept="audio/*"
+                                    className="song-inputs"
+                                    onChange={(e) => setSongFile(e.target.files[0])}
+                                />
+                            </>
+                        )}
                     </div>
                     <div className="update-button">
                         <button type="submit" id="submit_butt">Update Song</button>

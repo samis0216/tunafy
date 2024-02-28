@@ -41,6 +41,22 @@
     padding-bottom: 5px;
   }
 
+.edit-song-image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-song-image-container > p {
+    padding-bottom: 5px;
+  }
+
+.edit-song-image-div {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+}
+
 .song-inputs {
     margin-top: 5px;
     padding: 8px 3px;
@@ -49,6 +65,20 @@
     color: white;
     border-radius: 3px;
     margin-bottom: 10px;
+}
+
+.edit-form-x {
+    align-self: flex-end;
+    padding: 4px;
+    margin-top: 3px;
+}
+
+.edit-form-x:hover {
+    cursor: pointer;
+}
+
+.edit-song-image {
+    padding: 5px;
 }
 
 .song-inputs:hover {

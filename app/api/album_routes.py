@@ -41,7 +41,6 @@ def updateAlbum(albumId):
     form = EditAlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("this is what your looking for", form.data)
         updatedAlbum = Album.query.get(albumId)
         data = form.data
         if data['album_cover_url'] is not None:

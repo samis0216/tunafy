@@ -6,7 +6,7 @@ from app.models import Song
 from app.api.aws_images import IMAGES_ALLOWED_EXTENSIONS
 from app.api.aws_songs import SONGS_ALLOWED_EXTENSIONS
 
-class SongForm(FlaskForm):
+class EditSongForm(FlaskForm):
     song_name = StringField('Song Name', validators=[DataRequired()])
     artist_id = IntegerField('Artist Id', validators=[DataRequired()])
     song_cover_url = FileField('Song Cover URL', validators=[FileAllowed(list(IMAGES_ALLOWED_EXTENSIONS))])
