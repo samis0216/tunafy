@@ -42,11 +42,28 @@ def updateAlbum(albumId):
     if form.validate_on_submit():
         updatedAlbum = Album.query.get(albumId)
         data = form.data
-        form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
+        album_cover_url = form.data['album_cover_url']
+
+        if album_cover_url is not None:
+            remove_img_from_s3(updatedAlbum.album_cover_url)
+            album_cover_url.filename = get_unique_filename_img(album_cover_url.filename)
+            upload = upload_img_to_s3(album_cover_url)
+            print(upload)
+
+            if 'url' not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return {'errors': {'message': 'error with upload'}}, 401
+
+            url = upload['url']
+            updatedAlbum.album_cover_url = url
+
         updatedAlbum.album_name = data["album_name"]
-        updatedAlbum.album_cover_url = upload_img_to_s3(form.album_cover_url.data).get('url')
-        print("DATA: ", data)
-        print("UPDATED: ", updatedAlbum)
+        # form.album_cover_url.data.filename = get_unique_filename_img(form.album_cover_url.data.filename)
+        # updatedAlbum.album_cover_url = upload_img_to_s3(form.album_cover_url.data).get('url')
+        # print("DATA: ", data)
+        # print("UPDATED: ", updatedAlbum)
         db.session.commit()
         return redirect('/api/albums')
     return "Bad Data"

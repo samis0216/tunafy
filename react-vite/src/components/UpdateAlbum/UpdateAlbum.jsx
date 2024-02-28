@@ -10,11 +10,10 @@ export default function UpdateAlbum() {
     const navigate = useNavigate();
     const user = useSelector((state => state.session.user))
     const album = useSelector((state) => state.albums?.[albumId])
-
     const [image, setImage] = useState(null);
+    const [displayImage, setDisplayImage] = useState(null)
     const [name, setName] = useState(album?.album_name)
     const [imageLoading, setImageLoading] = useState(false);
-
 
     useEffect(() => {
         dispatch(loadOneAlbumThunk(albumId));
@@ -23,10 +22,19 @@ export default function UpdateAlbum() {
     useEffect(() => {
         if (album) {
             setName(album?.album_name || '')
-            setImage(album?.album_cover_url || '')
+            setDisplayImage(album?.album_cover_url || '')
         }
     }, [album])
 
+    const fileWrap = (e) => {
+      e.stopPropagation();
+
+      const tempFile = e.target.files[0];
+
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImage(tempFile);
+      setDisplayImage(newImageURL)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,13 +70,15 @@ export default function UpdateAlbum() {
           </div>
 
           <div className="album-form-box">
-            <p>Upload Cover Photo</p>
-            <input
+            <p>Update Cover Photo</p>
+            <p style={{fontSize: 13, paddingBottom: 10, paddingTop: 5}}>To update the cover photo, click the thumbnail below.</p>
+            <label className="image-input-label" htmlFor="update-image-input"><img className="thumbnail" src={displayImage}/><input
               className="update-album-inputs"
+              id='update-image-input'
               type="file"
               accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-              />
+              onChange={fileWrap}
+              /></label>
           </div>
 
           <div className="update-button">

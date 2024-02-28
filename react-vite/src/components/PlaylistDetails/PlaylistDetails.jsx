@@ -69,10 +69,10 @@ export default function PlaylistDetails() {
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p style={{ paddingRight: 280 }}>Album</p>
+                    <p style={{ paddingRight: 254 }}>Album</p>
                     <div className="heart-duration">
-                    {/* <i className="fa-regular fa-heart"></i> */}
-                    <i className="fa-regular fa-clock duration-icon"></i>
+                        <p style={{ paddingRight: 2, visibility: 'hidden'}}>Remove</p>
+                        <i className="fa-regular fa-clock duration-icon"></i>
                     </div>
                 </div>
                 <div className="song-info">

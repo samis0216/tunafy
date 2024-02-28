@@ -6,6 +6,7 @@
   color: white;
   margin-top: 100px;
   border-radius: 10px;
+  margin-bottom: 100px;
 }
 
 .update-album-box {
@@ -39,6 +40,28 @@
 
 .album-form-box > p{
   padding-bottom: 5px;
+}
+
+.image-input-label {
+  display: flex;
+  flex-direction: row;
+}
+
+#update-image-input {
+  visibility: hidden;
+}
+
+.thumbnail {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border: 1px #b3b3b3 solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  border: 1px solid white;
 }
 
 .update-album-inputs {
