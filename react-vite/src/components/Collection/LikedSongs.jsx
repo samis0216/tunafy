@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { loadLikedSongsThunk } from "../../redux/collection"
 import { loadAlbumsThunk } from "../../redux/albums"
@@ -20,8 +20,22 @@ export default function Collection() {
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
     const [currentSong, setCurrentSong] = useContext(IndexContext)
+    const [count, setCount] = useState(0);
     const keys = Object.keys(likedSongs)
     const songs = Object.values(likedSongs)
+
+    const handleClick = () => {
+        console.log(count)
+        if (count == 0) {
+            setSongList(songs);
+            setCurrentSong(0);
+        } else {
+
+        }
+        setCount(count+1);
+        console.log(count)
+
+    }
 
     useEffect(() => {
         dispatch(loadLikedSongsThunk(user.id))
@@ -50,7 +64,7 @@ export default function Collection() {
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
                     <div className="playlist-play-button">
-                        <i className="fa-solid fa-play fa-2xl play-icon" onClick={()=> {setSongList(songs); setCurrentSong(0)}}></i>
+                        <i className="fa-solid fa-play fa-2xl play-icon" onClick={()=> {handleClick()}}></i>
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                 </div>
