@@ -14,6 +14,17 @@ export default function UpdateAlbum() {
     const [displayImage, setDisplayImage] = useState(null)
     const [name, setName] = useState(album?.album_name)
     const [imageLoading, setImageLoading] = useState(false);
+    const [errors, setErrors] = useState({})
+
+    if(!user) navigate('/')
+
+    useEffect(() => {
+      const newErrors = {};
+      if (!String(name).length) {
+        newErrors.name = 'Name is required.'
+      }
+      setErrors(newErrors);
+    }, [name])
 
     useEffect(() => {
         dispatch(loadOneAlbumThunk(albumId));
@@ -38,21 +49,23 @@ export default function UpdateAlbum() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log("USER ID:", user.id)
-    formData.append("album_cover_url", image);
-    formData.append("album_name", name);
-    formData.append("artist_id", user.id);
 
-    setImageLoading(true);
-    await dispatch(editAlbumThunk(formData, albumId));
-    navigate(`/albums/${albumId}`)
+    if (!Object.values(errors).length) {
+      const formData = new FormData();
+      formData.append("album_cover_url", image);
+      formData.append("album_name", name);
+      formData.append("artist_id", user.id);
+
+      setImageLoading(true);
+      await dispatch(editAlbumThunk(formData, albumId));
+      navigate(`/albums/${albumId}`)
+    }
   }
 
   return (
     <div className="album-main">
       <div className="update-album-box">
-        <h1>Update &quot;{album?.album_name}&quot;</h1>
+        <h1 style={{paddingBottom: 20}}>Update &quot;{album?.album_name}&quot;</h1>
         <form
         action={`/api/albums/${albumId}`}
         onSubmit={handleSubmit}
@@ -67,6 +80,7 @@ export default function UpdateAlbum() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               />
+            <div style={{minHeight: 30}}>{errors.name ? <span className="error-message">{errors.name}</span> : ' '}</div>
           </div>
 
           <div className="album-form-box">
@@ -79,6 +93,7 @@ export default function UpdateAlbum() {
               accept="image/*"
               onChange={fileWrap}
               /></label>
+              <div style={{minHeight: 20, paddingTop: 10}}></div>
           </div>
 
           <div className="update-button">
@@ -87,7 +102,7 @@ export default function UpdateAlbum() {
               type="submit"
             > Update Album </button>
           </div>
-          {(imageLoading) && <p className="loading-text">Loading...</p>}
+          <div style={{minHeight: 30}}>{imageLoading ? <p className="loading-text">Loading...</p> : ' '}</div>
         </form>
       </div>
     </div>
