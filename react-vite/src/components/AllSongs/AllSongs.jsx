@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../redux/songs";
 import { loadAlbumsThunk } from "../../redux/albums";
@@ -9,11 +9,15 @@ import './AllSongs.css'
 import songCover from './14.png'
 import AllSongsDropdown from "./AllSongsDropdown";
 import { useNavigate } from "react-router-dom";
+import { IndexContext } from "../../context/IndexContext";
 
 export default function AllSongs() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext);
+    const [currentSong, setCurrentSong] = useContext(IndexContext);
+    const [playing, setPlaying] = useState(false);
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         dispatch(loadSongsThunk())
@@ -31,6 +35,23 @@ export default function AllSongs() {
     const keys = Object.keys(songs)
 
     const songers = Object.values(songs)
+    const handleClick = () => {
+        if (counter == 0) {
+            setSongList(songers);
+            setCurrentSong(0);
+            setPlaying(true);
+        } else {
+            setPlaying(!playing);
+            const audi = document.getElementsByTagName('audio')[0]
+            if (playing) {
+                audi.pause()
+            }
+            if (!playing) {
+                audi.play()
+            }
+        }
+        setCounter(counter+1);
+    }
 
     return (
         <section className="page-container">
@@ -44,8 +65,8 @@ export default function AllSongs() {
             </div>
             <div className="all-songs-list">
                 <div className="song-list-symbols">
-                    <div className="song-play-button" onClick={() => setSongList(Object.values(songs))}>
-                        <i className="fa-solid fa-play fa-2xl play-icon"></i>
+                    <div className="song-play-button" onClick={() => handleClick()}>
+                    {!playing ? <i className="fa-solid fa-play fa-2xl play-icon"></i> : <i className="fa-solid fa-pause fa-2xl play-icon"></i> }
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart album-icon"></i> */}
                     <AllSongsDropdown />
@@ -64,7 +85,7 @@ export default function AllSongs() {
                 <div className="song-info">
                     {users &&
                         keys.map((id) => (
-                            <SongTile key={id} songs={songers} count={id} user={user.id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]}/>
+                            <SongTile key={id} songs={songers} count={id} user={user.id} song={songs[id]} albums={albums} artist={users[songs[id]['artist_id']]} changePlay={setPlaying} changeCount={setCounter}/>
                         ))
                     }
                 </div>
