@@ -21,12 +21,12 @@ const RemoveSongPlaylist = ({ song, playlistId }) => {
 
   return (
     <div className="delete-song-modal">
-      <div className="delete-info-modal" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-          <h2 className="delete-header-text" style={{padding: 10}}>Removing from {playlists?.[playlistId].playlist_name}</h2>
-          <p>{song.song_name} will no longer be in {playlists?.[playlistId].playlist_name}.</p>
+      <div className="delete-info-modal">
+          <h2 className="delete-header-text">Removing from &quot;{playlists?.[playlistId].playlist_name}&quot;</h2>
+          <p className="delete-text">&quot;{song.song_name}&quot; will no longer be in &quot;{playlists?.[playlistId].playlist_name}&quot;.</p>
           <div className="delete-buttons-holder">
-              <button className='delete-modal-button' onClick={(e) => handleSubmit(e)}>Remove</button>
               <button className='cancel-modal-button' onClick={closeModal}>Cancel</button>
+              <button className='delete-modal-button' onClick={(e) => handleSubmit(e)}>Remove</button>
           </div>
       </div>
     </div>

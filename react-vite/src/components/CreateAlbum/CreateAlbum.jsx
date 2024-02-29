@@ -17,10 +17,10 @@ export default function CreateAlbum() {
   useEffect(() => {
     const newErrors = {};
     if (!name.length) {
-      newErrors.name = 'Name is required'
+      newErrors.name = 'Name is required.'
     }
     if (image === null || (!image?.name.endsWith('.jpeg') && !image?.name.endsWith('.jpg') && !image?.name.endsWith('.png') && !image?.name.endsWith('.pdf') && !image?.name.endsWith('.gif'))) {
-      newErrors.image = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format'
+      newErrors.image = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format.'
     }
     setErrors(newErrors);
   }, [name, image])
@@ -46,14 +46,10 @@ export default function CreateAlbum() {
 
   }
 
-  useEffect(() => {
-
-  }, [dispatch])
-
   return (
     <div className="album-main">
       <div className="update-album-box">
-        <h1>Create an album</h1>
+        <h1 style={{paddingBottom: 20}}>Create an album</h1>
         <form
           action= "/api/albums"
           onSubmit={handleSubmit}
@@ -62,23 +58,23 @@ export default function CreateAlbum() {
         >
           <div className="album-form-box">
             <p>Album Name</p>
-            {submitted && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
             <input
               className="update-album-inputs"
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
+            <div style={{minHeight: 30}}>{errors.name ? <span className="error-message">{errors.name}</span> : ' '}</div>
           </div>
 
           <div className="album-form-box">
             <p>Upload Cover Photo</p>
-            {submitted && errors.image && <p style={{color: 'red'}}>{errors.image}</p>}
             <input
               className="update-album-inputs"
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
             />
+            <div style={{minHeight: 30}}>{errors.image ? <span className="error-message">{errors.image}</span> : ' '}</div>
           </div>
 
           <div className="update-button">
@@ -87,7 +83,7 @@ export default function CreateAlbum() {
               type="submit"
             > Create Album </button>
           </div>
-          {(imageLoading) && <p className="loading-text">Loading...</p>}
+          <div style={{minHeight: 30}}>{imageLoading ? <p className="loading-text">Loading...</p> : ' '}</div>
         </form>
       </div>
     </div>

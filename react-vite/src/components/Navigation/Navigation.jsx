@@ -98,45 +98,49 @@ function Navigation() {
         </div> */}
         <div className="nav">
           <ul className="left-bar-ul">
-            <li>
-              <NavLink to="/" onClick={notLoggedIn}>
-                <span className="fa-solid fa-book bar-icon"></span>
-                <span>Your Library</span>
-              </NavLink >
-            </li>
-            <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs`) }}>
-                <span className="fa-solid fa-music bar-icon"></span>
-                <span>All Songs</span>
-              </div>
-            </li>
-            <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
-                <span className="fa-solid fa-heart bar-icon"></span>
-                <span>Liked Songs</span>
-              </div>
-            </li>
-            <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs/new`) }}>
-                <span className="fa-solid fa-square-plus bar-icon"></span>
-                <span>Create Song</span>
-              </div>
-            </li>
-            <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums/new`) }}>
-                <span className="fa-solid fa-square-plus bar-icon"></span>
-                <span>Create Album</span>
-              </div>
-            </li>
-            <li>
-              <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
-                <span className="fa-solid fa-square-plus bar-icon"></span>
-                <span>Create Playlist</span>
-              </div>
-            </li>
+            <div className="top-sidebar-box">
+              <li>
+                <NavLink to="/" onClick={notLoggedIn}>
+                  <span className="fa-solid fa-book bar-icon"></span>
+                  <span>Your Library</span>
+                </NavLink >
+              </li>
+              <li>
+                <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs`) }}>
+                  <span className="fa-solid fa-music bar-icon"></span>
+                  <span>All Songs</span>
+                </div>
+              </li>
+              <li>
+                <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/collection/tracks`) }}>
+                  <span className="fa-solid fa-heart bar-icon"></span>
+                  <span>Liked Songs</span>
+                </div>
+              </li>
+            </div>
+            <div className="bottom-sidebar-box">
+              <li>
+                <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/songs/new`) }}>
+                  <span className="fa-solid fa-square-plus bar-icon"></span>
+                  <span>Create Song</span>
+                </div>
+              </li>
+              <li>
+                <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/albums/new`) }}>
+                  <span className="fa-solid fa-square-plus bar-icon"></span>
+                  <span>Create Album</span>
+                </div>
+              </li>
+              <li>
+                <div onClick={(e) => { notLoggedIn(e); if (sessionUser) navigate(`/playlists/new`) }}>
+                  <span className="fa-solid fa-square-plus bar-icon"></span>
+                  <span>Create Playlist</span>
+                </div>
+              </li>
+            </div>
           </ul>
           <div className="github">
-            <NavLink to='https://github.com/samis0216/tunafy'>
+            <NavLink to='https://github.com/samis0216/tunafy' target="_blank">
               <img className="git-logo" src={githubLogo} alt="github-logo" />
             </NavLink>
           </div>

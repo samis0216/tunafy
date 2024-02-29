@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { addSongThunk } from "../../redux/songs"
 
 export default function CreateSong() {
-    // const history = useHistory()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [songName, setSongName] = useState('')
@@ -21,13 +20,13 @@ export default function CreateSong() {
     useEffect(() => {
         const newErrors = {};
         if (!songName.length) {
-            newErrors.songName = 'Name is required'
+            newErrors.songName = 'Name is required.'
         }
         if (song_cover === '' || (!song_cover?.name.endsWith('.jpeg') && !song_cover?.name.endsWith('.jpg') && !song_cover?.name.endsWith('.png') && !song_cover?.name.endsWith('.pdf') && !song_cover?.name.endsWith('.gif'))) {
-            newErrors.song_cover_url = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format'
+            newErrors.song_cover_url = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format.'
         }
         if (song_file === '' || !song_file.name.endsWith('.mp3')) {
-            newErrors.song_file = 'Song is required and must be in .mp3 format'
+            newErrors.song_file = 'Song is required and must be in .mp3 format.'
         }
         setErrors(newErrors);
     }, [songName, song_cover, song_file])
@@ -57,7 +56,7 @@ export default function CreateSong() {
     return (
         <div className="song-main">
             <div className="create-song-box">
-                <h1>Create a song</h1>
+                <h1 style={{paddingBottom: 20}}>Create a song</h1>
                 <form
                     onSubmit={handleSubmit}
                     encType="multipart/form-data"
@@ -65,17 +64,16 @@ export default function CreateSong() {
                 >
                     <div className="entry-container">
                         <p>Song Name</p>
-                        {submitted && errors.songName && <p style={{color: 'red'}}>{errors.songName}</p>}
                         <input
                             type="text"
                             value={songName}
                             onChange={(e) => setSongName(e.target.value)}
                             className="song-inputs"
                         />
+                        <div style={{minHeight: 30}}>{errors.songName ? <span className="error-message">{errors.songName}</span> : ' '}</div>
                     </div>
                     <div className="entry-container">
                         <p>Upload Cover Photo</p>
-                        {submitted && errors.song_cover_url && <p style={{color: 'red'}}>{errors.song_cover_url}</p>}
                         <input
                             type="file"
                             accept="image/*"
@@ -86,21 +84,22 @@ export default function CreateSong() {
                             }
                             className="song-inputs"
                         />
+                        <div style={{minHeight: 30}}>{errors.song_cover_url ? <span className="error-message">{errors.song_cover_url}</span> : ' '}</div>
                     </div>
                     <div className="entry-container">
                         <p>Upload Song File</p>
-                        {submitted && errors?.song_file && <p style={{color: 'red'}}>{errors.song_file}</p>}
                         <input
                             type="file"
                             accept="audio/*"
                             className="song-inputs"
                             onChange={(e) => setSongFile(e.target.files[0])}
                         />
+                        <div style={{minHeight: 30}}>{errors.song_file ? <span className="error-message">{errors.song_file}</span> : ' '}</div>
                     </div>
                     <div className="update-button">
                         <button type="submit" id="submit_butt">Create Song</button>
                     </div>
-                    {(awsLoading) && <p className="loading-text">Loading...</p>}
+                    <div style={{minHeight: 30}}>{awsLoading ? <p className="loading-text">Loading...</p> : ' '}</div>
                 </form>
             </div>
         </div>

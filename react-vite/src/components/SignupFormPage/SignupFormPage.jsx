@@ -60,9 +60,8 @@ function SignupFormPage() {
       <div className="signup-container">
         <div id="signup-box">
           <h1 id="signup-header">Sign up to start listening</h1>
-          {errors.server && <p className="error-message">{errors.server}</p>}
+          <div style={{minHeight: 30}}>{errors.server ? <span className="error-message">{errors.server}</span> : ' '}</div>
           <form className="signup-form" onSubmit={handleSubmit}>
-            {errors.email && <p className="error-message">{errors.email}</p>}
             <label className="signup-labels">
               Email Address
               <input
@@ -74,7 +73,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.username && <p className="error-message">{errors.username}</p>}
+            <div style={{minHeight: 30}}>{errors.email ? <span className="error-message">{errors.email}</span> : ' '}</div>
             <label className="signup-labels">
               Username
               <input
@@ -84,9 +83,9 @@ function SignupFormPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-              />
+                />
             </label>
-            {errors.password && <p className="error-message">{errors.password}</p>}
+            <div style={{minHeight: 30}}>{errors.username ? <span className="error-message">{errors.username}</span> : ' '}</div>
             <label className="signup-labels">
               Password
               <input
@@ -96,9 +95,9 @@ function SignupFormPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-              />
+                />
             </label>
-            {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+            <div style={{minHeight: 30}}>{errors.password ? <span className="error-message">{errors.password}</span> : ' '}</div>
             <label className="signup-labels">
               Confirm Password
               <input
@@ -108,8 +107,9 @@ function SignupFormPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-              />
+                />
             </label>
+            <div style={{minHeight: 30}}>{errors.confirmPassword ? <span className="error-message">{errors.confirmPassword}</span> : ' '}</div>
             <div className="sign-up-button">
               <button id="signup-submit" type="submit">Sign Up</button>
             </div>
