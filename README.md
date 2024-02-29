@@ -1,182 +1,138 @@
-# Flask React Project
+# Tunafy
 
-This is the starter for the Flask React project.
+Tunafy is a music site inspired by Spotify. On this site, users can play, like, and upload songs, as well as, create playlists and albums.
 
-## Getting started
+# Live Link
 
-1. Clone this repository (only this branch).
+https://tunafy-project.onrender.com/
 
-2. Install dependencies.
+# Tech Stack
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+### Languages
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
+![Static Badge](https://img.shields.io/badge/Python-brown?style=for-the-badge&logo=python&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Javascript-red?style=for-the-badge&logo=javascript&logoColor=white)
+![Static Badge](https://img.shields.io/badge/CSS-orange?style=for-the-badge&logo=css3)
+![Static Badge](https://img.shields.io/badge/HTML-yellow?style=for-the-badge&logo=html5&logoColor=white)
 
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
+### Frameworks and Libraries
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+![Static Badge](https://img.shields.io/badge/Flask-green?style=for-the-badge&logo=flask)
+![Static Badge](https://img.shields.io/badge/React-darkgreen?style=for-the-badge&logo=react&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Redux-lightblue?style=for-the-badge&logo=redux)
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+### ORM
 
-   ```bash
-   pipenv shell
-   ```
+![Static Badge](https://img.shields.io/badge/SQLAlchemy-blue?style=for-the-badge&logo=SQLAlchemy&logoColor=white)
 
-   ```bash
-   flask db upgrade
-   ```
+### Database
 
-   ```bash
-   flask seed all
-   ```
+![Static Badge](https://img.shields.io/badge/PostgreSQL-darkblue?style=for-the-badge&logo=postgresql&logoColor=white)
 
-   ```bash
-   flask run
-   ```
+### Hosting
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+![Static Badge](https://img.shields.io/badge/render-violet?style=for-the-badge&logo=render&logoColor=white)
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
+### Object Storage
 
-## Deployment through Render.com
+![Static Badge](https://img.shields.io/badge/amazons3-purple?style=for-the-badge&logo=amazons3&logoColor=white)
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+### Design
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
+![Static Badge](https://img.shields.io/badge/canva-tan?style=for-the-badge&logo=canva&logoColor=white)
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
+# Database Schema
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
+![Database Schema](./images/database.png)
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
+# User Stories
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
+### Unauthorized User
+When I visit the site as an unauthorized user, I will see a list of playlists and albums each with a cover photo, name, and short description. On the left side, I will see a side bar that navigates to 'Your Library', 'All Songs', and 'Liked Songs'. I will also see the options to 'Create Song', 'Create Album', and 'Create Playlist'. If I click any of the features besides the 'Sign Up' or 'Log In' button, it will show a 'Log In' modal.
 
-Start by giving your application a name.
+### Log In
+When I click on the 'Log In' button, I will be redirected to a new page where I will be prompted for an email and password. If I wish to sign up instead, there is a link below the 'Log In' form that redirects to the 'Sign Up' page. On successful login, I am redirected to the home page.
 
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
+### Sign Up
+When I click on the 'Sign Up' button, I will be redirected to a new page where I will be prompted for an email, username, password, and confirm password. If I wish to log in instead, there is a link below the 'Sign Up' form that redirects to the 'Log In' page. On successful sign up, I am redirected to the home page.
 
-Select "Free" as your Instance Type.
+### Log Out
+The 'Log Out' option will be in the dropdown menu when you click on the profile icon on the top right of the site. When I click on the 'Log Out' option, I will be redirected to the home page.
 
-### Add environment variables
+### Authorized User
+When I am logged in as an authorized user, I will see a list of playlists and albums each with a cover photo, name, and short description. On the left side, I will see a side bar that navigates to 'Your Library', 'All Songs', and 'Liked Songs'. I will also see the options to 'Create Song', 'Create Album', and 'Create Playlist'. When I click on any of the features, it will redirect to the corresponding page. On the top left, I will see back and forward buttons to redirect to the previous or next page. On the top right, I will see a profile icon. When I click on it, it will show a dropdown menu including my username, my email, and the 'Log Out' option. At the bottom of the site, I will see an audio player with a play button, pause button, next button, previous button, fast-forward button, shuffle button, progress bar, and volume slider.
 
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
+### Create a Song
+When I click on 'Create Song' on the left side bar, I will be redirected to the 'Create a Song' page. I will see a form that prompts for a song name, cover photo, and song file. On successful creation, I am redirected to the created song's detail page. The song detail page shows the song cover photo, song name, song creator, song duration, play button, like button, and ellipsis with a dropdown menu including an 'Add to Playlist' option, an 'Add to Album' option, an 'Update' option, and a 'Delete' option.
 
-Add the following keys and values in the Render GUI form:
+### Create an Album
+When I click on 'Create Album' on the left side bar, I will be redirected to the 'Create an Album' page. I will see a form that prompts for an album name and cover photo. On successful creation, I am redirected to the 'Tunafy Albums' page. The album detail page shows the album cover photo, album name, album creator, song count, album duration, play button, and ellipsis with a dropdown menu including an 'Update' option and a 'Delete' option. If the album has songs in it, it'll show each song's number, cover photo, name, creator, album, and duration. As the owner of the album, I can remove songs by clicking on the 'Remove' link next to the duration of each song.
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
+### Create a Playlist
+When I click on 'Create Playlist' on the left side bar, I will be redirected to the 'Create a Playlist' page. I will see a form that prompts for a playlist name, cover photo, and description, and an option to make the playlist private. On successful creation, I am redirected to the 'Tunafy Playlists' page. The playlist detail page shows the playlist cover photo, playlist name, playlist creator, song count, playlist duration, play button, and ellipsis with a dropdown menu including a 'Delete' option. If the playlist has songs in it, it'll show each song's number, cover photo, name, creator, album, and duration. As the owner of the playlist, I can remove songs by clicking on the 'Remove' link next to the duration of each song.
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+### All Songs
+When I click on 'All Songs' on the left side bar, I will be redirected to the 'All Songs' page. This page shows all the songs in Tunafy's library. When I click on the ellipsis, it shows a dropdown menu including a 'Create' option.
 
-Add the following keys and values:
+### Liked Songs
+When I click on 'Liked Songs' on the left side bar, I will be redirected to the 'Liked Songs' page. This playlist shows all the songs that I like. In each song tile, there is a blue heart. When I click on the blue heart, a modal shows asking if I want to remove the song from the 'Liked Songs' playlist.
 
-- DATABASE_URL (copy value from the **External Database URL** field)
+# Landing Page
 
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
+![Landing Page](./images/landingpage.png)
 
-### Deploy
+# Playlist Detail Page
 
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
+![Playlist Detail Page](./images/playlist.png)
 
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
+# Liked Songs Page
 
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
+![Liked Songs Page](./images/likedsongs.png)
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+# Feature List
 
-# Schema Diagram
-![Alt text](image.png)
-# Unauthorized user
-As an unauthorized user when I visit the site I will see a list of popular playlists each with a name, a short description, and cover art. I should be able to see in the footer of the website, relevant links to github, social media links, etc. On the left side should be a navbar that I can use to navigate to different parts of the website including the search, homepage, and a create playlist button in the library section that prompts user to signup or login. If I click to play a song I should be prompted to make a free account in a modal.
+1. Songs
+   * Users should be able to view all songs.
+   * Users should be able to upload songs.
+   * Users should be able to update their uploaded songs.
+   * Users should be able to delete their uploaded songs.
+2. Albums
+   * Users should be able to view all of their albums.
+   * Users should be able to add songs to an album they created.
+   * Users should be able to remove songs from their albums.
+   * Users should be able to update their albums.
+   * Users should be able to delete their albums.
+3. Likes
+   * Users should be able to view all of their liked songs.
+   * Users should be able to like a song.
+   * Users should be able to unlike a song.
+4. Playlists
+   * Users should be able to view all of their playlists.
+   * Users should be able to add songs to a playlist they created.
+   * Users should be able to remove songs from their playlists.
+   * Users should be able to delete their playlists.
 
-# Login
-When pressing the button to log in, I should be taken to a new page where I will be prompted for email or username and password. There should also be a sign up link that redirects you to the signup page. On successful login I am redirected to home.
+# Future Features
 
-Required:
-Username/Email and password
+1. WaveForms
+   * Users should be able to see the wave forms for a song.
+2. Search
+   * Users should be able to search for songs by artist or song name.
+   * Users should be able to view the results of their search.
 
-# Signup
-When pressing the button to sign up, I should be taken to a new page where I will be prompted for my email address, then a password. There should also be a log in link that redirects you to the login page. On successful signup I am redirected to home.
+# Connect
 
-## Required:
-### Email
-### Password
-* Password should contain at least 8 characters.
-The password must contain at least 8 characters. We recommend including at least 1 number and 1 special character.
-### Name
-* Not empty
-### Date of Birth
-* Not empty
-* Must be older than thirteen
-
-
-## Optional:
-* Gender
-
-# Logout
-The logout button should be in a dropdown menu in the top right of the site, and should redirect me to the home page on successful logout.
-
-# Authorized User
-As an authorized user when I am logged in to the website I am redirected to a personalized home page with recently listened to music and saved albums/playlists. I should see a profile button in the top right with a Profile option and a Logout option on every page of the website. I should see a Home button in the top left that redirects me to home from any page in the website. Underneath the home button I should see a Upload album button that redirects me to a new page where I can upload a new album and a your library tab that has a button to make a new playlist. I should see an integrated player on the bottom of the page for the current song I am listening to, that has a play button, pause button, next and last song buttons, like button, shuffle button, progress bar, and volume slider.
-
-# Profile page
-On the top of my profile page, I should see a profile header on the top of the page with my profile icon, username, and number of public playlists, and a button to edit my profile that takes me to a edit profile modal. Underneath the profile header I should see my created albums, top songs, and my created public playlists. Next to each should be a Show all button that redirects to another page containing the rest of the content.
-
-# Profile edit modal
-In the edit profile modal, I should be able to change my account name and/or picture.
-
-# Create a Playlist
-On clicking the plus button that is in the Your Library section, I should be taken to a new page that has a blank playlist, with a default name of the latest number playlist created. I should be able to add a photo to my playlist, rename my playlist, and/or add a song from the list provided.
-When I have added a song, it should have a button on the very right that has a dropdown that contains a remove from playlist option, a like option, a go to artist page and go to album page option. Each song should have the numbered position in playlist, album cover art, artist name, song name, album name, date added, and duration.
-
-## Liked Songs Playlist
-Inside the Library section should be a auto-created playlist that contains all the songs liked by the user.
-
-# Create an Album
-On the create an album page, I should be able to upload songs, delete songs, update a song, name the album, and upload album art. For a created album, I should be able to see a header that contains the album name, album cover, artist name, year added, number of songs, and duration. Underneath should be a play button, like button, and a drop down that contains an add to Library option, add to Playlist option, and a Delete album option. There should be the list of songs and each song should have its number, name, artist name and duration.
+1. Project
+   * [GitHub](https://github.com/samis0216/tunafy)
+2. Lyndon Thomasz
+   * [LinkedIn](https://www.linkedin.com/in/lyndon-thomasz-3a091126a/)
+   * [GitHub](https://github.com/LThomasz)
+3. Nicole Le
+   * [LinkedIn](https://www.linkedin.com/in/nicolehuyenle/)
+   * [GitHub](https://github.com/nicolehuyen)
+4. Sami Samman
+   * [LinkedIn](https://www.linkedin.com/in/sami-s-4a6a17129/)
+   * [GitHub](https://github.com/samis0216)
+5. Victoria Nguyen
+   * [LinkedIn](https://www.linkedin.com/in/victoria-nguyen-945771239/)
+   * [GitHub](https://github.com/vknguyenn)

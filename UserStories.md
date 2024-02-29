@@ -1,50 +1,31 @@
-# Schema Diagram
-![Alt text](image.png)
-# Unauthorized user
-As an unauthorized user when I visit the site I will see a list of popular playlists each with a name, a short description, and cover art. I should be able to see in the footer of the website, relevant links to github, social media links, etc. On the left side should be a navbar that I can use to navigate to different parts of the website including the search, homepage, and a create playlist button in the library section that prompts user to signup or login. If I click to play a song I should be prompted to make a free account in a modal.
+# User Stories
 
-# Login
-When pressing the button to log in, I should be taken to a new page where I will be prompted for email or username and password. There should also be a sign up link that redirects you to the signup page. On successful login I am redirected to home.
+### Unauthorized User
+When I visit the site as an unauthorized user, I will see a list of playlists and albums each with a cover photo, name, and short description. On the left side, I will see a side bar that navigates to 'Your Library', 'All Songs', and 'Liked Songs'. I will also see the options to 'Create Song', 'Create Album', and 'Create Playlist'. If I click any of the features besides the 'Sign Up' or 'Log In' button, it will show a 'Log In' modal.
 
-Required:
-Username/Email and password
+### Log In
+When I click on the 'Log In' button, I will be redirected to a new page where I will be prompted for an email and password. If I wish to sign up instead, there is a link below the 'Log In' form that redirects to the 'Sign Up' page. On successful login, I am redirected to the home page.
 
-# Signup
-When pressing the button to sign up, I should be taken to a new page where I will be prompted for my email address, then a password. There should also be a log in link that redirects you to the login page. On successful signup I am redirected to home.
+### Sign Up
+When I click on the 'Sign Up' button, I will be redirected to a new page where I will be prompted for an email, username, password, and confirm password. If I wish to log in instead, there is a link below the 'Sign Up' form that redirects to the 'Log In' page. On successful sign up, I am redirected to the home page.
 
-## Required:
-### Email
-### Password
-* Password should contain at least 8 characters.
-The password must contain at least 8 characters. We recommend including at least 1 number and 1 special character.
-### Name
-* Not empty
-### Date of Birth
-* Not empty
-* Must be older than thirteen
+### Log Out
+The 'Log Out' option will be in the dropdown menu when you click on the profile icon on the top right of the site. When I click on the 'Log Out' option, I will be redirected to the home page.
 
+### Authorized User
+When I am logged in as an authorized user, I will see a list of playlists and albums each with a cover photo, name, and short description. On the left side, I will see a side bar that navigates to 'Your Library', 'All Songs', and 'Liked Songs'. I will also see the options to 'Create Song', 'Create Album', and 'Create Playlist'. When I click on any of the features, it will redirect to the corresponding page. On the top left, I will see back and forward buttons to redirect to the previous or next page. On the top right, I will see a profile icon. When I click on it, it will show a dropdown menu including my username, my email, and the 'Log Out' option. At the bottom of the site, I will see an audio player with a play button, pause button, next button, previous button, fast-forward button, shuffle button, progress bar, and volume slider.
 
-## Optional:
-* Gender
+### Create a Song
+When I click on 'Create Song' on the left side bar, I will be redirected to the 'Create a Song' page. I will see a form that prompts for a song name, cover photo, and song file. On successful creation, I am redirected to the created song's detail page. The song detail page shows the song cover photo, song name, song creator, song duration, play button, like button, and ellipsis with a dropdown menu including an 'Add to Playlist' option, an 'Add to Album' option, an 'Update' option, and a 'Delete' option.
 
-# Logout
-The logout button should be in a dropdown menu in the top right of the site, and should redirect me to the home page on successful logout.
+### Create an Album
+When I click on 'Create Album' on the left side bar, I will be redirected to the 'Create an Album' page. I will see a form that prompts for an album name and cover photo. On successful creation, I am redirected to the 'Tunafy Albums' page. The album detail page shows the album cover photo, album name, album creator, song count, album duration, play button, and ellipsis with a dropdown menu including an 'Update' option and a 'Delete' option. If the album has songs in it, it'll show each song's number, cover photo, name, creator, album, and duration. As the owner of the album, I can remove songs by clicking on the 'Remove' link next to the duration of each song.
 
-# Authorized User
-As an authorized user when I am logged in to the website I am redirected to a personalized home page with recently listened to music and saved albums/playlists. I should see a profile button in the top right with a Profile option and a Logout option on every page of the website. I should see a Home button in the top left that redirects me to home from any page in the website. Underneath the home button I should see a Upload album button that redirects me to a new page where I can upload a new album and a your library tab that has a button to make a new playlist. I should see an integrated player on the bottom of the page for the current song I am listening to, that has a play button, pause button, next and last song buttons, like button, shuffle button, progress bar, and volume slider.
+### Create a Playlist
+When I click on 'Create Playlist' on the left side bar, I will be redirected to the 'Create a Playlist' page. I will see a form that prompts for a playlist name, cover photo, and description, and an option to make the playlist private. On successful creation, I am redirected to the 'Tunafy Playlists' page. The playlist detail page shows the playlist cover photo, playlist name, playlist creator, song count, playlist duration, play button, and ellipsis with a dropdown menu including a 'Delete' option. If the playlist has songs in it, it'll show each song's number, cover photo, name, creator, album, and duration. As the owner of the playlist, I can remove songs by clicking on the 'Remove' link next to the duration of each song.
 
-# Profile page
-On the top of my profile page, I should see a profile header on the top of the page with my profile icon, username, and number of public playlists, and a button to edit my profile that takes me to a edit profile modal. Underneath the profile header I should see my created albums, top songs, and my created public playlists. Next to each should be a Show all button that redirects to another page containing the rest of the content.
+### All Songs
+When I click on 'All Songs' on the left side bar, I will be redirected to the 'All Songs' page. This page shows all the songs in Tunafy's library. When I click on the ellipsis, it shows a dropdown menu including a 'Create' option.
 
-# Profile edit modal
-In the edit profile modal, I should be able to change my account name and/or picture.
-
-# Create a Playlist
-On clicking the plus button that is in the Your Library section, I should be taken to a new page that has a blank playlist, with a default name of the latest number playlist created. I should be able to add a photo to my playlist, rename my playlist, and/or add a song from the list provided.
-When I have added a song, it should have a button on the very right that has a dropdown that contains a remove from playlist option, a like option, a go to artist page and go to album page option. Each song should have the numbered position in playlist, album cover art, artist name, song name, album name, date added, and duration.
-
-## Liked Songs Playlist
-Inside the Library section should be a auto-created playlist that contains all the songs liked by the user.
-
-# Create an Album
-On the create an album page, I should be able to upload songs, delete songs, update a song, name the album, and upload album art. For a created album, I should be able to see a header that contains the album name, album cover, artist name, year added, number of songs, and duration. Underneath should be a play button, like button, and a drop down that contains an add to Library option, add to Playlist option, and a Delete album option. There should be the list of songs and each song should have its number, name, artist name and duration.
+### Liked Songs
+When I click on 'Liked Songs' on the left side bar, I will be redirected to the 'Liked Songs' page. This playlist shows all the songs that I like. In each song tile, there is a blue heart. When I click on the blue heart, a modal shows asking if I want to remove the song from the 'Liked Songs' playlist.
