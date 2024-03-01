@@ -141,19 +141,24 @@ function Navigation() {
             <div className="bottom-sidebar-box">
               <li>
                 <div className="title">
-                  <p>Created By:</p>
+
+                  <p style={{color: "#b3b3b3", cursor: "default"}}>Created By:</p>
                 </div>
                 <div className="contributors">
                   <div>
+                  <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
                     <a href="https://github.com/samis0216" className="contrib-span">Sami Samman</a>
                   </div>
                   <div>
+                  <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
                     <a href='https://github.com/nicolehuyen' className="contrib-span">Nicole Le</a>
                   </div>
                   <div>
+                  <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
                     <a className="contrib-span" href="https://github.com/vknguyenn">Victoria Nguyen</a>
                   </div>
                   <div>
+                  <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
                     <a className="contrib-span" href="https://github.com/LThomasz">Lyndon Thomasz</a>
                   </div>
                 </div>
