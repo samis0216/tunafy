@@ -70,7 +70,7 @@ export default function CreateSong() {
                             onChange={(e) => setSongName(e.target.value)}
                             className="song-inputs"
                         />
-                        <div style={{minHeight: 30}}>{errors.songName ? <span className="error-message">{errors.songName}</span> : ' '}</div>
+                        <div style={{minHeight: 30}}>{submitted && errors.songName ? <span className="error-message">{errors.songName}</span> : ' '}</div>
                     </div>
                     <div className="entry-container">
                         <p>Upload Cover Photo</p>
@@ -84,7 +84,7 @@ export default function CreateSong() {
                             }
                             className="song-inputs"
                         />
-                        <div style={{minHeight: 30}}>{errors.song_cover_url ? <span className="error-message">{errors.song_cover_url}</span> : ' '}</div>
+                        <div style={{minHeight: 30}}>{submitted && errors.song_cover_url ? <span className="error-message">{errors.song_cover_url}</span> : ' '}</div>
                     </div>
                     <div className="entry-container">
                         <p>Upload Song File</p>
@@ -94,7 +94,7 @@ export default function CreateSong() {
                             className="song-inputs"
                             onChange={(e) => setSongFile(e.target.files[0])}
                         />
-                        <div style={{minHeight: 30}}>{errors.song_file ? <span className="error-message">{errors.song_file}</span> : ' '}</div>
+                        <div style={{minHeight: 30}}>{submitted && errors.song_file ? <span className="error-message">{errors.song_file}</span> : ' '}</div>
                     </div>
                     <div className="update-button">
                         <button type="submit" id="submit_butt">Create Song</button>

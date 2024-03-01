@@ -63,7 +63,7 @@ export default function CreateAlbum() {
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
-            <div style={{minHeight: 30}}>{errors.name ? <span className="error-message">{errors.name}</span> : ' '}</div>
+            <div style={{minHeight: 30}}>{submitted && errors.name && <span className="error-message">{errors.name}</span>}</div>
           </div>
 
           <div className="album-form-box">
@@ -74,7 +74,7 @@ export default function CreateAlbum() {
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <div style={{minHeight: 30}}>{errors.image ? <span className="error-message">{errors.image}</span> : ' '}</div>
+            <div style={{minHeight: 30}}>{submitted && errors.image && <span className="error-message">{errors.image}</span>}</div>
           </div>
 
           <div className="update-button">

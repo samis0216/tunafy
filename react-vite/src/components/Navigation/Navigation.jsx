@@ -147,19 +147,19 @@ function Navigation() {
                 <div className="contributors">
                   <div>
                   <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
-                    <a href="https://github.com/samis0216" className="contrib-span" target="_blank">Sami Samman</a>
+                    <a rel='noreferrer' href="https://github.com/samis0216" className="contrib-span" target="_blank">Sami Samman</a>
                   </div>
                   <div>
                   <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
-                    <a href='https://github.com/nicolehuyen' className="contrib-span" target="_blank">Nicole Le</a>
+                    <a rel='noreferrer' href='https://github.com/nicolehuyen' className="contrib-span" target="_blank">Nicole Le</a>
                   </div>
                   <div>
                   <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
-                    <a className="contrib-span" href="https://github.com/vknguyenn" target="_blank">Victoria Nguyen</a>
+                    <a rel='noreferrer' className="contrib-span" href="https://github.com/vknguyenn" target="_blank">Victoria Nguyen</a>
                   </div>
                   <div>
                   <i className="fa-brands fa-github" style={{paddingRight: '10px'}}></i>
-                    <a className="contrib-span" href="https://github.com/LThomasz" target="_blank">Lyndon Thomasz</a>
+                    <a rel='noreferrer' className="contrib-span" href="https://github.com/LThomasz" target="_blank">Lyndon Thomasz</a>
                   </div>
                 </div>
               </li>

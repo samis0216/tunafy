@@ -19,6 +19,7 @@ export default function AlbumDetails() {
   const [currentSong, setCurrentSong] = useContext(IndexContext)
   const [playing, setPlaying] = useState(false);
   const [counter, setCounter] = useState(0);
+  if (songList) {songList; currentSong}
 
   useEffect(() => {
     dispatch(loadOneAlbumThunk(albumId))

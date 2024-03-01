@@ -10,7 +10,7 @@ import likedSongsCover from './13.png'
 import UnlikeSongModal from "../SongModals/UnlikeSongModal"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { IndexContext } from "../../context/IndexContext"
-import playlistReducer from "../../redux/playlists"
+// import playlistReducer from "../../redux/playlists"
 
 export default function Collection() {
     const dispatch = useDispatch()
@@ -25,6 +25,7 @@ export default function Collection() {
     const [count, setCount] = useState(0);
     const keys = Object.keys(likedSongs)
     const songs = Object.values(likedSongs)
+    if (songList) {currentSong}
 
     const handleClick = () => {
         if (count == 0) {

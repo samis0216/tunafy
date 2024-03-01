@@ -18,6 +18,7 @@ export default function AllSongs() {
     const [currentSong, setCurrentSong] = useContext(IndexContext);
     const [playing, setPlaying] = useState(false);
     const [counter, setCounter] = useState(0);
+    if (currentSong) currentSong
 
     useEffect(() => {
         dispatch(loadSongsThunk())
