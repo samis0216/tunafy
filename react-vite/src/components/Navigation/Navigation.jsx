@@ -138,6 +138,27 @@ function Navigation() {
                 </div>
               </li>
             </div>
+            <div className="bottom-sidebar-box">
+              <li>
+                <div className="title">
+                  <p>Created By:</p>
+                </div>
+                <div className="contributors">
+                  <div>
+                    <a href="https://github.com/samis0216" className="contrib-span">Sami Samman</a>
+                  </div>
+                  <div>
+                    <a href='https://github.com/nicolehuyen' className="contrib-span">Nicole Le</a>
+                  </div>
+                  <div>
+                    <a className="contrib-span" href="https://github.com/vknguyenn">Victoria Nguyen</a>
+                  </div>
+                  <div>
+                    <a className="contrib-span" href="https://github.com/LThomasz">Lyndon Thomasz</a>
+                  </div>
+                </div>
+              </li>
+            </div>
           </ul>
           <div className="github">
             <NavLink to='https://github.com/samis0216/tunafy' target="_blank">

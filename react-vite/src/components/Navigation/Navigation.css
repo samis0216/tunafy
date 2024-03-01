@@ -79,6 +79,21 @@ body {
   margin-top: 15px;
 }
 
+.title {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.title:hover {
+  color: #b3b3b3;
+}
+
+.contributors {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .git-logo {
   background-color: white;
   width: 25px;
