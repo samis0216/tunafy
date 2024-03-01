@@ -5,7 +5,7 @@ import { useContext } from 'react';
 // import { useDispatch } from 'react-redux';
 import { IndexContext } from '../../context/IndexContext';
 
-export default function SongTile({ songs, song, albums, artist, count }) {
+export default function SongTile({ songs, song, albums, artist, count, changePlay, changeCount }) {
     const navigate = useNavigate()
     const [songList, setSongList] = useContext(MusicContext)
     const [currentSong, setCurrentSong] = useContext(IndexContext)
@@ -16,13 +16,12 @@ export default function SongTile({ songs, song, albums, artist, count }) {
     const minutes = Math.floor(song.duration / 60)
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
-    let cool = (Object.values(songs))
-    console.log(cool)
+    let songers = (Object.values(songs))
 
 
     return (
         <>
-            <div onClick={() => {setSongList(cool); setCurrentSong(count-1)}}>
+            <div onClick={() => {setSongList(songers); setCurrentSong(count - 1); changePlay(true); changeCount(1)}}>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
                         <p className="song-id">{count}</p>

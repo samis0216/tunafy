@@ -10,11 +10,21 @@ export default function UpdateAlbum() {
     const navigate = useNavigate();
     const user = useSelector((state => state.session.user))
     const album = useSelector((state) => state.albums?.[albumId])
-
     const [image, setImage] = useState(null);
+    const [displayImage, setDisplayImage] = useState(null)
     const [name, setName] = useState(album?.album_name)
     const [imageLoading, setImageLoading] = useState(false);
+    const [errors, setErrors] = useState({})
 
+    if(!user) navigate('/')
+
+    useEffect(() => {
+      const newErrors = {};
+      if (!String(name).length) {
+        newErrors.name = 'Name is required.'
+      }
+      setErrors(newErrors);
+    }, [name])
 
     useEffect(() => {
         dispatch(loadOneAlbumThunk(albumId));
@@ -23,28 +33,39 @@ export default function UpdateAlbum() {
     useEffect(() => {
         if (album) {
             setName(album?.album_name || '')
-            setImage(album?.album_cover_url || '')
+            setDisplayImage(album?.album_cover_url || '')
         }
     }, [album])
 
+    const fileWrap = (e) => {
+      e.stopPropagation();
+
+      const tempFile = e.target.files[0];
+
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImage(tempFile);
+      setDisplayImage(newImageURL)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log("USER ID:", user.id)
-    formData.append("album_cover_url", image);
-    formData.append("album_name", name);
-    formData.append("artist_id", user.id);
 
-    setImageLoading(true);
-    await dispatch(editAlbumThunk(formData, albumId));
-    navigate(`/albums/${albumId}`)
+    if (!Object.values(errors).length) {
+      const formData = new FormData();
+      formData.append("album_cover_url", image);
+      formData.append("album_name", name);
+      formData.append("artist_id", user.id);
+
+      setImageLoading(true);
+      await dispatch(editAlbumThunk(formData, albumId));
+      navigate(`/albums/${albumId}`)
+    }
   }
 
   return (
     <div className="album-main">
       <div className="update-album-box">
-        <h1>Update &quot;{album?.album_name}&quot;</h1>
+        <h1 style={{paddingBottom: 20}}>Update &quot;{album?.album_name}&quot;</h1>
         <form
         action={`/api/albums/${albumId}`}
         onSubmit={handleSubmit}
@@ -59,16 +80,20 @@ export default function UpdateAlbum() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               />
+            <div style={{minHeight: 30}}>{errors.name ? <span className="error-message">{errors.name}</span> : ' '}</div>
           </div>
 
           <div className="album-form-box">
-            <p>Upload Cover Photo</p>
-            <input
+            <p>Update Cover Photo</p>
+            <p style={{fontSize: 13, paddingBottom: 10, paddingTop: 5}}>To update the cover photo, click the thumbnail below.</p>
+            <label className="image-input-label" htmlFor="update-image-input"><img className="thumbnail" src={displayImage}/><input
               className="update-album-inputs"
+              id='update-image-input'
               type="file"
               accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-              />
+              onChange={fileWrap}
+              /></label>
+              <div style={{minHeight: 20, paddingTop: 10}}></div>
           </div>
 
           <div className="update-button">
@@ -77,7 +102,7 @@ export default function UpdateAlbum() {
               type="submit"
             > Update Album </button>
           </div>
-          {(imageLoading) && <p className="loading-text">Loading...</p>}
+          <div style={{minHeight: 30}}>{imageLoading ? <p className="loading-text">Loading...</p> : ' '}</div>
         </form>
       </div>
     </div>

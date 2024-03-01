@@ -19,10 +19,10 @@ export default function CreatePlaylist() {
   useEffect(() => {
     const newErrors = {};
     if (!name.length) {
-      newErrors.name = 'Name is required'
+      newErrors.name = 'Name is required.'
     }
     if (image === '' || (!image?.name.endsWith('.jpeg') && !image?.name.endsWith('.jpg') && !image?.name.endsWith('.png') && !image?.name.endsWith('.pdf') && !image?.name.endsWith('.gif'))) {
-      newErrors.image = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format'
+      newErrors.image = 'Cover photo must be in .jpeg, .jpg, .pdf, .png or .gif format.'
     }
 
     setErrors(newErrors);
@@ -56,7 +56,7 @@ export default function CreatePlaylist() {
   return (
     <div className="playlist-form-container">
       <div className="create-playlist-box">
-        <h1>Create a playlist</h1>
+        <h1 style={{paddingBottom: 20}}>Create a playlist</h1>
 
         <form
           action="/api/playlists/new"
@@ -67,32 +67,33 @@ export default function CreatePlaylist() {
 
           <div className="playlist-form-box">
             <p>Playlist Name</p>
-            {submitted && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
             <input
               className='create-playlist-inputs'
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
+            <div style={{minHeight: 30}}>{submitted && errors.name ? <span className="error-message">{errors.name}</span> : ' '}</div>
           </div>
 
           <div className="playlist-form-box">
             <p>Upload Cover Photo</p>
-            {submitted && errors?.image && <p style={{color: 'red'}}>{errors.image}</p>}
             <input
               className='create-playlist-inputs'
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
             />
+            <div style={{minHeight: 30}}>{submitted && errors.image ? <span className="error-message">{errors.image}</span> : ' '}</div>
           </div>
 
           <div className="playlist-form-box">
             <p>Description</p>
-            <input
+            <textarea
               className='create-playlist-inputs'
               type="text"
               onChange={(e) => setDescription(e.target.value)}
             />
+            <div style={{minHeight: 30}}></div>
           </div>
 
           <div className="playlist-form-box">
@@ -104,6 +105,7 @@ export default function CreatePlaylist() {
               />
               <p>Make my playlist private</p>
             </div>
+            <div style={{minHeight: 30}}></div>
           </div>
 
           <div className="submit-playlist">
@@ -112,7 +114,7 @@ export default function CreatePlaylist() {
               type="submit"
             > Create Playlist </button>
           </div>
-          {(imageLoading) && <p className="loading-text">Loading...</p>}
+          <div style={{minHeight: 30}}>{imageLoading ? <p className="loading-text">Loading...</p> : ' '}</div>
         </form>
       </div>
     </div>

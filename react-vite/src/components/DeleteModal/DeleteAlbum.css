@@ -1,5 +1,6 @@
 .delete-playlist-modal {
     padding: 35px;
+    min-width: 300px;
 }
 
 .delete-info-modal {
@@ -14,6 +15,8 @@
 .delete-text {
     font-size: small;
     padding-top: 8px;
+    text-wrap: wrap;
+    max-width: 300px;
 }
 
 .playlist-delete-buttons {

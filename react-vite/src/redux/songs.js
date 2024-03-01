@@ -159,10 +159,11 @@ const songReducer = (state = initialState, action) => {
             return newState
         }
         case LOAD_PLAYLIST_SONGS: {
-            const newState = {  };
-            newState.songs = {}
+            const newState = { };
+            let counter = 0
             action.songs.playlist_songs.forEach(song => {
-                newState.songs[song.id] = song
+                newState[counter] = song
+                counter++
             })
             return newState;
         }
@@ -181,8 +182,9 @@ const songReducer = (state = initialState, action) => {
             return newState;
         }
         case EDIT_SONG: {
-            const newState = {}
-            newState[action.song.id] = action.song
+            // const newState = {}
+            // newState[action.song.id] = action.song
+            const newState = {...state, [action.song.id]: action.song}
             return newState;
         }
         case DELETE_SONG: {

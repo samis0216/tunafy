@@ -9,7 +9,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import RemoveSongAlbum from '../SongModals/RemoveSongAlbum';
 
 
-export default function AlbumSongTile({ songs, song, album, artist, count }) {
+export default function AlbumSongTile({ songs, song, album, artist, count, changePlay, changeCount }) {
     const navigate = useNavigate()
     // const likedSongs = useSelector(state => state.collection)
     const user = useSelector(state => state.session.user)
@@ -20,9 +20,11 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
     let seconds = song.duration % 60
     if (seconds < 10) seconds = `0${seconds}`
     const isOwner = song.artist_id == user.id;
+
+
     return (
         <>
-            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(song.id - 4)}}>
+            <div onClick={() => {setSongList(Object.values(songs)); setCurrentSong(count-1); changePlay(true); changeCount(1)}}>
                 <div className='playlist-song-tile'>
                     <div className="song-info-div">
                         <p className="song-id">{count}</p>
@@ -35,9 +37,9 @@ export default function AlbumSongTile({ songs, song, album, artist, count }) {
                     <p className="song-album-name" onClick={() => {(song.album_id) ? navigate(`/albums/${song?.album_id}`) : navigate(`/songs/${song.id}`)}}>{album ? album.album_name : song.song_name}</p>
 
                     <div className="right-side-song">
-                    {isOwner && (
-                        <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span>
-                        )}
+                    {isOwner ?
+                        <span className='remove-feat'><OpenModalMenuItem itemText='Remove' modalComponent={<RemoveSongAlbum song={song} albumId={album.id}/>}/></span> :
+                        <p style={{ paddingRight: 30, visibility: 'hidden' }}>Remove</p>}
                         <p className="song-time">{`${minutes}:${seconds}`}</p>
                     </div>
                 </div>

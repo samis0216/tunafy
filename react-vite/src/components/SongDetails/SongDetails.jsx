@@ -48,7 +48,7 @@ export default function SongDetails() {
     if (song) return (
         <section className="playlist-details-section">
             <div className="playlist-detail-header">
-                <img className='playlist-detail-cover' src={album ? album.album_cover_url : song?.song_cover_url} />
+                <img className='playlist-detail-cover' src={song?.song_cover_url} />
                 <div className="playlist-detail-info">
                     <p style={{ fontSize: 14, color: '#b3b3b3' }}>Song</p>
                     <h1 className="playlist-detail-name">{song?.song_name}</h1>

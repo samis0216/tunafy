@@ -73,4 +73,4 @@ def removeSong(id):
     playlist_song = PlaylistSong.query.filter_by(playlist_id=id, song_id=songId).all()[0]
     db.session.delete(playlist_song)
     db.session.commit()
-    return playlist_song.to_dict
+    return playlist_song.to_dict()

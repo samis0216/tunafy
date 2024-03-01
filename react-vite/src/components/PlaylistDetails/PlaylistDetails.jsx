@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -21,12 +21,33 @@ export default function PlaylistDetails() {
     const playlist = useSelector(state => state.playlists[playlistId])
     const userSession = useSelector(state => state.session.user)
     const user = useSelector(state => state.users)
-    const playlistSongs = useSelector(state => state.songs.songs)
+    const playlistSongs = useSelector(state => state.songs)
     const album = useSelector(state => state.albums)
     const [songList, setSongList] = useContext(MusicContext);
     const [currentSong, setCurrentSong] = useContext(IndexContext);
+    const [playing, setPlaying] = useState(false);
+    const [count, setCount] = useState(0);
     if (songList) currentSong
 
+    const songers = Object.values(playlistSongs)
+    const handleClick = () => {
+        if (count == 0) {
+            setSongList(songers);
+            setCurrentSong(0);
+            setPlaying(true);
+        } else {
+            setPlaying(!playing);
+            const audi = document.getElementsByTagName('audio')[0]
+            if (playing) {
+                audi.pause()
+            }
+            if (!playing) {
+                audi.play()
+            }
+
+        }
+        setCount(count+1);
+    }
 
     useEffect(() => {
         dispatch(loadOnePlaylistThunk(playlistId))
@@ -36,8 +57,7 @@ export default function PlaylistDetails() {
     }, [dispatch, playlistId])
 
     if (!playlist || !playlistSongs) return null
-    const songKeys = Object.values(playlistSongs)
-    const songers = Object.values(playlistSongs)
+    const songKeys = Object.keys(playlistSongs)
     const totDur = Object.values(songers).reduce((total, obj) => obj.duration + total, 0)
     let songCounter = 1;
     const isOwner = playlist.creator_id == userSession.id
@@ -58,8 +78,8 @@ export default function PlaylistDetails() {
             </div>
             <div className="playlist-song-list">
                 <div className="song-list-symbols">
-                    <div className="playlist-play-button" onClick={() => setSongList(songers)}>
-                        <i className="fa-solid fa-play fa-2xl play-icon"></i>
+                    <div className="playlist-play-button" onClick={() => handleClick()}>
+                    {!playing ? <i className="fa-solid fa-play fa-2xl play-icon"></i> : <i className="fa-solid fa-pause fa-2xl play-icon"></i> }
                     </div>
                     {/* <i style={{ fontSize: 38 }} className="fa-regular fa-heart playlist-icon"></i> */}
                     <PlaylistDropdown playlistId={playlistId} />
@@ -69,28 +89,29 @@ export default function PlaylistDetails() {
                         <p className="hashtag">#</p>
                         <p>Title</p>
                     </div>
-                    <p style={{ paddingRight: 280 }}>Album</p>
+                    <p style={{ paddingRight: 254 }}>Album</p>
                     <div className="heart-duration">
-                    {/* <i className="fa-regular fa-heart"></i> */}
-                    <i className="fa-regular fa-clock duration-icon"></i>
+                        <p style={{ paddingRight: 2, visibility: 'hidden'}}>Remove</p>
+                        <i className="fa-regular fa-clock duration-icon"></i>
                     </div>
                 </div>
                 <div className="song-info">
-                    {songKeys?.map(song => (
-                        <div key={song?.id} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(song.id - 1)}}>
+                    {songKeys?.map(playSongId => (
+                        <div key={playSongId} className="playlist-song-tile" onClick={() => {setSongList(songers); setCurrentSong(playSongId); setPlaying(true); setCount(1)}}>
                             <div className="song-info-div" >
                                 <p className="song-id">{songCounter++}</p>
-                                <img className='song-cover-img' src={song?.song_cover_url} alt='song-cover' />
+                                <img className='song-cover-img' src={songers[playSongId]?.song_cover_url} alt='song-cover' />
                                 <div className="song-name-artist">
-                                    <p className='song-name' onClick={() => navigate(`/songs/${song?.id}`)}>{song?.song_name}</p>
-                                    <p>{user[song?.artist_id]?.username}</p>
+                                    <p className='song-name' onClick={() => navigate(`/songs/${songers[playSongId]?.id}`)}>{songers[playSongId]?.song_name}</p>
+                                    <p>{user[songers[playSongId]?.artist_id]?.username}</p>
                                 </div>
                             </div>
-                            <p className="song-album-name" onClick={() => navigate(`/albums/${album[song?.album_id]?.id}`)}>{album[song?.album_id]?.album_name}</p>
+                            <p className="song-album-name" onClick={() => navigate(`/albums/${album[songers[playSongId]?.album_id]?.id}`)}>{album[songers[playSongId]?.album_id]?.album_name}</p>
                             <div className="right-side-song">
-                            {isOwner && (
-                                <span className='remove-feat'><OpenModalMenuItem itemText={'Remove'} modalComponent={<RemoveSongPlaylist song={song} playlistId={playlist.id}/>}/></span>)}
-                                <p className="song-time">{`${Math.floor(song?.duration / 60)}:${(song?.duration % 60) < 10 ? `0${song?.duration % 60}` : song?.duration % 60}`}</p>
+                            {isOwner ?
+                                <span className='remove-feat'><OpenModalMenuItem itemText='Remove' modalComponent={<RemoveSongPlaylist song={songers[playSongId]} playlistId={playlist.id}/>}/></span> :
+                                <p style={{ paddingRight: 30, visibility: 'hidden' }}>Remove</p>}
+                                <p className="song-time">{`${Math.floor(songers[playSongId]?.duration / 60)}:${(songers[playSongId]?.duration % 60) < 10 ? `0${songers[playSongId]?.duration % 60}` : songers[playSongId]?.duration % 60}`}</p>
                             </div>
                         </div>
                     ))}

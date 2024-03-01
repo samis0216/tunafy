@@ -6,6 +6,7 @@
   color: white;
   margin-top: 100px;
   border-radius: 10px;
+  margin-bottom: 100px;
 }
 
 .update-album-box {
@@ -13,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 60px;
+  padding: 50px 60px 10px;
   gap: 10px;
   background-color: black;
   border-radius: 10px;
@@ -31,7 +32,6 @@
 
 .album-form-box {
   color: white;
-  padding: 10px 0px;
   display: flex;
   flex-direction: column;
   width: 450px;
@@ -39,6 +39,28 @@
 
 .album-form-box > p{
   padding-bottom: 5px;
+}
+
+.image-input-label {
+  display: flex;
+  flex-direction: row;
+}
+
+#update-image-input {
+  visibility: hidden;
+}
+
+.thumbnail {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border: 1px #b3b3b3 solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  border: 1px solid white;
 }
 
 .update-album-inputs {
@@ -64,6 +86,7 @@ input[type='file']:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .album-form-button:hover {
@@ -82,6 +105,7 @@ input[type='file']:hover{
   border: none;
   cursor: pointer;
   width: 450px;
+  height: 50px;
 }
 
 .submit_butt:hover {
@@ -91,5 +115,5 @@ input[type='file']:hover{
 
 .loading-text {
   color: white;
-  padding-top: 30px;
+  font-size: small;
 }

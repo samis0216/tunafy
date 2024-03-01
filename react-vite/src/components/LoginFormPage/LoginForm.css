@@ -30,7 +30,7 @@
 
 #login-header {
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     font-size: 40px;
     display: flex;
     justify-content: center;
@@ -94,7 +94,7 @@
 }
 
 .user-login-button {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
@@ -110,6 +110,7 @@
     border: none;
     cursor: pointer;
     width: 470px;
+    height: 50px;
 }
 
 #login-submit:hover {
@@ -148,4 +149,5 @@
 .error-message {
     color: #538aad;
     padding-bottom: 10px;
+    font-size: small;
 }

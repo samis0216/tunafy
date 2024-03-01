@@ -61,17 +61,52 @@ def editSong(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         song = Song.query.get(id)
-        remove_img_from_s3(song.song_cover_url)
-        remove_song_from_s3(song.song_file_url)
         data = form.data
-        newDuration = math.floor(MP3(form.song_file_url.data).info.length)
-        form.song_cover_url.data.filename = get_unique_filename_img(form.song_cover_url.data.filename)
-        form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
+        song_cover_url = form.data['song_cover_url']
+        song_file_url = form.data['song_file_url']
+
+        if song_cover_url is not None:
+            remove_img_from_s3(song.song_cover_url)
+            song_cover_url.filename = get_unique_filename_img(song_cover_url.filename)
+            upload = upload_img_to_s3(song_cover_url)
+            print(upload)
+
+            if 'url' not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return {'errors': {'message': 'error with upload'}}, 401
+
+            url = upload['url']
+            song.song_cover_url = url
+
+        if song_file_url is not None:
+            remove_song_from_s3(song.song_file_url)
+            newDuration = math.floor(MP3(form.song_file_url.data).info.length)
+            song_file_url.filename = get_unique_filename_songs(song_file_url.filename)
+            upload = upload_song_to_s3(song_file_url)
+            print(upload)
+
+            if 'url' not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return {'errors': {'message': 'error with upload'}}, 401
+
+            url = upload['url']
+            song.song_file_url = url
+            song.duration = newDuration
+
+        # remove_img_from_s3(song.song_cover_url)
+        # remove_song_from_s3(song.song_file_url)
+        # newDuration = math.floor(MP3(form.song_file_url.data).info.length)
+        # form.song_cover_url.data.filename = get_unique_filename_img(form.song_cover_url.data.filename)
+        # form.song_file_url.data.filename = get_unique_filename_songs(form.song_file_url.data.filename)
         song.song_name = data['song_name']
         song.artist_id = data['artist_id']
-        song.song_cover_url=upload_img_to_s3(form.song_cover_url.data).get("url")
-        song.song_file_url=upload_song_to_s3(form.song_file_url.data).get("url")
-        song.duration = newDuration
+        # song.song_cover_url=upload_img_to_s3(form.song_cover_url.data).get("url")
+        # song.song_file_url=upload_song_to_s3(form.song_file_url.data).get("url")
+        # song.duration = data['duration']
         db.session.commit()
         return song.to_dict()
     return 'Bad Data'
