@@ -330,6 +330,7 @@ def seed_songs():
     song27,
     song28,
     song29,
+    song30,
     song31,
     song32,
     song33
